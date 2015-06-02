@@ -1,0 +1,21 @@
+--- Makefile.orig	2015-01-15 10:58:20.000000000 -0800
++++ Makefile	2015-06-01 20:06:12.000000000 -0700
+@@ -12,14 +12,15 @@
+ lib: src/lfs.so
+ 
+ src/lfs.so: $(OBJS)
+-	MACOSX_DEPLOYMENT_TARGET="10.3"; export MACOSX_DEPLOYMENT_TARGET; $(CC) $(CFLAGS) $(LIB_OPTION) -o src/lfs.so $(OBJS)
++	mv lfs.o src/
++	$(CC) $(CFLAGS) $(LIB_OPTION) -o src/lfs.so $(OBJS)
+ 
+ test: lib
+ 	LUA_CPATH=./src/?.so lua tests/test.lua
+ 
+ install:
+-	mkdir -p $(LUA_LIBDIR)
+-	cp src/lfs.so $(LUA_LIBDIR)
++	mkdir -p $(DESTDIR)$(LUA_LIBDIR)
++	cp src/lfs.so $(DESTDIR)$(LUA_LIBDIR)
+ 
+ clean:
+ 	rm -f src/lfs.so $(OBJS)
