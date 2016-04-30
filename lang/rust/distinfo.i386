@@ -1,0 +1,4 @@
+SHA256 (rustc-1.8.0-src.tar.gz) = af4466147e8d4db4de2a46e07494d2dc2d96313c5b37da34237f511c905f7449
+SIZE (rustc-1.8.0-src.tar.gz) = 25641320
+SHA256 (rust-stage0-2016-02-17-4d3eebf-freebsd-i386-4e2af0b34eb335e173aebff543be693724a956c2.tar.bz2) = 578be492263cf9512020662fa35a493ec0589870e9de2e45e0aa63d40f515a3e
+SIZE (rust-stage0-2016-02-17-4d3eebf-freebsd-i386-4e2af0b34eb335e173aebff543be693724a956c2.tar.bz2) = 17417438
