@@ -5,4 +5,4 @@ class and window name.  Also allows to dim screen with selected color and
 opacity while dmenu2 is running.  Added underline color and height. (options
 -uc and -uh)
 
-WWW: https://bitbucket.org/melek/dmenu2
+WWW: https://github.com/mrshankly/dmenu2
