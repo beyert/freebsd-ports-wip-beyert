@@ -7,7 +7,7 @@ CATEGORIES=	x11
 MASTER_SITES=	https://bitbucket.org/melek/dmenu2/downloads/
 
 MAINTAINER=	beyert@cs.ucr.edu
-COMMENT=	X11 menu application designed for the dwm window manager
+COMMENT=	dynamic menu extended
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
