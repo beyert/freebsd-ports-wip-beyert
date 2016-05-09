@@ -1,5 +1,5 @@
---- Makefile.orig	2015-02-10 12:52:44.000000000 -0800
-+++ Makefile	2016-05-09 01:41:03.780792000 -0700
+--- Makefile.orig	2015-02-10 20:52:44 UTC
++++ Makefile
 @@ -1,10 +1,10 @@
  VERSION = 0.1
  
@@ -14,7 +14,7 @@
  
  PREFIX   ?= /usr/local
  BINPREFIX = $(PREFIX)/bin
-@@ -16,8 +16,6 @@
+@@ -16,8 +16,6 @@ DM_OBJ = $(DM_SRC:.c=.o)
  ST_SRC = stest.c
  ST_OBJ = $(ST_SRC:.c=.o)
  
