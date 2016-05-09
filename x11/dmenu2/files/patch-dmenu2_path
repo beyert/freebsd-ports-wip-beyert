@@ -1,0 +1,17 @@
+--- dmenu2_path.orig	1969-12-31 16:00:00.000000000 -0800
++++ dmenu2_path	2016-05-08 23:08:10.419558000 -0700
+@@ -0,0 +1,14 @@
++#!/bin/sh
++# adapted from dmenu_run in original dmenu distribution
++cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
++if [ -d "$cachedir" ]; then
++	cache=$cachedir/dmenu2_run
++else
++	cache=$HOME/.dmenu2_cache # if no xdg dir, fall back to dotfile in ~
++fi
++IFS=:
++if stest2 -dqr -n "$cache" $PATH; then
++	stest2 -flx $PATH | sort -u | tee "$cache"
++else
++	cat "$cache"
++fi
