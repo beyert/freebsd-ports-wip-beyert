@@ -1,0 +1,25 @@
+--- Makefile.orig	2015-02-10 12:52:44.000000000 -0800
++++ Makefile	2016-05-09 01:41:03.780792000 -0700
+@@ -1,10 +1,10 @@
+ VERSION = 0.1
+ 
+ CC      ?= gcc
+-LIBS     = -lX11 -lXinerama -lXft -lXrender -lfreetype -lz -lfontconfig
+-CFLAGS  += -std=c99 -pedantic -Wall -Wextra -I/usr/include/freetype2
++LIBS     = -L${X11LIB} -lX11 -lXinerama -lXft -lXrender -lfreetype -lz -lfontconfig
++CFLAGS  += -std=c99 -pedantic -Wall -Wextra -Os -I${X11INC} -I/usr/include/freetype2
+ CFLAGS  += -DXINERAMA -D_POSIX_C_SOURCE=200809L -DVERSION=\"$(VERSION)\"
+-LDFLAGS +=
++LDFLAGS = -s ${LIBS}
+ 
+ PREFIX   ?= /usr/local
+ BINPREFIX = $(PREFIX)/bin
+@@ -16,8 +16,6 @@
+ ST_SRC = stest.c
+ ST_OBJ = $(ST_SRC:.c=.o)
+ 
+-all: CFLAGS += -Os
+-all: LDFLAGS += -s
+ all: dmenu stest
+ 
+ debug: CFLAGS += -g -O0 -DDEBUG
