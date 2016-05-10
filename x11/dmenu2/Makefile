@@ -4,7 +4,6 @@
 PORTNAME=	dmenu2
 PORTVERSION=	0.0.20150210
 CATEGORIES=	x11
-MASTER_SITES=	https://bitbucket.org/melek/dmenu2/downloads/
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	X11 menu application, dynamic menu extended
