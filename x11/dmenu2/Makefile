@@ -7,7 +7,7 @@ CATEGORIES=	x11
 MASTER_SITES=	https://bitbucket.org/melek/dmenu2/downloads/
 
 MAINTAINER=	beyert@cs.ucr.edu
-COMMENT=	dynamic menu extended
+COMMENT=	X11 menu application, dynamic menu extended
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -45,6 +45,8 @@ pre-install:
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/bin/dmenu ${STAGEDIR}${PREFIX}/bin/dmenu2
 	${MV} ${STAGEDIR}${PREFIX}/bin/dmenu_run ${STAGEDIR}${PREFIX}/bin/dmenu2_run
+	${REINPLACE_CMD} 's|dmenu|dmenu2|g' ${STAGEDIR}${PREFIX}/bin/dmenu2_run
+	${REINPLACE_CMD} 's|stest|stest2|g' ${STAGEDIR}${PREFIX}/bin/dmenu2_run
 	${MV} ${STAGEDIR}${PREFIX}/bin/stest ${STAGEDIR}${PREFIX}/bin/stest2
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/dmenu2 \
 		${STAGEDIR}${PREFIX}/bin/stest2

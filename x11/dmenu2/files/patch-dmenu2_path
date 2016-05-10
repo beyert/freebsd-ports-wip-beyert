@@ -2,7 +2,7 @@
 +++ dmenu2_path
 @@ -0,0 +1,14 @@
 +#!/bin/sh
-+# adapted from dmenu_run in original dmenu distribution
++# adapted from dmenu_path in original dmenu distribution
 +cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 +if [ -d "$cachedir" ]; then
 +	cache=$cachedir/dmenu2_run
