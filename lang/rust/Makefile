@@ -1,5 +1,5 @@
 # Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
-# $FreeBSD: head/lang/rust/Makefile 412657 2016-04-07 07:17:45Z jbeich $
+# $FreeBSD$
 
 PORTNAME=	rust
 PORTVERSION?=	1.8.0
@@ -69,6 +69,7 @@ MAKE_ARGS+=	VERBOSE=1
 .endif
 
 OPTIONS_DEFINE=		GDB LLNEXTGEN PORT_LLVM SRCS DOCS
+OPTIONS_DEFAULT=	SRCS
 OPTIONS_SUB=		yes
 .include <bsd.port.options.mk>
 DOCS_CONFIGURE_ENABLE=	docs
@@ -130,8 +131,9 @@ post-patch:
 		${WRKSRC}/configure
 .endif
 .if ${PORT_OPTIONS:MSRCS}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/${PORTNAME}/src
-	@${CP} -pR ${WRKSRC}/src ${STAGEDIR}${PREFIX}/share/${PORTNAME}
+	@${MKDIR} ${STAGEDIR}${DATADIR}
+	@${CP} -pR ${WRKSRC}/src ${STAGEDIR}${DATADIR}
+	@${RM} -rf ${STAGEDIR}${DATADIR}/src/llvm/test
 .endif
 
 # In case the previous "make stage" failed, this ensures rust's
