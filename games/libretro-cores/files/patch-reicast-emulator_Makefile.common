@@ -1,0 +1,12 @@
+--- reicast-emulator/Makefile.common.orig	2017-01-26 09:26:17.000000000 -0800
++++ reicast-emulator/Makefile.common	2017-02-13 22:31:13.655230000 -0800
+@@ -4,7 +4,8 @@
+ INCFLAGS    := -I$(CORE_DIR)/libretro \
+ 					-I$(CORE_DIR) \
+ 					-I$(DEPS_DIR) \
+-					-I$(LIBRETRO_COMM_DIR)/include 
++					-I$(LIBRETRO_COMM_DIR)/include \
++					-I$(PREFIX)/include 
+ 
+ SOURCES_C   :=
+ SOURCES_CXX := $(CORE_DIR)/hw/arm7/arm_mem.cpp \

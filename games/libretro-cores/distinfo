@@ -1,4 +1,4 @@
-TIMESTAMP = 1473306410
+TIMESTAMP = 1487048403
 SHA256 (libretro-libretro-2048-d69235a_GH0.tar.gz) = cdbb3e39ef70cf96434491bd28ed8057ed1c5157d39be2f381cbc0ace33422f5
 SIZE (libretro-libretro-2048-d69235a_GH0.tar.gz) = 2681285
 SHA256 (libretro-4do-libretro-cbd700e_GH0.tar.gz) = d11f2bdf41db507c94e1bbbed01cbfea5c69389922cda5013a1edf12f5320454
@@ -107,3 +107,5 @@ SHA256 (libretro-virtualjaguar-libretro-ffec5c7_GH0.tar.gz) = 498204de6d4fad9047
 SIZE (libretro-virtualjaguar-libretro-ffec5c7_GH0.tar.gz) = 1026441
 SHA256 (libretro-yabause-b121882_GH0.tar.gz) = 769b0898fc58d4da4541026359b56ef827b50081218d28116c6927f62d81ebc6
 SIZE (libretro-yabause-b121882_GH0.tar.gz) = 2168003
+SHA256 (libretro-reicast-emulator-148638c_GH0.tar.gz) = 234175521054c147de009e1a4040b4c3b7617952bc1e8ae6598451b88ac7d400
+SIZE (libretro-reicast-emulator-148638c_GH0.tar.gz) = 1016905

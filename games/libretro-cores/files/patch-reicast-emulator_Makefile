@@ -1,0 +1,104 @@
+--- reicast-emulator/Makefile.orig	2017-01-26 09:26:17.000000000 -0800
++++ reicast-emulator/Makefile	2017-02-14 22:46:35.018158000 -0800
+@@ -37,6 +37,8 @@
+ 
+ ifeq ($(ARCH), $(filter $(ARCH), i386 i686))
+ 	WITH_DYNAREC = x86
++else ifeq ($(ARCH), $(filter $(ARCH), amd64))
++	WITH_DYNAREC = x64
+ endif
+ 
+ ifeq ($(platform),)
+@@ -47,10 +49,11 @@
+ 	platform = win
+ else ifneq ($(findstring Darwin,$(UNAME)),)
+ 	platform = osx
++else ifneq ($(findstring FreeBSD,$(UNAME)),)
++	platform = freebsd
+ else ifneq ($(findstring win,$(UNAME)),)
+ 	platform = win
+ endif
+-endif
+ 
+ # system platform
+ system_platform = unix
+@@ -60,12 +63,16 @@
+ else ifneq ($(findstring Darwin,$(shell uname -a)),)
+ 	system_platform = osx
+ 	arch = intel
++else ifneq ($(findstring FreeBSD,$(shell uname -a)),)
++	system_platform = freebsd
++	arch = intel
+ ifeq ($(shell uname -p),powerpc)
+ 	arch = ppc
+ endif
+ else ifneq ($(findstring MINGW,$(shell uname -a)),)
+ 	system_platform = win
+ endif
++endif
+ 
+ ifeq ($(SINGLE_PREC_FLAGS),1)
+ CFLAGS += -fsingle-precision-constant
+@@ -120,11 +127,11 @@
+ HOST_CPU_MIPS=0x20000003
+ HOST_CPU_X64=0x20000004
+ 
+-ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86_64 x64))
++ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86_64 x64 amd64))
+ HOST_CPU_FLAGS = -DHOST_CPU=$(HOST_CPU_X64)
+ endif
+ 
+-ifeq ($(WITH_DYNAREC), x86)
++ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86 i386))
+ HOST_CPU_FLAGS = -DHOST_CPU=$(HOST_CPU_X86)
+ endif
+ 
+@@ -151,10 +158,19 @@
+ 
+ 	fpic = -fPIC
+ 
+-ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86_64 x64))
++else ifneq (,$(findstring FreeBSD,$(platform)))
++	EXT    ?= so
++   TARGET := $(TARGET_NAME)_libretro.$(EXT)
++	SHARED := -shared -Wl,--version-script=link.T
++	LDFLAGS +=  -Wl,--no-undefined
++	LIBS += -L$(PREFIX)/lib -lrt
++
++	fpic = -fPIC
++
++ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86_64 x64 amd64))
+ 	CFLAGS += -D TARGET_NO_AREC
+ endif
+-ifeq ($(WITH_DYNAREC), x86)
++ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86 i386))
+ 	CFLAGS += -D TARGET_NO_AREC
+ endif
+ 
+@@ -413,6 +429,17 @@
+ 	PLATFORM_EXT := unix
+ 	#HAVE_SHARED_CONTEXT := 1
+ 
++# FreeBSD
++else ifeq ($(platform), freebsd)
++	EXT    ?= so
++	TARGET := $(TARGET_NAME)_libretro.$(EXT)
++	SHARED := -shared -Wl,--version-script=link.T
++	GL_LIB := -lGL
++	fpic = -fPIC
++	CFLAGS += -D TARGET_NO_AREC
++	LDFLAGS +=  -Wl,--no-undefined
++	LIBS += -L$(PREFIX)/lib -lrt
++
+ # Windows
+ else
+ 	EXT       ?= dll
+@@ -423,7 +450,7 @@
+ 	PLATFORM_EXT := win32
+ 	CC = gcc
+ 	CXX = g++
+-ifeq ($(WITH_DYNAREC), x86)
++ifeq ($(WITH_DYNAREC), $(filter $(WITH_DYNAREC), x86 i386))
+ 	LDFLAGS += -m32
+ 	CFLAGS += -D TARGET_NO_AREC -m32
+ endif

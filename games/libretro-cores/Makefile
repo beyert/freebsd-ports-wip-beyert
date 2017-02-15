@@ -1,9 +1,9 @@
 # Created by: Yuri Victorovich <yuri@rawbw.com>
-# $FreeBSD: head/games/libretro-cores/Makefile 418131 2016-07-06 13:19:38Z gahr $
+# $FreeBSD: head/games/libretro-cores/Makefile 428569 2016-12-14 16:06:19Z mat $
 
 PORTNAME=	libretro-cores
 PORTVERSION=	0.20151110
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 
 MAINTAINER=	yuri@rawbw.com
@@ -75,11 +75,12 @@ ALL_CORES+=	libretro:vbam-libretro:vbam:bedddba:x
 ALL_CORES+=	libretro:libretro-vecx:vecx:be67ef1:x
 ALL_CORES+=	libretro:virtualjaguar-libretro:virtualjaguar:ffec5c7:x
 ALL_CORES+=	libretro:yabause:yabause:b121882:x
+ALL_CORES+=	libretro:reicast-emulator:reicast:148638c:x
 
 USE_GITHUB=	nodefault
 
 # variables that depend on ALL_CORES
-GH_TUPLE=	${ALL_CORES:C,^([^:]*):([^:]*):([^:]*):([^:]*):([^:]*),\1:\2:\4:\3,}
+GH_TUPLE=	${ALL_CORES:C,^([^:]*):([^:]*):([^:]*):([^:]*):([^:]*),\1:\2:\4:\3/\2,}
 CORE_DIRS=	${ALL_CORES:C,^([^:]*):([^:]*):([^:]*):([^:]*):([^:]*),\2,}
 
 #PLIST_FILES+=	${ALL_CORES:C,^([^:]*):([^:]*):([^:]*):([^:]*):([^:]*),libexec/libretro/\3_libretro.so,}
@@ -104,15 +105,9 @@ DOS2UNIX_FILES=	hatari/Makefile.libretro
 .include <bsd.port.pre.mk>
 
 # Avoid a lot of patching for 9.
-.if ${COMPILER_TYPE} == gcc
+.if ${CHOSEN_COMPILER_TYPE} == gcc
 USE_CXXSTD=	gnu++11
 .endif
-
-post-extract:
-	@${MKDIR} ${WRKSRC}
-.for dir in ${ALL_CORES:C,^([^:]*):([^:]*):([^:]*):([^:]*):([^:]*),\2:\3,}
-	@${MV} ${WRKSRC_${dir:C/^([^:]*):([^:]*)/\2/}} ${WRKSRC}/${dir:C/^([^:]*):([^:]*)/\1/}
-.endfor
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/"__VA_ARGS__/" __VA_ARGS__/' \
