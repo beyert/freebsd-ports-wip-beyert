@@ -1,0 +1,5 @@
+bin/yefm
+share/applications/yefm.desktop
+%%PORTDOCS%%%%DOCSDIR%%/CHANGELOG
+share/pixmaps/yefm.png
+%%DATADIR%%/translations/yefm_zh_CN.qm

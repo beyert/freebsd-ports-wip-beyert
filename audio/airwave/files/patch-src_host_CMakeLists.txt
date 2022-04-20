@@ -1,0 +1,32 @@
+--- src/host/CMakeLists.txt.orig	2020-07-15 17:59:39 UTC
++++ src/host/CMakeLists.txt
+@@ -3,6 +3,7 @@ set(TARGET_NAME ${HOST_BASENAME})
+ 
+ project(${TARGET_NAME})
+ 
++option(DISABLE_32BIT  "Disable building of the 32-bit host endpoint" OFF)
+ option(DISABLE_64BIT  "Disable building of the 64-bit host endpoint" OFF)
+ 
+ find_package(Threads REQUIRED)
+@@ -55,11 +56,11 @@ if(NOT DISABLE_64BIT AND PLATFORM_64BIT)
+ 	install(PROGRAMS
+ 		${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}-64.exe
+ 		${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}-64.exe.so
+-		DESTINATION bin
++		DESTINATION lib/airwave
+ 	)
+ endif()
+ 
+-
++if(NOT DISABLE_32BIT AND PLATFORM_32BIT)
+ # Set target
+ add_executable(${TARGET_NAME}-32 WIN32 ${SOURCES})
+ 
+@@ -76,5 +77,6 @@ target_link_libraries(${TARGET_NAME}-32
+ install(PROGRAMS
+ 	${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}-32.exe
+ 	${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}-32.exe.so
+-	DESTINATION bin
++	DESTINATION lib/airwave
+ )
++endif()

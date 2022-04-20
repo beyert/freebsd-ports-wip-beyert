@@ -1,0 +1,7 @@
+bin/ogit
+lib/libogit.a
+lib/libogit.so
+lib/libogit.so.0
+lib/libogit_p.a
+tests/Kyuafile
+tests/ogit_test

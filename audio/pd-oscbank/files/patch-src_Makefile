@@ -1,0 +1,118 @@
+--- src/Makefile.orig	2012-02-28 17:40:14 UTC
++++ src/Makefile
+@@ -1,23 +1,23 @@
+ # ----------------------- shared settings
+ 
+-SHARED_CFLAGS = -g -DPD -Wall -O0
++SHARED_CFLAGS=	-g -DPD -Wall -O0
+ 
+ # uncomment for linear wavetable interpolation
+-SHARED_CFLAGS += -DWAVETABLE_INTERP
++SHARED_CFLAGS+=	-DWAVETABLE_INTERP
+ 
+-COMPILER = gcc
++COMPILER=	${CC}
+ 
+-# ----------------------- LINUX i386 -----------------------
++# ------------------------ GNU/Linux -----------------------
+ 
+-pd_linux: oscbank~.pd_linux
++pd_linux:	oscbank~.pd_linux
+ 
+-.SUFFIXES: .pd_linux
++.SUFFIXES:	.pd_linux
+ 
+-LINUXCFLAGS = -DPD -O2 -funroll-loops -fomit-frame-pointer \
+-    -Wall -W -Wshadow -Wstrict-prototypes -Werror \
+-    -Wno-unused -Wno-parentheses -Wno-switch
++LINUXCFLAGS=	-DPD -O2 -funroll-loops -fomit-frame-pointer \
++	-Wall -W -Wshadow -Wstrict-prototypes -Werror \
++	-Wno-unused -Wno-parentheses -Wno-switch
+ 
+-LINUXINCLUDE =  -I /usr/local/src/pd
++LINUXINCLUDE=	-I/usr/local/src/pd
+ 
+ .c.pd_linux:
+ 	$(COMPILER) $(LINUXCFLAGS) $(LINUXINCLUDE) -o $*.o -c $*.c
+@@ -25,37 +25,58 @@ LINUXINCLUDE =  -I /usr/local/src/pd
+ 	strip --strip-unneeded $*.pd_linux
+ 	rm $*.o
+ 
++# ------------------------- FreeBSD ------------------------
+ 
++pd_freebsd:	oscbank~.pd_freebsd
++
++.SUFFIXES:	.pd_freebsd
++
++FreeBSDCFLAGS=	-DPD -O2 -funroll-loops -fomit-frame-pointer \
++	-Wall -W -Wshadow -Wstrict-prototypes -Werror \
++	-Wno-unused -Wno-parentheses -Wno-switch -fPIC
++
++FreeBSDINCLUDE=	-I${LOCALBASE}/include -I${LOCALBASE}/include/pd
++
++#FreeBSDLDFLAGS=	${LDFLAGS} -L${LOCALBASE}/lib -lc -lm -Wl,-z,notext
++FreeBSDLDFLAGS=	${LDFLAGS} -L${LOCALBASE}/lib -lc -lm
++
++.c.pd_freebsd:
++	${COMPILER} ${FreeBSDCFLAGS} ${FreeBSDINCLUDE} -o $*.o -c $*.c
++	${LD} --export-dynamic -shared -o $*.pd_freebsd $*.o ${FreeBSD_LDFLAGS}
++	${STRIP_CMD} $*.pd_freebsd
++	${RM} $*.o
++
+ # ----------------------- Mac OSX -----------------------
+ 
+-pd_darwin: oscbank~.pd_darwin
++pd_darwin:	oscbank~.pd_darwin
+ 
+-.SUFFIXES: .pd_darwin
++.SUFFIXES:	.pd_darwin
+ 
+-DARWINCFLAGS = $(SHARED_CFLAGS)
++DARWINCFLAGS=	$(SHARED_CFLAGS)
+ 
+-DARWIN_INCLUDE = -I /Applications/Pd-extended.app/Contents/Resources/include/
++DARWIN_INCLUDE=	-I/Applications/Pd-extended.app/Contents/Resources/include/
+ 
+ .c.pd_darwin:
+ 	$(COMPILER) -arch i386 $(DARWINCFLAGS) $(DARWIN_INCLUDE) -o $*.o -c $*.c
+-	$(COMPILER) -arch i386 -bundle -undefined suppress -flat_namespace -o $*.pd_darwin $*.o
++	$(COMPILER) -arch i386 -bundle -undefined suppress -flat_namespace \
++		-o $*.pd_darwin $*.o
+ 	rm -f $*.o
+ 
+ clean:
+ 	rm *.pd_darwin
+ # ----------------------- NT -----------------------
+ 
+-pd_nt: oscbank~.dll
++pd_nt:	oscbank~.dll
+ 
+ .SUFFIXES: .obj .dll
+ 
+-PDNTCFLAGS = /W3 /WX /DNT /DPD /nologo
++PDNTCFLAGS=	/W3 /WX /DNT /DPD /nologo
+ VC="D:\Program Files\Microsoft Visual Studio\Vc98"
+ 
+-PDNTINCLUDE = /I. /I\tcl\include /I..\..\src /I$(VC)\include
++PDNTINCLUDE=	/I. /I\tcl\include /I..\..\src /I$(VC)\include
+ 
+-PDNTLDIR = $(VC)\lib
+-PDNTLIB = $(PDNTLDIR)\libc.lib \
++PDNTLDIR=	$(VC)\lib
++PDNTLIB=	$(PDNTLDIR)\libc.lib \
+ 	$(PDNTLDIR)\oldnames.lib \
+ 	$(PDNTLDIR)\kernel32.lib \
+ 	..\..\bin\pd.lib 
+@@ -65,6 +86,9 @@ PDNTLIB = $(PDNTLDIR)\libc.lib \
+ 	link /dll /export:$*_setup $*.obj $(PDNTLIB)
+ 
+ # override explicitly for tilde objects like this:
+-dspobj~.dll: dspobj~.c; 
++dspobj~.dll:	dspobj~.c; 
+ 	cl $(PDNTCFLAGS) $(PDNTINCLUDE) /c $*.c
+-	link /dll /export:dspobj_tilde_setup $*.obj $(PDNTLIB)
+\ No newline at end of file
++	link /dll /export:dspobj_tilde_setup $*.obj $(PDNTLIB)
++
++.PHONY: pd_linux pd_freebsd pd_darwin pd_nt
++

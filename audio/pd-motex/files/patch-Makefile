@@ -1,0 +1,21 @@
+--- Makefile.orig	2010-09-05 05:40:20 UTC
++++ Makefile
+@@ -120,6 +120,18 @@ ifeq ($(UNAME),Linux)
+   STRIP = strip --strip-unneeded -R .note -R .comment
+   DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
+ endif
++ifeq ($(UNAME),FreeBSD)
++  SOURCES += $(SOURCES_freebsd)
++  EXTENSION = pd_freebsd
++  OS = freebsd
++  OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
++  CFLAGS += -fPIC -I/usr/local/include/pd
++  LDFLAGS += -Wl,--export-dynamic  -shared -fPIC
++  LIBS += -lc
++  STRIP = strip -s
++  DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
++endif
++
+ ifeq (CYGWIN,$(findstring CYGWIN,$(UNAME)))
+   SOURCES += $(SOURCES_cygwin)
+   EXTENSION = dll

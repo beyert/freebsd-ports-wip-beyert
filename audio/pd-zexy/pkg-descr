@@ -1,0 +1,8 @@
+the zexy external is a collection of externals for miller.s.puckette's
+realtime-computermusic-environment called "pure data" (or abbreviated "pd")
+this zexy external will be of no use, if you don't have a running version of
+pd on your system.
+
+check out for http://pd.iem.at to learn more about pd and how to get it
+
+WWW: https://github.com/iem-projects/pd-zexy

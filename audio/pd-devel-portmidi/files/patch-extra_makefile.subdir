@@ -1,0 +1,37 @@
+--- extra/makefile.subdir.orig	2022-03-23 23:36:48 UTC
++++ extra/makefile.subdir
+@@ -4,7 +4,7 @@ libpddir = $(prefix)/lib/pd
+ 
+ .PHONY: 
+ 
+-current: pd_linux
++current: pd_freebsd
+ 
+ # ----------------------- Microsoft Visual C -----------------------
+ MSCC = cl
+@@ -49,6 +49,25 @@ LINUXINCLUDE =  -I../../src
+ 	$(CC) $(LINUXCFLAGS) $(LINUXINCLUDE) -o $*.o -c $*.c
+ 	$(CC) -shared -o $*.pd_linux $*.o -lc -lm
+ 	rm -f $*.o
++
++# ------------------------ FreeBSD -------------------------
++
++pd_freebsd: $(NAME).pd_freebsd
++
++.SUFFIXES: .pd_freebsd
++
++FREEBSDCFLAGS = -DPD -funroll-loops -fomit-frame-pointer -fPIC \
++    -Wall -W -Wshadow -Wstrict-prototypes \
++    -Wno-unused -Wno-unused-parameter -Wno-parentheses -Wno-switch \
++    -Wno-cast-function-type $(CFLAGS) $(MORECFLAGS)
++
++FREEBSDINCLUDE =  -I../../src
++
++.c.pd_freebsd:
++	$(CC) $(FREEBSDFLAGS) $(FREEBSDINCLUDE) -o $*.o -c $*.c
++	$(CC) -shared -o $*.pd_freebsd $*.o -lm
++	rm -f $*.o
++
+ 
+ # ----------------------- Mac OSX -----------------------
+ 

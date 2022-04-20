@@ -1,0 +1,35 @@
+--- modules/Makefile.orig	2014-01-06 18:40:48 UTC
++++ modules/Makefile
+@@ -1,20 +1,20 @@
+ # build subdirs
+ current:
+-	make -C generic
+-	make -C image_basic
+-	make -C image_io
+-	make -C image_special
+-	make -C matrix_basic
+-	make -C test
++	${MAKE} -C generic
++	${MAKE} -C image_basic
++	${MAKE} -C image_io
++	${MAKE} -C image_special
++	${MAKE} -C matrix_basic
++	${MAKE} -C test
+ 
+ 
+ clean:
+-	make -C generic clean
+-	make -C image_basic clean
+-	make -C image_io clean
+-	make -C image_special clean
+-	make -C matrix_basic clean
+-	make -C test clean
++	${MAKE} -C generic clean
++	${MAKE} -C image_basic clean
++	${MAKE} -C image_io clean
++	${MAKE} -C image_special clean
++	${MAKE} -C matrix_basic clean
++	${MAKE} -C test clean
+ 	rm -f *~
+ 	rm -f *.o
+ 

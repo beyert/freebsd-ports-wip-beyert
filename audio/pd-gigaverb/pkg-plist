@@ -1,0 +1,5 @@
+lib/pd-externals/gigaverb~/gigaverb~-help.pd
+lib/pd-externals/gigaverb~/gigaverb~-meta.pd
+lib/pd-externals/gigaverb~/gigaverb~.pd_freebsd
+lib/pd-externals/gigaverb~/output~.pd
+lib/pd-externals/gigaverb~/voice.wav

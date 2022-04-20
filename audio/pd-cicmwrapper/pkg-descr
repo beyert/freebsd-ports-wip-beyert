@@ -1,0 +1,6 @@
+The CICM wrapper is a C interface for Tcl/Tk and Pure Data that aims to
+facilitate the creation of objects for Pure Data.  One of the main goals is the
+creation of graphical user interfaces.  It also facilitates the implementation
+of dynamic multi-signal processing, and improves the compatibility with Max.
+
+WWW: https://github.com/beyert/CicmWrapper

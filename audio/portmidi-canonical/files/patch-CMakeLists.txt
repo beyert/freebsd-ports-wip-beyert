@@ -1,0 +1,14 @@
+--- CMakeLists.txt.orig	2022-03-28 23:18:59 UTC
++++ CMakeLists.txt
+@@ -78,6 +78,11 @@ option(BUILD_JAVA_NATIVE_INTERFACE
+ # and PMWINMM (for windows), but these are assumed.
+ #
+ if(APPLE OR WIN32)
++elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++  set(FreeBSD TRUE)
++  set(FREEBSD_DEFINES "PMSNDIO" CACHE STRING "must define either
++  PMSNDIO, PMALSA or PMNULL")
++  add_compile_definitions(${FreeBSD_DEFINES})
+ else(APPLE_OR_WIN32)
+   set(LINUX_DEFINES "PMALSA" CACHE STRING "must define either PMALSA or PMNULL")
+   add_compile_definitions(${LINUX_DEFINES})

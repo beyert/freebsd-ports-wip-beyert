@@ -1,0 +1,10 @@
+lib/pd-externals/flatgui/LICENSE.txt
+lib/pd-externals/flatgui/README.txt
+lib/pd-externals/flatgui/entry-help.pd
+lib/pd-externals/flatgui/entry.pd_freebsd
+lib/pd-externals/flatgui/examples/clock.pd
+lib/pd-externals/flatgui/flatgui-meta.pd
+lib/pd-externals/flatgui/knob-help.pd
+lib/pd-externals/flatgui/knob.pd_freebsd
+lib/pd-externals/flatgui/popup-help.pd
+lib/pd-externals/flatgui/popup.pd_freebsd

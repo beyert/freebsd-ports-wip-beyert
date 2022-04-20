@@ -1,0 +1,10 @@
+Cream Library for Pure Data
+
+A set of PD externals for those who like vanilla... but also want some
+chocolate cream.
+
+The Cream Library uses the CICM Wrapper, developed to facilitate the creation
+of signal objects and GUI widgets, offering a set of externals that improve the
+user interface in Pure Data.
+
+WWW: https://github.com/beyert/CreamLibrary

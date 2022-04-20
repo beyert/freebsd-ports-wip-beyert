@@ -1,0 +1,9 @@
+This collection consists of abstractions and externals. They aim at improving
+audio synthesis quality within Pure Data. This collection uses band limited
+oscillators and objects that read tables in a more flexible way than the Pure
+Data native oscillators. Some filters and various objects are also available.
+
+This lib was written by Cyrille Henry, you can contact him via his webpage:
+http://www.chnry.net/ch/?001-Cyrille-Henry
+
+WWW: https://github.com/ch-nry/pd_nusmuk_audio

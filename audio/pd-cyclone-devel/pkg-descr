@@ -1,0 +1,6 @@
+Cyclone: A set of Pure Data objects cloned from Max/MSP
+
+Cyclone expands Pure Data with objects cloned from cycling74's Max/MSP and
+provides some good level of compatibility between the two environments.
+
+WWW: https://github.com/porres/pd-cyclone

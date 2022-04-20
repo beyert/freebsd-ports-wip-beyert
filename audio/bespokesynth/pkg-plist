@@ -1,0 +1,417 @@
+bin/BespokeSynth
+share/BespokeSynth/resource/frabk.ttf
+share/BespokeSynth/resource/frabk_m.ttf
+share/BespokeSynth/resource/help.txt
+share/BespokeSynth/resource/iosevka-type-light.ttf
+share/BespokeSynth/resource/noise.jpg
+share/BespokeSynth/resource/python_stubs/bespoke/__init__.pyi
+share/BespokeSynth/resource/python_stubs/drumplayer/__init__.pyi
+share/BespokeSynth/resource/python_stubs/drumsequencer/__init__.pyi
+share/BespokeSynth/resource/python_stubs/envelope/__init__.pyi
+share/BespokeSynth/resource/python_stubs/grid/__init__.pyi
+share/BespokeSynth/resource/python_stubs/linnstrument/__init__.pyi
+share/BespokeSynth/resource/python_stubs/me/__init__.pyi
+share/BespokeSynth/resource/python_stubs/midicontroller/__init__.pyi
+share/BespokeSynth/resource/python_stubs/module/__init__.pyi
+share/BespokeSynth/resource/python_stubs/notecanvas/__init__.pyi
+share/BespokeSynth/resource/python_stubs/notesequencer/__init__.pyi
+share/BespokeSynth/resource/python_stubs/osccontroller/__init__.pyi
+share/BespokeSynth/resource/python_stubs/oscoutput/__init__.pyi
+share/BespokeSynth/resource/python_stubs/sampleplayer/__init__.pyi
+share/BespokeSynth/resource/python_stubs/vstplugin/__init__.pyi
+share/BespokeSynth/resource/scripting_reference.txt
+share/BespokeSynth/resource/tooltips_deu.txt
+share/BespokeSynth/resource/tooltips_eng.txt
+share/BespokeSynth/resource/tooltips_esp.txt
+share/BespokeSynth/resource/tooltips_ru.txt
+share/BespokeSynth/resource/userdata_original/controllers/APC Mini.json
+share/BespokeSynth/resource/userdata_original/controllers/Ableton Push 2 Live Port.json
+share/BespokeSynth/resource/userdata_original/controllers/Akai MIDImix.json
+share/BespokeSynth/resource/userdata_original/controllers/Akai MPD232 - Generic Preset.json
+share/BespokeSynth/resource/userdata_original/controllers/Alesis VMini.json
+share/BespokeSynth/resource/userdata_original/controllers/Arturia BeatStep.json
+share/BespokeSynth/resource/userdata_original/controllers/Arturia MiniLab mkII MIDI 1.json
+share/BespokeSynth/resource/userdata_original/controllers/Arturia MiniLab mkII MIDI 1_PADS.json
+share/BespokeSynth/resource/userdata_original/controllers/Axiom AIR Mini 32 MIDI In.json
+share/BespokeSynth/resource/userdata_original/controllers/BCF2000.json
+share/BespokeSynth/resource/userdata_original/controllers/CMD LC-1.json
+share/BespokeSynth/resource/userdata_original/controllers/Generic 4x4.json
+share/BespokeSynth/resource/userdata_original/controllers/Launch Control.json
+share/BespokeSynth/resource/userdata_original/controllers/Launchpad Mini.json
+share/BespokeSynth/resource/userdata_original/controllers/Launchpad S.json
+share/BespokeSynth/resource/userdata_original/controllers/Launchpad.json
+share/BespokeSynth/resource/userdata_original/controllers/Lightpad BLOCK.json
+share/BespokeSynth/resource/userdata_original/controllers/LinnStrument MIDI.json
+share/BespokeSynth/resource/userdata_original/controllers/MPD218 Port A.json
+share/BespokeSynth/resource/userdata_original/controllers/Maschine Mikro MK2 In.json
+share/BespokeSynth/resource/userdata_original/controllers/Midi Fighter Twister.json
+share/BespokeSynth/resource/userdata_original/controllers/QUNEO.json
+share/BespokeSynth/resource/userdata_original/controllers/Seaboard RISE.json
+share/BespokeSynth/resource/userdata_original/controllers/TB-3 MIDI 1.json
+share/BespokeSynth/resource/userdata_original/controllers/TB-3 MIDI 2.json
+share/BespokeSynth/resource/userdata_original/controllers/Traktor Kontrol F1 - 1.json
+share/BespokeSynth/resource/userdata_original/controllers/VMeter 1.30 A.json
+share/BespokeSynth/resource/userdata_original/controllers/monome.json
+share/BespokeSynth/resource/userdata_original/controllers/monome128split.json
+share/BespokeSynth/resource/userdata_original/controllers/monome64.json
+share/BespokeSynth/resource/userdata_original/controllers/nanoKONTROL2 SLIDERKNOB.json
+share/BespokeSynth/resource/userdata_original/controllers/nanoKONTROL2.json
+share/BespokeSynth/resource/userdata_original/controllers/nanoPAD2 PAD.json
+share/BespokeSynth/resource/userdata_original/controllers/nanoPAD2.json
+share/BespokeSynth/resource/userdata_original/controllers/osccontroller.json
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [cadet].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [congratulations].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [luger].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [money].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [rico].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [savage].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [swag].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Clap/Clap [team].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [808 bill].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [A].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [crowd].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [flex].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [glock].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [horse].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [leon].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [lighter].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [nextel].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [signal].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [staple].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [track].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/FX/FX [vitas].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [brutal].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [c4].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [cardiak].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [copter].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [death].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [digital].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [dist].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [finesse].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [hit 1].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [laura].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [legend].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [love].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [meal].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [pump].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [rockstar].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatClosed/HH [short].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [backwoods].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [cargo].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [drug].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [flang].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [metro].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [pack].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [retro].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [weather].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/HatOpen/OH [wrist].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [argo].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [deadline].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [finger].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [haley].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [killa].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [mango].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [maze].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [mind].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [moon].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [racg].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [rack].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [snake].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Kick/Kick [zzz].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [classic].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [dash].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [dragon].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [gang].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [gangsta].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [intuition].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [thot].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Perc/Perc [z].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [antidote].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [boomin].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [bwz].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [chop].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [cobra].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [dirty].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [fast].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [fat].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [keke].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [london].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [mob].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [more].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [mozart].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [origins].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [pf].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [roll].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [saviour].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [shorty].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [vybe].wav
+share/BespokeSynth/resource/userdata_original/drums/808kit/Snare/Snare [zip].wav
+share/BespokeSynth/resource/userdata_original/drums/drums.json
+share/BespokeSynth/resource/userdata_original/layouts/blank.json
+share/BespokeSynth/resource/userdata_original/prefabs/mixer.pfb
+share/BespokeSynth/resource/userdata_original/prefabs/multibandcompressor.pfb
+share/BespokeSynth/resource/userdata_original/prefabs/randompan.pfb
+share/BespokeSynth/resource/userdata_original/savestate/example__arpeggiation.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__dj_turntables.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__drumsynth_chance_sequence.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__feedback.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__looper_recorder.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__scripting.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__sequencing_sequencers.bsk
+share/BespokeSynth/resource/userdata_original/scales.json
+share/BespokeSynth/resource/userdata_original/scripts/arpeggiate_input.py
+share/BespokeSynth/resource/userdata_original/scripts/chord_mutation.py
+share/BespokeSynth/resource/userdata_original/scripts/chord_tools.py
+share/BespokeSynth/resource/userdata_original/scripts/chordprogression.py
+share/BespokeSynth/resource/userdata_original/scripts/clappingmusic_hats.py
+share/BespokeSynth/resource/userdata_original/scripts/dozenal.py
+share/BespokeSynth/resource/userdata_original/scripts/drum_mutate.py
+share/BespokeSynth/resource/userdata_original/scripts/drum_patternlist.py
+share/BespokeSynth/resource/userdata_original/scripts/drumplayerrandomizer.py
+share/BespokeSynth/resource/userdata_original/scripts/drumseq_randomize.py
+share/BespokeSynth/resource/userdata_original/scripts/drumsynth_randomize.py
+share/BespokeSynth/resource/userdata_original/scripts/echo.py
+share/BespokeSynth/resource/userdata_original/scripts/euclid.py
+share/BespokeSynth/resource/userdata_original/scripts/midicontroller_input.py
+share/BespokeSynth/resource/userdata_original/scripts/modulecreation.py
+share/BespokeSynth/resource/userdata_original/scripts/nanokontrol_to_m185.py
+share/BespokeSynth/resource/userdata_original/scripts/note_echo.py
+share/BespokeSynth/resource/userdata_original/scripts/passing_tones.py
+share/BespokeSynth/resource/userdata_original/scripts/randomcanvas.py
+share/BespokeSynth/resource/userdata_original/scripts/sampleplayer_chop.py
+share/BespokeSynth/resource/userdata_original/scripts/sampleplayer_to_drumplayer.py
+share/BespokeSynth/resource/userdata_original/scripts/schedule_sequence.py
+share/BespokeSynth/resource/userdata_original/scripts/tension_layers.py
+share/BespokeSynth/resource/userdata_original/scripts/transcribe_to_canvas.py
+share/BespokeSynth/resource/userdata_original/scripts/walk.py
+share/BespokeSynth/resource/userdata_original/scriptstyles.json
+share/BespokeSynth/resource/userdata_original/userdata_version.txt
+share/applications/BespokeSynth.desktop
+share/icons/hicolor/512x512/apps/bespoke_icon.png
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/frabk.ttf
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/frabk_m.ttf
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/help.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/iosevka-type-light.ttf
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/noise.jpg
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/bespoke/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/drumplayer/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/drumsequencer/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/envelope/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/grid/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/linnstrument/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/me/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/midicontroller/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/module/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/notecanvas/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/notesequencer/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/osccontroller/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/oscoutput/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/sampleplayer/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/vstplugin/__init__.pyi
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/scripting_reference.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/tooltips_deu.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/tooltips_eng.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/tooltips_esp.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/tooltips_ru.txt
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/APC Mini.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Ableton Push 2 Live Port.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Akai MIDImix.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Akai MPD232 - Generic Preset.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Alesis VMini.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Arturia BeatStep.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Arturia MiniLab mkII MIDI 1.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Arturia MiniLab mkII MIDI 1_PADS.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Axiom AIR Mini 32 MIDI In.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/BCF2000.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/CMD LC-1.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Generic 4x4.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Launch Control.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Launchpad Mini.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Launchpad S.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Launchpad.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Lightpad BLOCK.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/LinnStrument MIDI.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/MPD218 Port A.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Maschine Mikro MK2 In.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Midi Fighter Twister.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/QUNEO.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Seaboard RISE.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/TB-3 MIDI 1.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/TB-3 MIDI 2.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/Traktor Kontrol F1 - 1.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/VMeter 1.30 A.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/monome.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/monome128split.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/monome64.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/nanoKONTROL2 SLIDERKNOB.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/nanoKONTROL2.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/nanoPAD2 PAD.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/nanoPAD2.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers/osccontroller.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [cadet].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [congratulations].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [luger].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [money].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [rico].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [savage].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [swag].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap/Clap [team].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [808 bill].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [A].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [crowd].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [flex].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [glock].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [horse].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [leon].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [lighter].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [nextel].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [signal].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [staple].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [track].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX/FX [vitas].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [brutal].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [c4].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [cardiak].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [copter].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [death].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [digital].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [dist].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [finesse].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [hit 1].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [laura].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [legend].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [love].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [meal].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [pump].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [rockstar].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed/HH [short].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [backwoods].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [cargo].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [drug].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [flang].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [metro].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [pack].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [retro].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [weather].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen/OH [wrist].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [argo].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [deadline].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [finger].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [haley].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [killa].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [mango].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [maze].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [mind].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [moon].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [racg].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [rack].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [snake].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick/Kick [zzz].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [classic].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [dash].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [dragon].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [gang].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [gangsta].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [intuition].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [thot].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc/Perc [z].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [antidote].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [boomin].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [bwz].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [chop].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [cobra].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [dirty].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [fast].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [fat].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [keke].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [london].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [mob].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [more].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [mozart].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [origins].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [pf].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [roll].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [saviour].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [shorty].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [vybe].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare/Snare [zip].wav
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/drums.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/layouts/blank.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/prefabs/mixer.pfb
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/prefabs/multibandcompressor.pfb
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/prefabs/randompan.pfb
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__arpeggiation.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__dj_turntables.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__drumsynth_chance_sequence.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__feedback.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__looper_recorder.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__scripting.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate/example__sequencing_sequencers.bsk
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scales.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/arpeggiate_input.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/chord_mutation.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/chord_tools.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/chordprogression.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/clappingmusic_hats.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/dozenal.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/drum_mutate.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/drum_patternlist.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/drumplayerrandomizer.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/drumseq_randomize.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/drumsynth_randomize.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/echo.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/euclid.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/midicontroller_input.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/modulecreation.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/nanokontrol_to_m185.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/note_echo.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/passing_tones.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/randomcanvas.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/sampleplayer_chop.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/sampleplayer_to_drumplayer.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/schedule_sequence.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/tension_layers.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/transcribe_to_canvas.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts/walk.py
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scriptstyles.json
+/usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/userdata_version.txt
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/bespoke
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/drumplayer
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/drumsequencer
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/envelope
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/grid
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/linnstrument
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/me
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/midicontroller
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/module
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/notecanvas
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/notesequencer
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/osccontroller
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/oscoutput
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/sampleplayer
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs/vstplugin
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/python_stubs
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/controllers
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Clap
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/FX
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatClosed
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/HatOpen
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Kick
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Perc
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit/Snare
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums/808kit
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/drums
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/layouts
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/prefabs
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/savestate
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original/scripts
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource/userdata_original
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release/resource
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts/Release
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source/BespokeSynth_artefacts
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a/Source
+@dir /usr/ports/audio/bespokesynth/work/BespokeSynth-d4f641a
+@dir /usr/ports/audio/bespokesynth/work
+@dir /usr/ports/audio/bespokesynth
+@dir /usr/ports/audio
+@dir /usr/ports

@@ -1,0 +1,41 @@
+--- Makefile.orig	2017-07-12 21:05:29 UTC
++++ Makefile
+@@ -89,7 +89,7 @@ INSTALL_DATA = $(INSTALL) -p -m 644
+ INSTALL_DIR     = $(INSTALL) -p -m 755 -d
+ 
+ ALLSOURCES := $(SOURCES) $(SOURCES_android) $(SOURCES_cygwin) $(SOURCES_macosx) \
+-	         $(SOURCES_iphoneos) $(SOURCES_linux) $(SOURCES_windows)
++	$(SOURCES_iphoneos) $(SOURCES_linux) $(SOURCES_freebsd) $(SOURCES_windows)
+ 
+ DISTDIR=$(LIBRARY_NAME)-$(LIBRARY_VERSION)
+ ORIGDIR=pd-$(LIBRARY_NAME:~=)_$(LIBRARY_VERSION)
+@@ -198,6 +198,21 @@ ifeq ($(UNAME),Linux)
+   STRIP = strip --strip-unneeded -R .note -R .comment
+   DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
+ endif
++ifeq ($(UNAME),FreeBSD)
++  CPU := $(shell uname -m)
++  SOURCES += $(SOURCES_freebsd)
++  EXTENSION = pd_freebsd
++  SHARED_EXTENSION = so
++  OS = freebsd
++  PD_PATH = /usr/local
++  OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
++  ALL_CFLAGS += -fPIC
++  ALL_LDFLAGS += -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  SHARED_LDFLAGS += -Wl,-soname,$(SHARED_LIB) -shared
++  ALL_LIBS += -lc $(LIBS_freebsd)
++  STRIP = strip -s
++  DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
++endif
+ ifeq ($(UNAME),GNU)
+   # GNU/Hurd, should work like GNU/Linux for basically all externals
+   CPU := $(shell uname -m)
+@@ -297,6 +312,7 @@ $(SHARED_LIB): $(SHARED_SOURCE:.c=.o)
+ 	$(CC) $(SHARED_LDFLAGS) -o $(SHARED_LIB) $(SHARED_SOURCE:.c=.o) $(ALL_LIBS)
+ 
+ install: libdir_install
++	find $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME) -name "*.${EXTENSION}" | xargs ${STRIP}
+ 
+ # The meta and help files are explicitly installed to make sure they are
+ # actually there.  Those files are not optional, then need to be there.

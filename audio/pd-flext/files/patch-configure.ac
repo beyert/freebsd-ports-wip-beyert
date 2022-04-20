@@ -1,0 +1,11 @@
+--- configure.ac.orig	2021-05-05 19:30:00 UTC
++++ configure.ac
+@@ -134,6 +134,8 @@ AC_STRUCT_TM
+ # system specific
+ if test $(uname -s) == Linux; then
+ 	true
++elif test $(uname -s) == FreeBSD; then
++	true
+ elif test $(uname -s) == Darwin; then
+ 	FRAMEWORKS="$FRAMEWORKS ApplicationServices Accelerate"
+ 	LD_FLAGS="$LD_FLAGS -flat_namespace -undefined dynamic_lookup"

@@ -1,0 +1,19 @@
+--- Source/CMakeLists.txt.orig	2021-12-16 04:57:56 UTC
++++ Source/CMakeLists.txt
+@@ -361,6 +361,8 @@ target_include_directories(BespokeSynth PRIVATE
+     )
+ 
+ target_compile_definitions(BespokeSynth PRIVATE
++    CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
++
+     JUCE_MODAL_LOOPS_PERMITTED=1
+     JUCE_ALLOW_STATIC_NULL_VARIABLES=0
+     JUCE_STRICT_REFCOUNTEDPOINTER=1
+@@ -383,6 +385,7 @@ target_compile_definitions(BespokeSynth PRIVATE
+     JUCE_DIRECTSOUND=1
+ 
+     JUCE_PLUGINHOST_VST3=1
++    JUCE_CUSTOM_VST3_SDK=1
+     JUCE_PLUGINHOST_VST=$<BOOL:${BESPOKE_VST2_SDK_LOCATION}>
+ 
+     JUCE_CATCH_UNHANDLED_EXCEPTIONS=0

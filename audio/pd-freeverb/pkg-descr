@@ -1,0 +1,9 @@
+freeverb - Freeverb is an implementation by Olaf Mattes, based on the Freeverb
+code put nicely in the public domain by "Jezar".
+
+This repository replaces the Library Template Makefile by the pd-lib-builder
+buildsystem. This to simplify creation of a deken package of the libary.
+
+Fred Jan Kraan fjkraan@xs4all.nl 2016-05-07
+
+WWW: https://github.com/electrickery/pd-freeverb

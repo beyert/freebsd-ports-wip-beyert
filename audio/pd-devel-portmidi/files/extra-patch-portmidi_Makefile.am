@@ -1,0 +1,24 @@
+--- portmidi/Makefile.am.orig	2022-03-24 01:16:06 UTC
++++ portmidi/Makefile.am
+@@ -18,6 +18,14 @@ libportmidi_a_SOURCES = \
+     portmidi/pm_common/pmutil.c \
+     portmidi/pm_common/portmidi.c
+ 
++if FREEBSD
++AM_CPPFLAGS += -I$(top_srcdir)/portmidi/portmidi/pm_sndio
++libportmidi_a_SOURCES += \
++    portmidi/porttime/ptfreebsd.c \
++    portmidi/pm_sndio/pmsndio.c \
++    portmidi/pm_linux/finddefault.c
++endif
++
+ if LINUX
+ AM_CPPFLAGS += -I$(top_srcdir)/portmidi/portmidi/pm_linux
+ libportmidi_a_SOURCES += \
+@@ -61,5 +69,6 @@ nobase_noinst_HEADERS = \
+     portmidi/pm_mac/pmmacosxcm.h \
+     portmidi/pm_mac/readbinaryplist.h \
+     portmidi/pm_win/pmwinmm.h \
++    portmidi/pm_sndio/pmsndio.h \
+     portmidi/porttime/porttime.h \
+      $(empty)

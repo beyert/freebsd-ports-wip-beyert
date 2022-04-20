@@ -1,0 +1,8 @@
+#N canvas 454 444 420 300 0;
+#X text 16 14 NAME: abctools;
+#X text 16 69 AUTHOR: Yoichi HIRATA;
+#X text 16 51 DESCRIPTION: Pure Data external objects;
+#X text 16 32 KEYWORDS: knob controller dial externals objects;
+#X text 16 88 WEBSITE: http://tkrkapps.blogspot.jp;
+#X text 16 106 LICENSE: SIBSD;
+#X text 16 124 VERSION: Release 2a;

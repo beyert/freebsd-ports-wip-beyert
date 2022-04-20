@@ -1,0 +1,6 @@
+IEMlib is a collection of low level objects and filters for Pure Data.
+
+This library extends the performance of Miller S. Puckette's
+realtime computer music environment Pure Data (pd).
+
+WWW: https://git.iem.at/pd/iemlib

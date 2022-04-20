@@ -1,0 +1,4 @@
+lib/pd-externals/oscbank~/oscbank~-help.pd
+lib/pd-externals/oscbank~/oscbank~.pd_freebsd
+%%PORTDOCS%%%%DOCSDIR%%/LICENSE
+%%PORTDOCS%%%%DOCSDIR%%/README

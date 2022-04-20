@@ -1,0 +1,81 @@
+--- Makefile.pdlibbuilder.orig	2019-03-19 19:24:17 UTC
++++ Makefile.pdlibbuilder
+@@ -470,6 +470,10 @@ ifeq ($(findstring $(uname), Linux GNU GNU/kFreeBSD), 
+   system = Linux
+ endif
+ 
++ifeq ($(uname), FreeBSD)
++  system = FreeBSD
++endif
++
+ ifeq ($(uname), Darwin)
+   system = Darwin
+ endif
+@@ -503,10 +507,31 @@ ifeq ($(system), Linux)
+   cxx.ldlibs := -lc -lm -lstdc++
+   shared.extension = so
+   shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
+-  stripflags = --strip-unneeded -R .note -R .comment
+ endif
+ 
+ 
++#=== flags and paths for FreeBSD ===============================================
++
++
++ifeq ($(system), FreeBSD)
++  prefix = /usr/local
++  libdir := $(prefix)/lib
++  pkglibdir = $(libdir)/pd-externals
++  pdincludepath := $(wildcard /usr/local/include/pd)
++  extension = pd_freebsd
++  cpp.flags := -DUNIX -DFreeBSD
++  c.flags := -fPIC
++  c.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  c.ldlibs := -lc -lm
++  cxx.flags := -fPIC -fcheck-new
++  cxx.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  cxx.ldlibs := -lc -lm -lstdc++
++  shared.extension = so
++  shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
++  stripflags = -s
++endif
++
++
+ #=== flags and paths for Darwin ================================================
+ 
+ 
+@@ -989,7 +1014,26 @@ endef
+ %.lst:: %.cpp force
+ 	$(call make-assembly-file,cxx)
+ 
++#=== strip, borrowed from pdlibbuilder 0.6.0 ===================================
+ 
++
++# Stripping of installed binaries will only be done when variable 'stripflags'
++# is defined non-empty. No default definition is provided except for Windows
++# where the unstripped binaries are large, especially in the case of Mingw-w64.
++
++# Note: while stripping all symbols ('-s' or '--strip-all') is possible for
++# Linux and Windows, in the case of OSX only non-global symbols can be stripped
++# (option '-x' or '--discard-all').
++
++# Make definition of strip command overridable so it can be defined in an
++# environment for cross-compilation.
++STRIP ?= strip
++
++# Commands in 'strip-executables' will be executed conditionally in the rule for
++# target 'install-executables'.
++strip-executables = cd "$(installpath)" && \
++	$(foreach v, $(executables), $(STRIP) $(stripflags) '$v';)
++
+ ################################################################################
+ ### rules: installation targets ################################################
+ ################################################################################
+@@ -1024,6 +1068,7 @@ install-executables: all
+ 	$(INSTALL_PROGRAM) '$v' "$(installpath)";)
+ 	$(info ++++ info: executables of lib $(lib.name) installed \
+         from $(CURDIR) to $(installpath))
++	$(if $(stripflags), $(strip-executables),)
+ 
+ install-datafiles: all
+ 	$(INSTALL_DIR) -v "$(installpath)"

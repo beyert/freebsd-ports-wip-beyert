@@ -1,0 +1,13 @@
+TIMESTAMP = 1640140591
+SHA256 (BespokeSynth-BespokeSynth-20211221-d4f641a_GH0.tar.gz) = e0ff19bcfc35e7af0a75339f69ce8b13b2fdfce52977c8406e2c609dd99ad0d9
+SIZE (BespokeSynth-BespokeSynth-20211221-d4f641a_GH0.tar.gz) = 18632352
+SHA256 (juce-framework-JUCE-6d6ecff_GH0.tar.gz) = 5020516f3f66342886b6c134b372a4f7972ebfcab061fc53f8ffdbe946295334
+SIZE (juce-framework-JUCE-6d6ecff_GH0.tar.gz) = 17553669
+SHA256 (pybind-pybind11-04dd326_GH0.tar.gz) = 6f493f35012968822a568f24e921c27d9235af306fde4923b6c0c2108cb0bd5f
+SIZE (pybind-pybind11-04dd326_GH0.tar.gz) = 681120
+SHA256 (surge-synthesizer-tuning-library-eb8617b_GH0.tar.gz) = ca5e48f70bf4e8bbd3b31f80858a9039b3275ff781ef5d56ec16a4e1a8d09d00
+SIZE (surge-synthesizer-tuning-library-eb8617b_GH0.tar.gz) = 140190
+SHA256 (open-source-parsers-jsoncpp-9059f5c_GH0.tar.gz) = 217e4da8ceddba34f6f1374e1bd7eeaf91b634e84fcaaedf75c5e151c89dd358
+SIZE (open-source-parsers-jsoncpp-9059f5c_GH0.tar.gz) = 214084
+SHA256 (ODDSound-MTS-ESP-fcfaa59_GH0.tar.gz) = e65afa123e8529c4c2e522cdca8553665c03b1961528e74f7e1763d1f83ae685
+SIZE (ODDSound-MTS-ESP-fcfaa59_GH0.tar.gz) = 1217731

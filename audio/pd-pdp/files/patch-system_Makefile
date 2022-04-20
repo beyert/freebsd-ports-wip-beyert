@@ -1,0 +1,53 @@
+--- system/Makefile.orig	2014-01-06 18:40:48 UTC
++++ system/Makefile
+@@ -1,33 +1,35 @@
+ 
+ include ../Makefile.config
+ 
+-all: $(PDP_TARGET) pdp.o
++all: ${PDP_TARGET} pdp.o
+ 
+ common:
+-	make -C net
+-	make -C png
+-	make -C type
+-	make -C kernel
+-	make -C image $(PDP_TARGET)
+-	make -C zl
++	${MAKE} -C net
++	${MAKE} -C png
++	${MAKE} -C type
++	${MAKE} -C kernel
++	${MAKE} -C image $(PDP_TARGET)
++	${MAKE} -C zl
+ 
+ linux_mmx: common
+-	make -C mmx
++	${MAKE} -C mmx
+ 
+ linux_gcc_mmx: common
+ 
+ linux: common
+ 
++freebsd: common
++
+ darwin: common
+ 
+ clean:
+ 	rm -f *~
+ 	rm -f *.o
+-	make -C mmx clean
+-	make -C net clean
+-	make -C png clean
+-	make -C image clean
+-	make -C type clean
+-	make -C kernel clean
+-	make -C zl clean
++	${MAKE} -C mmx clean
++	${MAKE} -C net clean
++	${MAKE} -C png clean
++	${MAKE} -C image clean
++	${MAKE} -C type clean
++	${MAKE} -C kernel clean
++	${MAKE} -C zl clean
+ 

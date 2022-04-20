@@ -1,0 +1,46 @@
+--- Makefile.orig	2022-04-09 20:19:13 UTC
++++ Makefile
+@@ -72,7 +72,7 @@ INSTALL_DATA = $(INSTALL) -p -m 644
+ INSTALL_DIR     = $(INSTALL) -p -m 755 -d
+ 
+ ALLSOURCES := $(SOURCES) $(SOURCES_android) $(SOURCES_cygwin) $(SOURCES_macosx) \
+-	         $(SOURCES_iphoneos) $(SOURCES_linux) $(SOURCES_windows)
++	         $(SOURCES_iphoneos) $(SOURCES_linux) $(SOURCES_freebsd) $(SOURCES_windows)
+ 
+ DISTDIR=$(LIBRARY_NAME)-$(LIBRARY_VERSION)
+ ORIGDIR=pd-$(LIBRARY_NAME:~=)_$(LIBRARY_VERSION)
+@@ -199,6 +199,21 @@ ifeq ($(UNAME),Linux)
+   STRIP = strip --strip-unneeded -R .note -R .comment
+   DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
+ endif
++ifeq ($(UNAME),FreeBSD)
++  CPU := $(shell uname -m)
++  EXTENSION = pd_freebsd
++  SOURCES += $(SOURCES_freebsd)
++  SHARED_EXTENSION = so
++  OS = freebsd
++  PD_PATH = $(prefix)
++  OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
++  ALL_CFLAGS += -fPIC
++  ALL_LDFLAGS += -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  SHARED_LDFLAGS += -Wl,-soname,$(SHARED_LIB) -shared
++  ALL_LIBS += -lc $(LIBS_freebsd)
++  STRIP = strip -s
++  DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
++endif
+ ifeq ($(UNAME),GNU)
+   # GNU/Hurd, should work like GNU/Linux for basically all externals
+   CPU := $(shell uname -m)
+@@ -314,9 +329,9 @@ libdir_install: $(SOURCES:.c=.$(EXTENSION)) $(SHARED_L
+ 	test -z "$(strip $(wildcard $(SOURCES:.c=.tcl)))" || \
+ 		$(INSTALL_DATA) $(wildcard $(SOURCES:.c=.tcl)) \
+ 			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+-	test -z "$(strip $(PDOBJECTS))" || \
+-		$(INSTALL_DATA) $(PDOBJECTS) \
+-			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
++#	test -z "$(strip $(PDOBJECTS))" || \
++#		$(INSTALL_DATA) $(PDOBJECTS) \
++#			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+ 	test -z "$(strip $(SHARED_TCL_LIB))" || \
+ 		$(INSTALL_DATA) $(SHARED_TCL_LIB) \
+ 			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)

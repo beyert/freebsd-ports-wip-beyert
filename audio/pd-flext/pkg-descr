@@ -1,0 +1,10 @@
+Flext seeks to represent a uniform programming interface for extending the most
+common modular real-time audio systems Max/MSP and Pure Data (PD) with external
+modules, or short externals.  These modules provide a way to tailor such a
+system for one is special needs and supply additional functionality.
+
+Source code based on flext is able to exploit most common features of the
+respective real-time framework while staying completely independent of the
+actual host system and platform (hardware and operating system).
+
+WWW: https://github.com/grrrr/flext

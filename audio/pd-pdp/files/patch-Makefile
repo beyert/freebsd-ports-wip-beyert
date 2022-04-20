@@ -1,0 +1,108 @@
+--- Makefile.orig	2014-01-06 18:40:48 UTC
++++ Makefile
+@@ -7,23 +7,25 @@ include Makefile.config
+ #all: linux
+ #endif
+ 
++all: ${PDP_TARGET}
+ 
+-all: $(PDP_TARGET)
+-
+ everything: all
+-	make -C opengl
+-	make -C scaf
++	${MAKE} -C opengl
++	${MAKE} -C scaf
+ 
+ pdp_all:
+-	make -C system
+-	make -C puredata
+-	make -C modules
++	${MAKE} -C system
++	${MAKE} -C puredata
++	${MAKE} -C modules
+ 
++freebsd:	pdp_all
++	rm -f pdp.pd_freebsd
++	${CC} -rdynamic -shared -o pdp.pd_freebsd modules/*/*.o system/pdp.o system/*/*.o puredata/*.o ${PDP_LIBS}
++
+ darwin:	pdp_all
+ 	rm -f pdp.pd_darwin
+-	$(CC)  -o pdp.pd_darwin modules/*/*.o system/pdp.o system/*/*.o puredata/*.o $(PDP_LIBS) -bundle -undefined  dynamic_lookup  -twolevel_namespace -bundle_loader $(PD_EXECUTABLE) 
++	$(CC) -o pdp.pd_darwin modules/*/*.o system/pdp.o system/*/*.o puredata/*.o $(PDP_LIBS) -bundle -undefined  dynamic_lookup  -twolevel_namespace -bundle_loader $(PD_EXECUTABLE)
+ 
+-
+ linux: pdp_all
+ 	rm -f pdp.pd_linux
+ 	$(CC) -rdynamic -shared -o pdp.pd_linux modules/*/*.o system/pdp.o system/*/*.o puredata/*.o $(PDP_LIBS)
+@@ -32,10 +34,10 @@ linux_mmx: linux
+ linux_gcc_mmx: linux
+ 
+ buildclean:
+-	make -C include clean
+-	make -C system clean
+-	make -C puredata clean
+-	make -C modules clean
++	${MAKE} -C include clean
++	${MAKE} -C system clean
++	${MAKE} -C puredata clean
++	${MAKE} -C modules clean
+ 
+ backupclean:
+ 	rm -f *~ */*~ */*/*~
+@@ -44,11 +46,11 @@ clean: buildclean backupclean
+ 	rm -f pdp.pd_linux
+ 
+ distroclean: buildclean
+-	make -C scaf clean
+-	make -C opengl clean
++	${MAKE} -C scaf clean
++	${MAKE} -C opengl clean
+ 
+ mrproper: clean distroclean
+-	make -C scaf mrproper
++	${MAKE} -C scaf mrproper
+ 	rm -rf configure
+ 	rm -rf config.log
+ 	rm -rf config.status
+@@ -65,21 +67,25 @@ tagsclean:
+ 
+ 
+ install: all
+-	#check if pd is installed. if this fails make install will stop here.
+-	test -d $(prefix)/lib/pd
+-	install -d $(prefix)/lib/pd/extra
+-	install -m 755 $(PDP_LIBRARY_NAME) $(prefix)/lib/pd/extra
+-	install -m 755 -d $(prefix)/include/pdp
+-	install -m 644 include/*.h $(prefix)/include/pdp
+-	install -m 644 abstractions/*.pd $(prefix)/lib/pd/extra
+-	install -m 644 doc/objects/*.pd $(prefix)/lib/pd/doc/5.reference
+-	install -m 755 -d $(prefix)/lib/pd/doc/pdp
+-	install -m 755 -d $(prefix)/lib/pd/doc/pdp/introduction
+-	install -m 755 -d $(prefix)/lib/pd/doc/pdp/examples
+-	install -m 644 doc/reference.txt $(prefix)/lib/pd/doc/pdp
+-	install -m 644 doc/introduction/*.pd $(prefix)/lib/pd/doc/pdp/introduction
+-	install -m 644 doc/examples/*.pd $(prefix)/lib/pd/doc/pdp/examples
+-	install -m 755 bin/pdp-config $(prefix)/bin
++	mkdir -p ${STAGEDIR}${PDP_datadir}/extra
++	test -d ${STAGEDIR}${prefix}/lib/pd-externals/pdp || \
++		install -d ${STAGEDIR}${prefix}/lib/pd-externals/pdp
++	install -m 755 ${PDP_LIBRARY_NAME} ${STAGEDIR}${prefix}/lib/pd-externals/pdp
++	${STRIP} ${STRIP_ARGS} ${STAGEDIR}${prefix}/lib/pd-externals/pdp/*
++	install -m 755 -d ${STAGEDIR}${prefix}/include/pdp
++	install -m 644 include/*.h ${STAGEDIR}${prefix}/include/pdp
++	install -m 644 abstractions/*.pd ${STAGEDIR}${PDP_datadir}/extra
++	mkdir -p ${STAGEDIR}${PDP_docsdir}/introduction
++	mkdir -p ${STAGEDIR}${PDP_docsdir}/5.reference
++	install -m 644 doc/objects/*.pd ${STAGEDIR}${PDP_docsdir}/5.reference
++	install -m 755 -d ${STAGEDIR}${PDP_docsdir}
++	install -m 755 -d ${STAGEDIR}${PDP_docsdir}/introduction
++	mkdir -p ${STAGEDIR}${PDP_examplesdir}
++	install -m 755 -d ${STAGEDIR}${PDP_examplesdir}
++	install -m 644 doc/reference.txt ${STAGEDIR}${PDP_docsdir}
++	install -m 644 doc/introduction/*.pd ${STAGEDIR}${PDP_docsdir}/introduction
++	install -m 644 doc/examples/*.pd ${STAGEDIR}${PDP_examplesdir}
++	install -m 755 bin/pdp-config ${STAGEDIR}${prefix}/bin
+ 
+ snapshot:
+ 	bin/snapshot -d darcs

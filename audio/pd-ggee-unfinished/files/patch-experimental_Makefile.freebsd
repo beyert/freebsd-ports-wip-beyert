@@ -1,0 +1,38 @@
+--- experimental/Makefile.freebsd.orig	2022-03-30 03:29:36 UTC
++++ experimental/Makefile.freebsd
+@@ -0,0 +1,35 @@
++NAME=	stk
++current:	pd_freebsd
++
++# TARGETS+=	stk
++
++PDDIR=	${PREFIX}/lib/pd
++INSTALLPATH=	${PDDIR}/extra
++VERSION=	\"0.16\"
++
++# ---------------------- FreeBSD ----------------------
++
++pd_freebsd:	${NAME}.pd_freebsd
++
++.SUFFIXES:	.pd_freebsd
++
++FreeBSDINCLUDE=	-I${LOCALBASE}/include -I${LOCALBASE}/include/stk
++
++FreeBSDCFLAGS=	-ggdb -DPD -O3 -fPIC -funroll-loops -fomit-frame-pointer \
++	-W -Wshadow -Wno-unused -Wno-parentheses -Wno-switch
++
++FreeBSDLDFLAGS=	${LDFLAGS} -L${LOCALBASE}/lib
++
++.cpp.pd_freebsd:
++	${CC} ${FreeBSDCFLAGS} ${FreeBSDINCLUDE} -c ${NAME}.cpp
++	${CC} -Wl,--export-dynamic  -shared -o ${NAME}.pd_freebsd ${NAME}.o ${FreeBSDLDFLAGS} -lc -lstk
++	${STRIP} -s ${NAME}.pd_freebsd
++	${RM} -f *.o
++# -------------------------------------------------------
++
++clean:
++	rm *.pd_freebsd
++
++install:
++	cp ${NAME}.pd_* ${INSTALLPATH}
++	install -d  ${PDDIR}/doc/5.reference/${NAME}-help.pd

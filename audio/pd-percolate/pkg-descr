@@ -1,0 +1,10 @@
+PeRColate for Pure Data version 0.09
+
+This is a fork of PeRColate, which is an open-source distribution of a variety
+of synthesis and signal processing algorithms for PureData (PD)
+
+Pd port made by Olaf Matthes olaf.matthes@gmx.de, help files ported by Martin
+Dupras martin.dupras@uwe.ac.uk, PeRCOlate for MAX written by Dan Trueman and R.
+Luke DuBois
+
+WWW: https://github.com/megrimm/pd-percolate

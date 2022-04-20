@@ -1,0 +1,12 @@
+--- plugins/CMakeLists.txt.orig	2014-01-24 10:07:17.000000000 -0800
++++ plugins/CMakeLists.txt	2014-03-23 17:47:14.000000000 -0700
+@@ -22,9 +22,6 @@
+ # endif(EXISTS "${PROJECT_SOURCE_DIR}/plugins/CDVDisoEFP" AND CDVDisoEFP)
+ 
+ # make CDVDlinuz
+-if(EXISTS "${PROJECT_SOURCE_DIR}/plugins/CDVDlinuz" AND CDVDlinuz)
+-	add_subdirectory(CDVDlinuz/Src)
+-endif(EXISTS "${PROJECT_SOURCE_DIR}/plugins/CDVDlinuz" AND CDVDlinuz)
+ 
+ # make CDVDnull
+ if(EXISTS "${PROJECT_SOURCE_DIR}/plugins/CDVDnull" AND CDVDnull)

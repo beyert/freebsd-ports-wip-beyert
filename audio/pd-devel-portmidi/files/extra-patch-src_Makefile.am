@@ -1,0 +1,11 @@
+--- src/Makefile.am.orig	2022-03-23 10:51:38 UTC
++++ src/Makefile.am
+@@ -243,7 +243,7 @@ endif
+ ##### GNU/Linux Open Sound System #####
+ if OSS
+ pd_CFLAGS += -DUSEAPI_OSS
+-pd_SOURCES_standalone += s_audio_oss.c s_midi_oss.c
++pd_SOURCES_standalone += s_audio_oss.c s_midi_oss_pm.c
+ endif
+ 
+ ##### Windows MultiMedia (File) I/O #####

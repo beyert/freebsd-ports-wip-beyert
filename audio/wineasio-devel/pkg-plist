@@ -1,0 +1,2 @@
+lib/wine/%%WINEARCH%%-unix/wineasio.dll.so
+lib/wine/%%WINEARCH%%-windows/wineasio.dll

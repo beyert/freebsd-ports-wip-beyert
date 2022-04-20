@@ -1,0 +1,11 @@
+ELSE is a big library of externals that extends the performance Pure Data (Pd)
+- Miller S. Puckette's realtime computer music environment (download Pd from:
+http://msp.ucsd.edu/software.html).
+
+ELSE provides a cohesive system for computer music, it also serves as a basis
+for an Live Electronics Tutorial by the same author, yours truly, Alexandre
+Torres Porres.  This tutorial is also found as part of the download of the ELSE
+library.  This library's repository resides at
+https://github.com/porres/pd-else/.
+
+WWW: https://github.com/porres/pd-else

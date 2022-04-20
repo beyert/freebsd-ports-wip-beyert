@@ -1,0 +1,10 @@
+unauthorized is a library of GUI objects and a handful of objects for working
+with streaming and mp3s.
+
+This is a minor revision of an older version for Yves Degoyon's unauthorized
+puredata library. The main change is that it builds easily with the wonderful
+pd-lib-builder. I created this version so I could run patchers which referenced
+externals in this library. No further development of this version is
+anticipated.
+
+WWW: https://github.com/shakfu/pd-unauthorized

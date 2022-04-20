@@ -1,0 +1,24 @@
+This project aims to ease the usage of legacy, non JACK enabled
+applications, in a JACK MIDI enabled system, when using jack2
+
+There are two ways to use legacy ALSA sequencer applications in a
+JACK MIDI system:
+
+Automatic bridging: For every ALSA sequencer port you get one JACK
+MIDI port. If an ALSA sequencer port is both an input and an output,
+you get two JACK MIDI ports, one input and output. (This approach
+works almost always except when the legacy ALSA sequencer application
+does not create ports and/or wants to use an existing port to capture
+from or playback to. Such programs are using a feature of the |alsa|
+sequencer framework that allows sending and receiving MIDI events
+to/from a port, without creating a connection to it.)
+
+Static bridges: You start an application that creates one ALSA
+sequencer port and one JACK MIDI port. Such a bridge is unidirectional.
+
+a2jmidid is a daemon that implements automatic bridging.
+
+It has two modes of operation: Running a bridge manually or as a
+backgrounded D-Bus service.
+
+WWW: https://github.com/jackaudio/a2jmidid

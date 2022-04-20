@@ -1,0 +1,29 @@
+[
+{ type: install
+  message: <<EOM
+Wine requires procfs(5) mounted on /proc. You can do so manually via
+  mount -t procfs proc /proc
+or make it permanent via something like the following in /etc/fstab
+  proc   /proc   procfs   rw   0 0
+
+Some ZFS tuning guides recommend setting KVA_PAGES=512 in your kernel
+configuration.  This is incompatible with Wine.  The maximum possible
+is KVA_PAGES=500, which should still be enough for ZFS.
+
+The port also installs some of Wine's documentation which describes
+additional programs that are not in the manual pages under
+  %%PREFIX%%/share/doc/wine
+
+If you enabled both of the OSS and ALSA audio backends, then you may
+switch without reinstallation of wine between either using the
+following two registry scripts (although winecfg cannot change the
+backend, it can show the currently active audio driver):
+
+    regedit %%PREFIX%%/share/wine/wine-oss.reg
+    regedit %%PREFIX%%/share/wine/wine-alsa.reg
+
+Note that MIDI currently only works with the ALSA sequencer API, so
+it may be preferrable to enable both APIs.
+EOM
+}
+]

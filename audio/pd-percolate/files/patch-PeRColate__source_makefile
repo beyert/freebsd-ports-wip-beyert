@@ -1,0 +1,52 @@
+--- PeRColate_source/makefile.orig	2017-07-08 18:01:38 UTC
++++ PeRColate_source/makefile
+@@ -1,7 +1,7 @@
+ NAME=percolate
+ CSYM=percolate
+ 
+-current: pd_darwin pd_nt pd_linux 
++current: pd_freebsd pd_darwin pd_nt pd_linux 
+ 
+ # ----------------------- NT -----------------------
+ 
+@@ -204,6 +204,40 @@ $(NAME).pd_linux: $(LINUX_OBJECTS)
+ 	ln -s $*/$*.pd_linux ..
+ 
+ clean_linux:
++	find -name "*.o" -exec rm \{\} \;
++	rm *.pd_*
++
++# ----------------------- FreeBSD ------------------------
++
++pd_freebsd:	${NAME}.pd_freebsd
++
++.SUFFIXES:	.pd_freebsd
++
++FreeBSDCFLAGS=	-DPD -DUNIX -DFreeBSD -O2 -funroll-loops \
++	-fomit-frame-pointer -Wall -W -Wshadow -Wstrict-prototypes \
++	-Wno-unused -Wno-parentheses -Wno-switch -fPIC
++
++PD = /Applications/Pd.app/Contents/Resources/bin/pd
++
++FreeBSDLDFLAGS=	-L/usr/local/lib -L/usr/lib
++
++FreeBSDINCLUDE=	-I_headers -I${LOCALBASE}/include
++
++FreeBSD_OBJECTS=	$(LINUX_SOURCES:.c=.o)
++
++FreeBSD_OBJECTS2=	${LINUX_OBJECTS2}
++
++.c.o:
++	cc ${FreeBSDCFLAGS} ${FreeBSDINCLUDE} -o "$*.o" -c "$*.c"
++
++$(NAME).pd_freebsd: ${FreeBSD_OBJECTS}
++	ld ${FreeBSDLDFLAGS} -export-dynamic -shared \
++		-o $*.pd_freebsd ${FreeBSD_OBJECTS2} -lc -lm
++	strip -s $*.pd_freebsd
++	rm -f $*.o ../$*.pd_freebsd
++	ln -s $*/$*.pd_freebsd ..
++
++clean_freebsd:
+ 	find -name "*.o" -exec rm \{\} \;
+ 	rm *.pd_*
+ 

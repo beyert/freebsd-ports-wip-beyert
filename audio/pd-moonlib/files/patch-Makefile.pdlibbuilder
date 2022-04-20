@@ -1,0 +1,42 @@
+--- Makefile.pdlibbuilder.orig	2020-11-05 15:07:58 UTC
++++ Makefile.pdlibbuilder
+@@ -446,6 +446,10 @@ ifeq ($(findstring $(uname), Linux GNU GNU/kFreeBSD), 
+   system = Linux
+ endif
+ 
++ifeq ($(uname), FreeBSD)
++  system = FreeBSD
++endif
++
+ ifeq ($(uname), Darwin)
+   system = Darwin
+ endif
+@@ -543,6 +547,28 @@ ifeq ($(system), Linux)
+   cxx.ldlibs := -lc -lm -lstdc++
+   shared.extension = so
+   shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
++endif
++
++
++#=== flags and paths for FreeBSD ===============================================
++
++
++ifeq ($(system), FreeBSD)
++  prefix = /usr/local
++  libdir := $(prefix)/lib
++  pkglibdir = $(libdir)/pd-externals
++  pdincludepath := $(wildcard /usr/local/include/pd)
++  extension = pd_freebsd
++  cpp.flags := -DUNIX -DFreeBSD
++  c.flags := -fPIC
++  c.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  c.ldlibs := -lc -lm
++  cxx.flags := -fPIC -fcheck-new
++  cxx.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  cxx.ldlibs := -lc -lm -lstdc++
++  shared.extension = so
++  shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
++  stripflags = -s
+ endif
+ 
+ 

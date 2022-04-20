@@ -1,0 +1,99 @@
+--- CMakeLists.txt.orig	2021-11-19 20:35:19 UTC
++++ CMakeLists.txt
+@@ -1,19 +1,22 @@
+ cmake_minimum_required (VERSION 3.14)
+ project(pd-pmpd C)
+ 
++OPTION(INSTALL_DOCUMENTATION "install documentation" ON) # On is the default
++OPTION(INSTALL_EXAMPLES "install examples" ON) # On is the default
++
+ set(PUREDATA_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/pure-data/src" CACHE PATH "Path to folder containing m_pd.h" )
+ if(WIN32)
+   set(PUREDATA_LIB "${CMAKE_SOURCE_DIR}/pure-data/bin/pd.lib" CACHE PATH "Path to pd.lib for Windows")
+ endif()
+ 
+-include_directories(${PUREDATA_INCLUDE_DIRS} ${CMAKE_BINARY_DIR})
++include_directories(${PUREDATA_INCLUDE_DIRS} ${CMAKE_BINARY_DIR} ${LOCALBASE_INCLUDE_DIR})
+ 
+ IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+   SET(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/package" CACHE PATH "Package destination folder" FORCE)
+ ENDIF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+ 
+ if("${CMAKE_C_COMPILER_ID}" MATCHES "Clang$")
+-  set(CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
++  set(CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS}")
+ endif()
+ 
+ # Get git info
+@@ -84,11 +87,28 @@ foreach(SOURCE IN LISTS SOURCES)
+ 
+   if(APPLE)
+     set(PLATFORM_SUFFIX "d") # d for Darwin
++  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
++    set(PLATFORM_SUFFIX "f") # f for FreeBSD
++  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")
++    set(PLATFORM_SUFFIX "o") # o for OpenBSD
++
+   elseif(UNIX)
+     set(PLATFORM_SUFFIX "l") # l for Linux
+   else()
+     set(PLATFORM_SUFFIX "m") # m for Microsoft
+   endif()
++
++  if(APPLE)
++    set(PLATFORM_OS_NAME "darwin")
++  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")
++    set(PLATFORM_OS_NAME "openbsd")
++  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
++    set(PLATFORM_OS_NAME "freebsd")
++  elseif(UNIX)
++    set(PLATFORM_OS_NAME "linux")
++  else()
++    set(PLATFORM_OS_NAME "windows")
++  endif()
+  
+   if(CMAKE_GENERATOR_PLATFORM MATCHES Win32)
+     set(ARCH_SUFFIX i386)
+@@ -104,32 +124,37 @@ foreach(SOURCE IN LISTS SOURCES)
+     message(FATAL "Could not determine target architecture")
+   endif()
+ 
+-  set_target_properties(${PMPD_TARGET} PROPERTIES SUFFIX ".${PLATFORM_SUFFIX}_${ARCH_SUFFIX}" PREFIX "")
++#  set_target_properties(${PMPD_TARGET} PROPERTIES SUFFIX ".${PLATFORM_SUFFIX}_${ARCH_SUFFIX}" PREFIX "")
++  set_target_properties(${PMPD_TARGET} PROPERTIES SUFFIX ".pd_${PLATFORM_OS_NAME}" PREFIX "")
+ 
+   if(APPLE)
+     target_link_libraries(${PMPD_TARGET} PRIVATE -Wl,-undefined,dynamic_lookup)
+   endif()
+ 
+   install(TARGETS ${PMPD_TARGET}
+-      DESTINATION pmpd
++      DESTINATION ${PD_EXTERNALSDIR}/pmpd
+       PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                   GROUP_READ GROUP_EXECUTE
+                   WORLD_READ WORLD_EXECUTE
+   )
+ 
+-  install(FILES "${OBJECT_NAME}-help.pd" DESTINATION pmpd)
++  install(FILES "${OBJECT_NAME}-help.pd" DESTINATION ${PD_EXTERNALSDIR}/pmpd)
+ endforeach()
+ 
+ include(GenerateExportHeader)
+ generate_export_header(pmpd)
+ 
+-install(DIRECTORY examples/ DESTINATION pmpd/examples
++IF (INSTALL_EXAMPLES)
++install(DIRECTORY examples/ DESTINATION ${PMPD_EXAMPLESDIR}
+         FILES_MATCHING PATTERN "*.pd")
++ENDIF(INSTALL_EXAMPLES)
+ 
++IF (INSTALL_DOCUMENTATION)
+ install(FILES 
+   manual/pmpd.pdf
+   manual/pmpd.sxw
+   LICENSE.txt
+   README.md
+-  DESTINATION pmpd
++  DESTINATION ${PMPD_DOCSDIR}
+ )
++ENDIF(INSTALL_DOCUMENTATION)

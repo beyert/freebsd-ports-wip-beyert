@@ -1,0 +1,9 @@
+Tof is a collection of objects and abstractions covering a wide range in
+functionality.
+
+tof is written by Thomas Ouellet Fredericks around 2009. Thomas allowed me to
+re-license the library, and the 3-clause BSD license seemed most appropriate in
+the Puredata eco-system. Some objects however are derived from GPL licensed
+source code.
+
+WWW: https://github.com/electrickery/pd-tof

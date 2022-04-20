@@ -1,0 +1,14 @@
+lib/pd-externals/s4pd/README.md
+lib/pd-externals/s4pd/help-1.scm
+lib/pd-externals/s4pd/help-2.scm
+lib/pd-externals/s4pd/libc.scm
+lib/pd-externals/s4pd/loop.scm
+lib/pd-externals/s4pd/r7rs.scm
+lib/pd-externals/s4pd/reactive.scm
+lib/pd-externals/s4pd/s4pd-help.pd
+lib/pd-externals/s4pd/s4pd-schedule.scm
+lib/pd-externals/s4pd/s4pd.pd_freebsd
+lib/pd-externals/s4pd/s4pd.scm
+lib/pd-externals/s4pd/s74.scm
+lib/pd-externals/s4pd/stuff.scm
+lib/pd-externals/s4pd/utilities.scm

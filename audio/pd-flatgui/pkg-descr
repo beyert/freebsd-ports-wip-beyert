@@ -1,0 +1,24 @@
+Flatgui is a library of GUI objects which were part of the old 'flatspace'
+collection which was at some point discontinued.
+
+Based on the project metadata, this library was originally written by Ben
+Bogart, Christoph Kummerer, Frank Barknect, Guenther Geiger, Hans-Christoph
+Steiner, Krzystof Czaja, Miller Puckette, Olaf Matthes and Thomas Musil.  This
+repository was derived from a 2012-12-27 version in pd-extended
+(externals/flatgui).
+
+Although I am not the original author, I wish to maintain this library for
+backwards compatibility with PD patches that cannot easily be switched from the
+traditional knob external (in this repository) to the excellent abcknob library
+in abctools, although I would still recommend abcknob highly.
+
+As such, I wish to keep this library faithful to older versions, but with
+compatibility fixes for modern versions of PD, and portability fixes for
+FreeBSD, the latter of which I will soon contribute to numerous PD externals.
+
+Also, any hypothetical architecture issues were overcome without doing
+anything, as it builds and runs properly on FreeBSD 13.0-RELEASE amd64.
+
+Timothy Beyer 2022-04-09
+
+WWW: https://github.com/beyert/pd-flatgui

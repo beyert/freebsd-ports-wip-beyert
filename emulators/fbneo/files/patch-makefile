@@ -1,0 +1,11 @@
+--- makefile.orig	2021-07-13 13:50:05 UTC
++++ makefile
+@@ -94,7 +94,7 @@ sdl: FORCE
+ 	@$(MAKE) -s -f makefile.sdl
+ 
+ sdl2: FORCE
+-	@$(MAKE) -s -f makefile.sdl2
++	$(MAKE) -f makefile.sdl2
+ 
+ vc: FORCE
+ 	@$(MAKE) -s -f makefile.vc

@@ -1,0 +1,13 @@
+JAMRouter:  JACK <-> ALSA MIDI Router v0.2.3
+-------------------------------------------------------------------------------
+
+JAMRouter is a near-sample-accurate low-latency low-jitter MIDI event
+router and translator, designed specifically with external hardware
+in mind, with an initial emphasis on providing full MIDI support and
+SysEx translation for the Roland Juno-106, and otherwise full
+compatibility with practically all MIDI hardware.  JAMRouter routes
+MIDI events to/from JACK MIDI software ports and MIDI hardware
+supported by ALSA Raw MIDI, ALSA Sequencer, Generic Raw MIDI, and OSS
+MIDI.
+
+WWW: https://github.com/williamweston/jamrouter

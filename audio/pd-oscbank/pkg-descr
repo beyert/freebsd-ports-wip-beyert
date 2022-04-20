@@ -1,0 +1,12 @@
+oscbank~: for additive synthesis
+-----------------------------------------------------------------------------
+
+This is a plugin (aka 'external') for Miller Pucketter's PureData
+("pd"). It was written in order to synthesize sinusoidal models that
+consist of hundreds of partial sinewave components.  The external takes three
+control-rate parameters for each partial: index(unique), frequency, and
+amplitude. It stores this information in a bank and synthesizes earch partial
+by interpolating between frames.  Please see the included oscbank~-help.pd for
+details.
+
+WWW: https://github.com/richardeakin/pd-oscbank

@@ -1,0 +1,71 @@
+--- configure.ac.orig	2014-01-06 18:40:48 UTC
++++ configure.ac
+@@ -77,6 +77,10 @@ then
+ 	prefix=/usr/local
+ fi
+ 
++if test $localbase == NONE;
++then
++	localbase=/usr/local
++fi
+ 
+ dnl setup forced pwc support
+ if test $enable_pwc == yes;
+@@ -154,7 +158,10 @@ then
+                 PDP_TARGET=linux
+         fi
+ 
+-
++elif test $ARCH == FreeBSD;
++then
++	PDP_LIBRARY_NAME=pdp.pd_freebsd
++	PDP_TARGET=freebsd
+ elif test $ARCH == Darwin;
+ then
+ 	PDP_LIBRARY_NAME=pdp.pd_darwin
+@@ -168,12 +175,21 @@ fi
+ 
+ dnl Darwin specific stuff: this is still pretty experimental
+ dnl How to test if frameworks are present ????
+-if test $ARCH == Darwin
++if test $ARCH == FreeBSD
+ then
++	PD_EXECUTABLE=${localbase}/bin/pd
++	LIBS="$LIBS -L/usr/lib -L${localbase}/lib"
++	CPPFLAGS="$CPPFLAGS -I${localbase}/include"
++	PDP_EXTRA_CPPFLAGS="-I${localbase}/include"
++	STAGEDIR="${STAGEDIR}"
++
++elif test $ARCH == Darwin
++then
+ 	PD_EXECUTABLE=$prefix/bin/pd
+ 	LIBS="$LIBS -L/sw/lib"
+ 	CPPFLAGS="$CPPFLAGS -I/sw/include"
+ 	PDP_EXTRA_CPPFLAGS="-I/sw/include"
++	STAGEDIR="${STAGEDIR}"
+ 
+ dnl if not darwin, assume target is linux
+ else
+@@ -181,6 +197,7 @@ else
+   have_libv4l="no"
+   AC_CHECK_HEADERS([libv4l1-videodev.h], have_libv4l="yes")
+   AC_CHECK_HEADERS([linux/videodev.h], have_v4l="yes")
++  STAGEDIR="${STAGEDIR}"
+ 
+   if test "x$have_libv4l" = "xyes"
+   then
+@@ -328,7 +345,13 @@ echo "  --enable-gsl=$enable_gsl"
+ echo "  --enable-png=$enable_png"
+ echo "  --enable-debug=$enable_debug"
+ 
+-
++AC_SUBST(LOCALBASE)
++AC_SUBST(STAGEDIR)
++AC_SUBST(PDP_datadir)
++AC_SUBST(PDP_docsdir)
++AC_SUBST(PDP_examplesdir)
++AC_SUBST(STRIP)
++AC_SUBST(STRIP_ARGS)
+ AC_SUBST(PD_CPPFLAGS)
+ AC_SUBST(PD_EXECUTABLE)
+ AC_SUBST(PDP_EXTRA_CPPFLAGS)

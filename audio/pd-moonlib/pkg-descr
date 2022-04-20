@@ -1,0 +1,17 @@
+MOONLIB puredata externals:
+
+*  tabenv: like env~, an envelope follower, but computing on a table
+*  tabsort and tabsort2: returns the indices of the sorted table
+*  gamme: one octave piano keyboard to filter/choose notes in selected scale
+*  absolutepath/relativepath: use data nested in the patch directory / subdirs
+*  sarray and slist: to creates shared dynamic arrays or lists with symbols
+*  sfread2~ and readsfv~: to pitch the direct-from-disk reading of sound files
+*  dinlet~: an inlet~ with a default value (when nothing is connected to it)
+*  mknob: a round knob ala iemgui vslider (with its "properties" window)
+*  dispatch: creates one bus name for many buttons' buses
+*  image: an improvement of Guenter Geiger's one. Same name, but compatible
+*  ndmetro: a metronome/counter allowing continuous tempo change and more
+
+and some others...
+
+WWW: https://github.com/MetaluNet/moonlib

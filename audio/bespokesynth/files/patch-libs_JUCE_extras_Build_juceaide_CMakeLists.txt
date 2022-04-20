@@ -1,0 +1,16 @@
+--- libs/JUCE/extras/Build/juceaide/CMakeLists.txt.orig	2021-09-09 12:31:55 UTC
++++ libs/JUCE/extras/Build/juceaide/CMakeLists.txt
+@@ -32,9 +32,12 @@ if(JUCE_BUILD_HELPER_TOOLS)
+ 
+     target_sources(juceaide PRIVATE Main.cpp)
+ 
++    # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
++    set(CMAKE_CXX_FLAGS "-I${CMAKE_INSTALL_PREFIX}/include")
+     target_compile_definitions(juceaide PRIVATE
+         JUCE_DISABLE_JUCE_VERSION_PRINTING=1
+-        JUCE_USE_CURL=0)
++        JUCE_USE_CURL=0
++        CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS})
+ 
+     target_link_libraries(juceaide PRIVATE
+         juce::juce_build_tools

@@ -1,0 +1,4 @@
+This is fork of Mednafen Saturn. It has been ported to the libretro
+API. It currently runs on Linux, OSX and possibly Windows.
+
+WWW: https://github.com/libretro/beetle-saturn-libretro
