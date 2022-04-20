@@ -1,10 +1,8 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
-# $FreeBSD$
 
 PORTNAME=	urweb
-PORTVERSION=	20140830
+PORTVERSION=	20200209
 CATEGORIES=	lang www
-MASTER_SITES=	http://www.impredicative.com/ur/
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Ultimate host for embedded domain-specific languages
@@ -12,15 +10,19 @@ COMMENT=	Ultimate host for embedded domain-specific languages
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	mlton:${PORTSDIR}/lang/mlton
+ONLY_FOR_ARCHS=	amd64 i386
+
+BUILD_DEPENDS=	mlton:lang/mlton
+LIB_DEPENDS=	libgmp.so:math/gmp \
+	libicudata.so:devel/icu
+
+USES=		gmake libtool tar:tgz ssl autoreconf
 
 CONFIGURE_ENV=	CCARGS="-I${LOCALBASE}/include"
-
 GNU_CONFIGURE=	yes
-USES=		gmake libtool tar:tgz
+
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 CFLAGS+=	-pthread
 
 OPTIONS_DEFINE=	ELISP PGSQL SQLITE MYSQL
@@ -30,7 +32,6 @@ ELISP_DESC=	Install contributed Emacs Lisp
 
 .include <bsd.port.options.mk>
 
-USE_OPENSSL=	yes
 CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
 
 .if ${PORT_OPTIONS:MELISP}
@@ -42,26 +43,33 @@ CONFIGURE_ARGS+=	with_emacs=no
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USES+=	pgsql
+USES+=		pgsql
 WANT_PGSQL=	server
 .else
 CONFIGURE_ENV+=	PGHEADER="no"
 .endif
 
 .if ${PORT_OPTIONS:MSQLITE}
-USE_SQLITE=	yes
+USES+=		sqlite
 .else
 CONFIGURE_ENV+=	SQHEADER="no"
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
-USE_MYSQL=	yes
+USES+=		mysql
 .else
 CONFIGURE_ENV+=	MSHEADER="no"
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e "s|postgresql/libpq-fe.h|libpq-fe.h|g" \
-	${WRKSRC}/configure
+	@${REINPLACE_CMD} -e "s|postgresql/libpq-fe.h|libpq-fe.h|g" \
+		${WRKSRC}/configure.ac
+	@${REINPLACE_CMD} -e "s|uw_Basis_int true|uw_Basis_int utrue|" \
+		-e "s|uw_Basis_int false|uw_Basis_int ufalse|" \
+		-e "s|uw_Basis_bool true|uw_Basis_bool utrue|" \
+		-e "s|uw_Basis_bool false|uw_Basis_bool ufalse|" \
+		-e "s|\&true|\&utrue|g" -e "s|\&false|\&ufalse|g" \
+		-e "s|abs(ret)|llabs(ret)|" \
+		${WRKSRC}/src/c/urweb.c
 
 .include <bsd.port.mk>

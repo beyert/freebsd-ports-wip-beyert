@@ -1,12 +1,12 @@
 # Created by: andrewb@cs.cmu.edu
-# $FreeBSD: head/lang/twelf/Makefile 360810 2014-07-05 19:27:03Z olgeni $
 
 PORTNAME=	twelf
 PORTVERSION=	1.7.1
+DISTVERSIONPREFIX=	src-
+PORTREVISION=	5
 CATEGORIES=	lang math
 MASTER_SITES=	http://twelf.plparty.org/releases/ \
-	http://www-2.cs.cmu.edu/~twelf/dist/ http://www.cs.cmu.edu/~twelf/dist/
-DISTNAME=	${PORTNAME}-src-${PORTVERSION}
+		http://www-2.cs.cmu.edu/~twelf/dist/ http://www.cs.cmu.edu/~twelf/dist/
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Meta-logical framework for deductive systems
@@ -14,47 +14,50 @@ COMMENT=	Meta-logical framework for deductive systems
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	mlton:${PORTSDIR}/lang/mlton
-BUILD_DEPENDS=	mlton:${PORTSDIR}/lang/mlton
+RUN_DEPENDS=	mlton:lang/mlton
+BUILD_DEPENDS=	mlton:lang/mlton \
+	texi2html:textproc/texi2html
+LIB_DEPENDS=	libgmp.so:math/gmp
 
-USES=	gmake
+USES=		gmake
+
+OPTIONS_DEFINE=	DOCS
+
 ALL_TARGET=	mlton
 PLIST_FILES=	bin/${PORTNAME}-server
 PORTDATA=	emacs examples examples-clp examples-delphin tex vim README
-PORTDOCS=	dvi html info pdf ps
+PORTDOCS=	dvi html pdf ps
+WRKSRC=		${WRKDIR}/twelf
+DOCS_INFO=	twelf
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
-USE_TEX=	tex:build
-BUILD_DEPENDS+=	${LOCALBASE}/bin/makeinfo:${PORTSDIR}/print/texinfo
-BUILD_DEPENDS+=	${LOCALBASE}/bin/dvips:${PORTSDIR}/print/dvipsk-tetex
-.endif
+DOCS_USE=	TEX=dvipsk:build,tex:build
+DOCS_USES=	makeinfo
 
 post-patch:
-.if ${PORT_OPTIONS:MDOCS}
+	@${REINPLACE_CMD} -e 's|twelf-server-mlton.cm|twelf-server-mlton.mlb|' \
+		-e 's|mlton-regression.cm|mlton-regression.mlb|' \
+		${WRKSRC}/Makefile
+	@${REINPLACE_CMD} 's|svnversion|svnliteversion|' \
+		${WRKSRC}/bin/buildid
+
+post-patch-DOCS-on:
 	@${REINPLACE_CMD} 's|-number|-number-sections|g' \
 		${WRKSRC}/doc/guide/Makefile
 	@${REINPLACE_CMD} 's|twelf_\*.html|twelf/\*.html|g' \
 		${WRKSRC}/doc/guide/Makefile
-.endif
 
-post-build:
-.if ${PORT_OPTIONS:MDOCS}
+post-build-DOCS-on:
 	cd ${WRKSRC}/doc/guide && ${MAKE} all ${INSTALL_TARGET}
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/${PORTNAME}-server \
 		${STAGEDIR}${PREFIX}/bin
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "${PORTDATA}" ${STAGEDIR}${DATADIR}
-.if ${PORT_OPTIONS:MDOCS}
+
+do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} "${PORTDOCS}" ${STAGEDIR}${DOCSDIR}
-.endif
-
-WRKSRC=		${WRKDIR}/twelf
-INFO=		twelf
+	${INSTALL_DATA} ${WRKSRC}/doc/info/twelf.info* ${STAGEDIR}${PREFIX}/${INFO_PATH}
 
 .include <bsd.port.mk>
