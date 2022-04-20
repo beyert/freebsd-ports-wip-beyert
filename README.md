@@ -4,7 +4,7 @@ Author: Timothy Beyer (beyert)
 
 ## Purpose of repository
 
-To better navigate the process of submitting and maintaining ports for FreeBSD, I figured that since I have a lot of ports that are very niche, hence, there may not be enough comittters with time to review my submissions, nor do I necessarily have time to get every port up to standard for submission, I wanted to provide a way for people to run this software and to give feedback on new ported applications.
+To better navigate the process of submitting and maintaining ports for FreeBSD, I figured that since I tend to port applications that are extremely niche (this is in part because certain types of software are neglected by FreeBSD developers, and I wish to remedy those gaps), there may not be enough comittters with time to review my submissions, nor do I necessarily have time to get every port up to standard for submission.  I wanted to provide a way for people to run this software and to give feedback on new ported applications.
 
 These ports mostly work quite well as long as I updated them to my latest revision from my private Fossil repository of custom ports, but please provide feedback on which ports you would like to see PRs opened for submission.  Note that most of these are audio or emulators, which are not a high priority for accepting in the ports tree, but nonetheless there are some highlights in this collection, including the following:
 
