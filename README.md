@@ -12,7 +12,9 @@ These ports mostly work quite well as long as I updated them to my latest revisi
 
   *  emulators: Libretro-PCSX2, Reicast, Libretro-Reicast, Libretro-Flycast, Experimental port of Xenia, Libretro ports of beetle saturn, kronos, fbneo, bsnes, mame, and numerous hacks on wine, including ALSA MIDI support, fixes for OSS audio echoing problem (on games like Mushihimesama), depending on the version
 
-  *  audio: (the most interesting part of this repository, by far) the newest version of Pure Data, wineasio, wineasio-devel, submitted version of chuck, experimental unfinished VST version of bespokesynth, vst3sdk, several versions of portmidi, including multiple versions using sndio, ports of the old and new versions of cyclone, scheme for pd, pd-creamlibrary, pd-cicmwrapper, pd-footils, multiple versions of freeverb~, and about 20 other externals, an unsubmitted version of a2jmidid, an attempt at jamrouter, an attempt at porting airwave which doesn't fully work, and much more 
+  *  audio: (the most interesting part of this repository, by far) the newest version of Pure Data, wineasio, wineasio-devel, submitted version of chuck, experimental unfinished VST version of bespokesynth, vst3sdk, several versions of portmidi, including multiple versions using sndio, ports of the old and new versions of cyclone, scheme for pd, pd-creamlibrary, pd-cicmwrapper, pd-footils, multiple versions of freeverb~, and about 20 other externals, an unsubmitted version of a2jmidid, an attempt at jamrouter, an attempt at porting airwave which doesn't fully work, and much more
+
+  *  lang: (mostly functional language implementations) numerous experimental versions of mlton, a custom port of scsh suitable for usage in 32-bit jails on amd64, updated versions of twelf and urweb that work on current versions of FreeBSD are notable
 
 I've seen the potential of NetBSD's "ports-wip" concept, and I think it would suit my workflow well to get ports of niche software to people that want such applications on FreeBSD as quickly as possible, without increasing maintenance burden on committers.
 
