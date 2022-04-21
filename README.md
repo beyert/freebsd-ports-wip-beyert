@@ -4,7 +4,7 @@ Author: Timothy Beyer (beyert)
 
 ## Purpose of repository
 
-In order to better navigate the process of submitting and maintaining ports for FreeBSD, I decided to prepare a collection of ports that I am working on, or have completed, but have PRs that have not yet been applied (I don't think any non-developers check FreeBSD's bugzilla PRs, so I want these ports to reach a larger audience).
+In order to better navigate the process of submitting and maintaining ports for FreeBSD, I decided to prepare a collection of ports that I am working on, or have completed, but have PRs that have not yet been applied (I don't think any non-developers check FreeBSD's bugzilla PRs, and I want these ports to reach a larger audience).
 
 I've seen the potential of NetBSD's "ports-wip" concept, and I think a similar process would suit my workflow well to more rapidly make ports on FreeBSD available of niche software for users who want such applications, without increasing maintenance burden on committers.
 
