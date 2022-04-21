@@ -147,7 +147,7 @@ GH_TAGNAME=	b2fca3d
 BOOT_CMD=	--xz
 BOOT_SUFX=	.txz
 
-RAM_SLOP!=	${SYSCTL} "hw.usermem" "hw.physmem" | ${AWK} '{ values= values" "$$2 } END { print values; }' | ${AWK} '{ usermem=$$1/1024/1024/1024; physmem=$$2/1024/1024/1024; targetpcent=0.65; targetmem=physmem*targetpcent; fp_value=targetmem/usermem; print int((fp_value+0.005)*100)/100; }'
+RAM_SLOP_32=	$$(${SYSCTL} "hw.physmem" | ${AWK} '{ values= values" "$$2 } END { print values; }' | ${AWK} '{ physmem=$$1/1024/1024/1024; os=${BOOTOSMAJ}; maxphysmem=physmem; if (physmem > 3.0) { maxphysmem=3.0; }; ospcent=0.7; if (os >= 13) { ospcent=0.8; }; targetmem=maxphysmem*ospcent; targetpcent=targetmem/physmem; print int((targetpcent+0.005)*100)/100; }')
 
 post-extract:
 	@${MKDIR} ${BOOT_WRKSRC}
@@ -167,17 +167,18 @@ post-extract:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 .endif
 .if ${ARCH} == "i386"
-.if ${OSREL:R} >= 13
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop ${RAM_SLOP}/' \
+	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop ${RAM_SLOP_32}/' \
 		-e 's|COMPILE_XARGS :=|COMPILE_XARGS := -polyvariance false|' \
 		${WRKSRC}/mlton/Makefile
+	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop ${RAM_SLOP_32}/' \
+		-e 's|^OLD_MLTON_RUNTIME_ARGS :=|OLD_MLTON_RUNTIME_ARGS := ram-slop ${RAM_SLOP_32}|' \
+		-e 's|^OLD_MLTON_COMPILE_ARGS :=|OLD_MLTON_COMPILE_ARGS := -polyvariance false|' \
+		${WRKSRC}/Makefile.config
 .else
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop ${RAM_SLOP}/' \
+	@${REINPLACE_CMD} \
 		-e 's|COMPILE_XARGS :=|COMPILE_XARGS := -polyvariance false|' \
 		${WRKSRC}/mlton/Makefile
-.endif
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop ${RAM_SLOP}/' \
-		-e 's|^OLD_MLTON_RUNTIME_ARGS :=|OLD_MLTON_RUNTIME_ARGS := ram-slop ${RAM_SLOP}|' \
+	@${REINPLACE_CMD} \
 		-e 's|^OLD_MLTON_COMPILE_ARGS :=|OLD_MLTON_COMPILE_ARGS := -polyvariance false|' \
 		${WRKSRC}/Makefile.config
 .endif
