@@ -1,0 +1,45 @@
+--- configure.ac.orig	2022-03-29 08:12:49 UTC
++++ configure.ac
+@@ -162,6 +162,13 @@ AS_CASE([$host],
+     EXTERNAL_CFLAGS="-D__OPENBSD__"
+     EXTERNAL_LDFLAGS="-liberty"
+     EXTERNAL_EXTENSION=pd_openbsd
++],[*freebsd*],[
++    FREEBSD=yes
++    platform=FreeBSD
++    portaudio=no
++    EXTERNAL_CFLAGS="-D__FreeBSD__"
++#    EXTERNAL_LDFLAGS="-liberty"
++    EXTERNAL_EXTENSION=pd_freebsd
+ ],[
+     platform=Unknown
+ ])
+@@ -175,6 +182,7 @@ AM_CONDITIONAL(WINDOWS, test x$WINDOWS = xyes)
+ AM_CONDITIONAL(CYGWIN, test x$CYGWIN = xyes)
+ AM_CONDITIONAL(MINGW, test x$MINGW = xyes)
+ AM_CONDITIONAL(OPENBSD, test x$OPENBSD = xyes)
++AM_CONDITIONAL(FREEBSD, test x$FREEBSD = xyes)
+ 
+ #########################################
+ ##### Check for programs, libs, & headers #####
+@@ -429,15 +437,14 @@ AC_ARG_WITH([local-portmidi],
+     [AS_HELP_STRING([--without-local-portmidi],
+         [do not use the portmidi included with Pd])],
+     [local_portmidi=$withval])
+-# don't allow portmidi if already using oss
+-AS_IF([test x$oss = xyes -a x$portmidi != xno],
+-  [AC_MSG_WARN([Cannot enable both OSS-midi and PortMidi... preferring OSS])
+-  portmidi=no])
+ AS_IF([test x$portmidi = xyes],[
+     AS_IF([test x$local_portmidi = xno],[
+         # fall back to local portmidi if not foud
+-        AC_CHECK_LIB([portmidi], [Pm_Initialize],
+-            [AC_MSG_NOTICE([Using system PortMidi])], [local_portmidi=yes])
++        AC_CHECK_LIB([portmidi -lsndio], [Pm_Initialize],
++            [AC_MSG_NOTICE([Using system PortMidi])
++            ],[
++                AC_MSG_WARN([Unable to use system PortMidi for unknown reason])
++                local_portmidi=yes])
+     ])
+     AS_IF([test x$local_portmidi = xyes],[
+         AS_IF([test -d "$srcdir/portmidi"],[

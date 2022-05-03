@@ -1,0 +1,16 @@
+--- pm_common/CMakeLists.txt.orig	2022-03-28 23:18:59 UTC
++++ pm_common/CMakeLists.txt
+@@ -98,6 +98,13 @@ if(UNIX AND APPLE)
+       ${COREFOUNDATION_LIBRARY} ${COREMIDI_LIBRARY} ${CORESERVICES_LIBRARY})
+   # set to CMake default; is this right?:
+   set_target_properties(portmidi PROPERTIES MACOSX_RPATH ON)
++elseif(UNIX AND FreeBSD)
++  set(PM_LIB_PRIVATE_SRC
++    ${PMDIR}/porttime/ptfreebsd.c
++    ${PMDIR}/pm_sndio/pmsndio.c
++    ${PMDIR}/pm_sndio/pmsndionull.c
++    ${PMDIR}/pm_sndio/finddefault.c)
++  set(PM_NEEDED_LIBS pthread sndio)
+ elseif(UNIX)
+   target_compile_definitions(portmidi PRIVATE ${LINUX_FLAGS})
+   set(PM_LIB_PRIVATE_SRC

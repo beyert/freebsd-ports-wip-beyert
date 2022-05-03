@@ -1,42 +1,28 @@
 # Created by: trevor
 
 PORTNAME=	pd
-DISTVERSION=	0.47-1
-DISTVERSIONSUFFIX=	.src
-PORTREVISION=	2
+DISTVERSION=	0.52-2
 CATEGORIES=	audio
-MASTER_SITES=	http://msp.ucsd.edu/Software/
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	MIDI-capable real-time audio processor/synthesizer
 
-# license of expr~ changed to BSD3 months prior to this version
+# license of expr~ changed to BSD3 months prior to version 0.47-1
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		dejavu>0:x11-fonts/dejavu
 
-USES=		autoreconf gmake libtool pkgconfig shebangfix \
+USES=	autoreconf dos2unix gmake libtool pkgconfig shebangfix \
 		tcl:wrapper tk:wrapper
 
-WRKSRC=		${WRKDIR}/${DISTNAME:S,${DISTVERSIONSUFFIX},,}
+USE_GITHUB=	yes
+GH_TUPLE=	pure-data:pure-data:18c9695
 
-SHEBANG_FILES=	tcl/pkg_mkIndex.tcl
-SHEBANG_LANG=	tclsh
-tclsh_CMD=	${LOCALBASE}/bin/tclsh
-GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ac_cv_lib_pthread_pthread_create=no
-
-CFLAGS+=	-fcommon
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -pthread
-
-DESKTOP_ENTRIES="Pd" "" "${PREFIX}/lib/pd/tcl/pd.ico" "pd" "" ${FALSE}
-
-OPTIONS_DEFINE=		NLS ALSA DOCS JACK
+OPTIONS_DEFINE=		NLS PORTMIDI ALSA DOCS JACK LIBPD
 OPTIONS_SUB=		yes
-OPTIONS_DEFAULT=	NLS JACK
+OPTIONS_DEFAULT=	NLS JACK PORTMIDI LIBPD
 
 NLS_USES=	gettext
 
@@ -45,31 +31,58 @@ ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 JACK_CONFIGURE_ENABLE=	jack
 JACK_LIB_DEPENDS=	libjack.so:audio/jack
 
+PORTMIDI_DESC=	Midi device support via portmidi and sndio
+PORTMIDI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_s__midi.c
+PORTMIDI_LIB_DEPENDS=	libportmidi.so.2:audio/portmidi
+PORTMIDI_LIB_DEPENDS+=	libsndio.so:audio/sndio
+
+LIBPD_DESC=	Build separate libpd library
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MLIBPD}
+PLIST_SUB+=	LIBPD=""
+CONFIGURE_ARGS+=	--enable-libpd --enable-libpd-utils \
+	--enable-libpd-instance --enable-libpd-extra
+.if ! ${PORT_OPTIONS:MNLS}
+CONFIGURE_ARGS+=	--disable-libpd-setlocale
+.endif
+.else
+PLIST_SUB+=	LIBPD="@comment "
+.endif
+SHEBANG_FILES=	tcl/pkg_mkIndex.tcl
+SHEBANG_LANG=	tclsh
+tclsh_CMD=	${LOCALBASE}/bin/tclsh
+GNU_CONFIGURE=	yes
+#CONFIGURE_ENV=	ac_cv_lib_pthread_pthread_create=no
+.if ${PORT_OPTIONS:MPORTMIDI}
+CONFIGURE_ARGS+=	--without-local-portmidi --enable-portmidi
+.endif
+
+CFLAGS+=	-fcommon
+CPPFLAGS+=	-I${LOCALBASE}/include -I/usr/include
+LDFLAGS+=	-L${LOCALBASE}/lib -L/usr/lib -pthread
+
+DESKTOP_ENTRIES="Pd" "" "${PREFIX}/lib/pd/tcl/pd.ico" "pd" "" ${FALSE}
+
 post-patch:
-	${FIND} ${PATCH_WRKSRC} -name "*.[ch]" | ${XARGS} ${REINPLACE_CMD} -e \
+	@${FIND} ${PATCH_WRKSRC} -name "*.[ch]" | ${GREP} -v "extra/pd~/pd~.c" | \
+		${XARGS} ${SED} -i.bak -e \
 		's|__FreeBSD_kernel__|__FreeBSD__|g ; \
 		 s|__x86_64__|__amd64__|g'
-	${FIND} ${WRKSRC}/extra -name "*.c" | ${XARGS} ${REINPLACE_CMD} -e \
+	@${FIND} ${WRKSRC}/extra -name "*.c" | ${XARGS} ${SED} -i.bak -e \
 		 's|<alloca\.h>|<stdlib.h>|g'
-	${REINPLACE_CMD} -e \
-		's|\*kfreebsd\*gnu\*)|*freebsd*)| ; \
-		 s|portaudio=yes|portaudio=no| ; \
-		 s|-O3||' ${WRKSRC}/configure.ac
-	${REINPLACE_CMD} -e \
+	@${REINPLACE_CMD} -e \
 		'/^pkgconfigdir/s|=.*|= $$(prefix)/libdata/pkgconfig| ; \
-		 /^libpddir/s|=.*|= $$(pkglibdir)| ; \
 		 s|make -C|$$(MAKE) -C|' ${WRKSRC}/Makefile.am
-	${REINPLACE_CMD} -e \
-		'/^pd_LDADD/s| =.*| = $$(LIBM)|' ${WRKSRC}/src/Makefile.am
-	${REINPLACE_CMD} -e \
+	@${SED} -i.bak -e \
+		's|$$(LN_S) $$(DESTDIR)$$(bindir)/pd $$(DESTDIR)$$(libpdbindir)/pd|cd $$(DESTDIR) \&\& $$(LN_S) .$$(bindir)/pd .$$(libpdbindir)/pd|' \
+		-e '/^pd_LDADD/s| =.*| = $$(LIBM)|' \
+		${WRKSRC}/src/Makefile.am
+	@${REINPLACE_CMD} -e \
 		's|PD_BASEDIR/LICENSE|${DOCSDIR}/LICENSE|g ; \
 		 s|PD_BASEDIR/doc/1|${DOCSDIR}/1|g' \
 			${WRKSRC}/doc/1.manual/1.introduction.txt
-	${REINPLACE_CMD} -e \
-		's|-O2 | | ; \
-		 s|-lc ||g' ${WRKSRC}/extra/makefile.subdir
-	${REINPLACE_CMD} -e \
-		'/libpthread/s|_ERROR|_WARN|' ${WRKSRC}/portaudio/configure.in
 
 do-install:
 .for i in src man tcl po extra
@@ -85,7 +98,12 @@ do-install:
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${STAGEDIR}${DOCSDIR})
 .endfor
 	${LN} -sf ../../${DOCSDIR_REL} ${STAGEDIR}${PREFIX}/lib/pd/doc
-	${FIND} ${STAGEDIR}${PREFIX}/lib/pd -name "*.pd_linux" | ${XARGS} \
+	${FIND} ${STAGEDIR}${PREFIX}/lib/pd -name "*.pd_freebsd" | ${XARGS} \
 		${STRIP_CMD}
+
+post-install:
+.if ${PORT_OPTIONS:MLIBPD}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpd.so.0.0.0
+.endif
 
 .include <bsd.port.mk>
