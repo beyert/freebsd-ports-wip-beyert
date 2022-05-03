@@ -10,6 +10,7 @@
 # already-built version of MLton, BOOT_DIST, to use for bootstrapping.
 PORTNAME=	mlton
 PORTVERSION=	20210816
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/beyert/mlton-freebsd_bootstrap/raw/c7371c1/:bootstrap
 DISTFILES+= ${BOOTNAME}.i386-${OPSYS:tl}-13.txz:bootstrap \
@@ -147,6 +148,8 @@ GH_TAGNAME=	b2fca3d
 BOOT_CMD=	--xz
 BOOT_SUFX=	.txz
 
+RAM_SLOP_32=	$$(${SYSCTL} "hw.physmem" | ${AWK} '{ values= values" "$$2 } END { print values; }' | ${AWK} '{ physmem=$$1/1024/1024/1024; os=${BOOTOSMAJ}; maxphysmem=physmem; if (physmem > 3.0) { maxphysmem=3.0; }; ospcent=0.70; if (os >= 13) { ospcent=0.80; }; targetmem=maxphysmem*ospcent; targetpcent=targetmem/physmem; print int((targetpcent+0.005)*100)/100; }')
+
 post-extract:
 	@${MKDIR} ${BOOT_WRKSRC}
 .if ${PORT_OPTIONS:MMLTON}
@@ -165,17 +168,18 @@ post-extract:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 .endif
 .if ${ARCH} == "i386"
-.if ${OSREL:R} >= 13
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop 0.8/' \
+	@${REINPLACE_CMD} -e "s/ram-slop 0\.7/ram-slop ${RAM_SLOP_32}/" \
 		-e 's|COMPILE_XARGS :=|COMPILE_XARGS := -polyvariance false|' \
 		${WRKSRC}/mlton/Makefile
+	@${REINPLACE_CMD} -e "s/ram-slop 0\.7/ram-slop ${RAM_SLOP_32}/" \
+		-e "s|^OLD_MLTON_RUNTIME_ARGS :=|OLD_MLTON_RUNTIME_ARGS := ram-slop ${RAM_SLOP_32}|" \
+		-e 's|^OLD_MLTON_COMPILE_ARGS :=|OLD_MLTON_COMPILE_ARGS := -polyvariance false|' \
+		${WRKSRC}/Makefile.config
 .else
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop 0.7/' \
+	@${REINPLACE_CMD} \
 		-e 's|COMPILE_XARGS :=|COMPILE_XARGS := -polyvariance false|' \
 		${WRKSRC}/mlton/Makefile
-.endif
-	@${REINPLACE_CMD} -e 's/ram-slop 0\.7/ram-slop 0.8/' \
-		-e 's|^OLD_MLTON_RUNTIME_ARGS :=|OLD_MLTON_RUNTIME_ARGS := ram-slop 0.8|' \
+	@${REINPLACE_CMD} \
 		-e 's|^OLD_MLTON_COMPILE_ARGS :=|OLD_MLTON_COMPILE_ARGS := -polyvariance false|' \
 		${WRKSRC}/Makefile.config
 .endif
