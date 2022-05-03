@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-oscbank
-DISTVERSION=	20120228
+PORTNAME=	oscbank
+PORTVERSION=	20120228
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Pd oscbank~ external for additive synthesis
@@ -18,7 +19,7 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.options.mk>
 
 USE_GITHUB=	yes
-GH_TUPLE=	richardeakin:${PORTNAME}:a9f2fe3
+GH_TUPLE=	richardeakin:${PKGNAMEPREFIX}${PORTNAME}:a9f2fe3
 
 BUILD_WRKSRC=	${WRKSRC}/src
 INSTALL_WRKSRC=	${WRKSRC}/src

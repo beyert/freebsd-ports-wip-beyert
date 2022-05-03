@@ -26,7 +26,7 @@ post-patch:
 .if defined(LOCALBASE) || defined(PREFIX)
 	@${REINPLACE_CMD} -e 's|/usr/local/include|${LOCALBASE}/include|g' \
 		-e 's|prefix = /usr/local|prefix = ${PREFIX}|' \
-		${WRKSRC}/pd-lib-builder/Makefile
+		${WRKSRC}/pd-lib-builder/Makefile.pdlibbuilder
 .endif
 
 .include <bsd.port.mk>

@@ -17,14 +17,11 @@ LICENSE_FILE_GPLv2=	${WRKSRC}/README.md
 LICENSE_FILE_GPLv2+ =	${WRKSRC}/README.md
 
 BUILD_DEPENDS=	pd:audio/pd
-# use built in locally-hosted version, where it may have since changed upstream
-#	${LOCALBASE}/include/gsl/span:devel/microsoft-gsl
-#
 # needed for robot~
 LIB_DEPENDS=	libfftw3f.so:math/fftw3-float
 RUN_DEPENDS=	pd:audio/pd
 
-USES=	cmake
+USES=	cmake pkgconfig
 USE_GITHUB=	yes
 GH_TUPLE=	jpcima:${PKGNAMEPREFIX}externals:9fe8bba \
 	Microsoft:GSL:64a7dae:GSL/thirdparty/GSL

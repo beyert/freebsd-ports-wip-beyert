@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-iemguts
+PORTNAME=	iemguts
 PORTVERSION=	0.3.1
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Collection of low level objects to build better PD abstractions
@@ -16,7 +17,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	iem-projects:${PORTNAME}:2fd18fe
+GH_TUPLE=	iem-projects:${PKGNAMEPREFIX}${PORTNAME}:2fd18fe
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

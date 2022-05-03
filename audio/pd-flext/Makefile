@@ -23,8 +23,6 @@ CXXFLAGS+=	-I${LOCALBASE}/include -fPIC
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 HAS_CONFIGURE=	yes
-#CONFIGURE_SCRIPT=	${WRKSRC}/Makefile.in
-#CONFIGURE_SCRIPT=	${WRKSRC}/configure
 CONFIGURE_ARGS=	--with-sdkdir=${LOCALBASE}/include/pd \
 	--with-sndobjdir=${LOCALBASE}/include/SndObj \
 	--with-stkdir=${LOCALBASE}/include/stk
@@ -35,13 +33,6 @@ USE_GITHUB=	yes
 GH_TUPLE=	grrrr:${PORTNAME}:a760d04
 
 INSTALL_TARGET=	install-strip
-
-#post-configure:
-#	cd ${WRKSRC} && ./configure ${CONFIGURE_ARGS}
-#do-configure:
-#	cd ${WRKSRC} && autoreconf ./configure.ac && ./configure
-
-#MAKE_ARGS=	PD_INCLUDE=${LOCALBASE}/include/pd
 
 post-patch:
 .if defined(PREFIX)

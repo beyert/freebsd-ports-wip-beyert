@@ -3,6 +3,7 @@
 PORTNAME=	unauthorized
 PORTVERSION=	20210729
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Revised version of Pure Data library by Yves Degoyon
@@ -18,7 +19,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	shakfu:pd-unauthorized:5eff56e
+GH_TUPLE=	shakfu:${PKGNAMEPREFIX}${PORTNAME}:5eff56e
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

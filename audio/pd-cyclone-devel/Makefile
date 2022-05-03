@@ -2,9 +2,10 @@
 # Restored by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	cyclone
-DISTVERSION=	0.6-0
+PORTVERSION=	0.6.0
 CATEGORIES=	audio
 PKGNAMEPREFIX=	pd-
+PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Set of Pure Data objects cloned from Max/MSP
@@ -18,7 +19,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	porres:pd-cyclone:773f6ac
+GH_TUPLE=	porres:${PKGNAMEPREFIX}${PORTNAME}:773f6ac
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

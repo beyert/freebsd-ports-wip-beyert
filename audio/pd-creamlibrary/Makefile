@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	pd:audio/pd
 RUN_DEPENDS=	pd:audio/pd
 
-USES=	compiler:c++11-lib autoreconf gmake libtool
+USES=	compiler:c++11-lib autoreconf gmake libtool pkgconfig
 
 GNU_CONFIGURE=	yes
 
@@ -30,7 +30,7 @@ post-patch:
 .if defined(LOCALBASE) || defined(PREFIX)
 	@${REINPLACE_CMD} -e 's|/usr/local/include|${LOCALBASE}/include|g' \
 		-e 's|prefix = /usr/local|prefix = ${PREFIX}|' \
-		${WRKSRC}/pd-lib-builder/Makefile.am
+		${WRKSRC}/Makefile.am
 .endif
 
 .include <bsd.port.mk>

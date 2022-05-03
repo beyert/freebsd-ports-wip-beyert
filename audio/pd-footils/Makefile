@@ -16,8 +16,8 @@ LICENSE_NAME_PDOLD=	Pure Data 0.35 license
 LICENSE_NAME_RX7=	RX7 any purpose copyright notice intact license
 LICENSE_PERMS_PDOLD=	${_LICENSE_PERMS_DEFAULT} auto-accept
 LICENSE_PERMS_RX7=	${_LICENSE_PERMS_DEFAULT} auto-accept
-#LICENSE_FILE_GPLv2+ =	${WRKSRC}/LICENSE-fluid.txt
-#LICENSE_FILE_GPLv2=	${WRKSRC}/LICENSE-rx-saturno.txt
+LICENSE_FILE_GPLv2+ =	${WRKSRC}/LICENSE-fluid.txt
+LICENSE_FILE_GPLv2=	${WRKSRC}/LICENSE-rx-saturno.txt
 LICENSE_FILE_PDOLD=	${WRKSRC}/LICENSE-knob.txt
 LICENSE_FILE_RX7=	${WRKSRC}/LICENSE-rx7.txt
 
@@ -30,10 +30,12 @@ LIB_DEPENDS=	libfluidsynth.so:audio/fluidsynth
 # for now, we must build all modules, but this may change later
 RUN_DEPENDS=	pd:audio/pd
 
-USES=	gmake compiler:c++11-lang
+USES=	gmake compiler:c++11-lang sdl
 
 MAKE_ARGS=	MAKE="${GMAKE}" LOCALBASE="${LOCALBASE}" PREFIX="${PREFIX}" \
 	STAGEDIR="${STAGEDIR}"
+
+USE_SDL=	sdl
 
 USE_GITHUB=	yes
 GH_TUPLE=	beyert:${PKGNAMEPREFIX}${PORTNAME}:819fb62

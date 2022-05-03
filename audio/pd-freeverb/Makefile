@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-freeverb
-DISTVERSION=	20200104
+PORTNAME=	freeverb
+PORTVERSION=	20200104
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	PD implementation of Jezar Freeverb code by Olaf Mattes
@@ -16,7 +17,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	electrickery:${PORTNAME}:71adb92
+GH_TUPLE=	electrickery:${PKGNAMEPREFIX}${PORTNAME}:71adb92
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

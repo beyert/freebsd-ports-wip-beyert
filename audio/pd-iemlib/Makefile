@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-iemlib
+PORTNAME=	iemlib
 PORTVERSION=	1.22.2
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	General purpose objects and filters for Pure Data
@@ -19,7 +20,7 @@ USES=	gmake
 USE_GITLAB=	yes
 GL_SITE=	https://git.iem.at
 GL_ACCOUNT=	pd
-GL_PROJECT=	iemlib
+GL_PROJECT=	${PORTNAME}
 GL_COMMIT=	96c55b1a94342ae00536e05b362698ba706b4dda
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \

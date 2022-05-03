@@ -19,8 +19,6 @@ USES=	gmake
 USE_GITHUB=	yes
 GH_TUPLE=	beyert:${PKGNAMEPREFIX}${PORTNAME}:0.1.1
 
-#MAKE_ARGS=	PD_INCLUDE=${LOCALBASE}/include/pd
-
 post-patch:
 .if defined(PREFIX)
 	@${REINPLACE_CMD} -e 's|/usr/local/include|${LOCALBASE}/include|g' \

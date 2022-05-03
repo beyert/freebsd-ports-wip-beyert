@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-else
-DISTVERSION=	20220325
+PORTNAME=	else
+PORTVERSION=	20220325
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	PureData ELSE externals
@@ -16,7 +17,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	porres:${PORTNAME}:3eee426
+GH_TUPLE=	porres:${PKGNAMEPREFIX}${PORTNAME}:3eee426
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

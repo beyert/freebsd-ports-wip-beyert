@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-ggee
+PORTNAME=	ggee
 PORTVERSION=	0.28
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Library by Guenter Geiger of PD externals
@@ -19,7 +20,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	pd-externals:ggee:55f75d2 \
+GH_TUPLE=	pd-externals:${PORTNAME}:55f75d2 \
 	thestk:stk:893ff3d:thestk/experimental/stk
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \

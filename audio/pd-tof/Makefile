@@ -1,8 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
-PORTNAME=	pd-tof
-DISTVERSION=	20200917
+PORTNAME=	tof
+PORTVERSION=	20200917
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Collection of objects and abstractions for PD
@@ -18,7 +19,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	electrickery:${PORTNAME}:d929429
+GH_TUPLE=	electrickery:${PKGNAMEPREFIX}${PORTNAME}:d929429
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

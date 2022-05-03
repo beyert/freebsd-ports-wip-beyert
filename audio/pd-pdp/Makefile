@@ -1,9 +1,9 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	pdp
-#DISTVERSION=	20140106
-DISTVERSION=	0.12.7
+PORTVERSION=	0.12.7
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Packet processing library for pure data
@@ -19,7 +19,7 @@ LIB_DEPENDS+=	libpng16.so:graphics/png \
 USES=	autoreconf gmake xorg gl sdl
 
 USE_GITHUB=	yes
-GH_TUPLE=	zwizwa:pdp:287d887
+GH_TUPLE=	zwizwa:${PORTNAME}:287d887
 
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 xv xext

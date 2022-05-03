@@ -3,6 +3,7 @@
 PORTNAME=	moonlib
 PORTVERSION=	20201105
 CATEGORIES=	audio
+PKGNAMEPREFIX=	pd-
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	MOONLIB Pure Data externals
@@ -16,7 +17,7 @@ RUN_DEPENDS=	pd:audio/pd
 USES=	gmake
 
 USE_GITHUB=	yes
-GH_TUPLE=	MetaluNet:moonlib:22e8511
+GH_TUPLE=	MetaluNet:${PORTNAME}:22e8511
 
 MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
 	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"

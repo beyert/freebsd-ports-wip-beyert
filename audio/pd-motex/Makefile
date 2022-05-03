@@ -17,14 +17,11 @@ RUN_DEPENDS=	pd:audio/pd
 
 USES=	gmake
 
-#MAKE_ARGS+=	PDINCLUDEDIR=${LOCALBASE}/include/pd \
-#	pkglibdir=${PREFIX}/lib/pd-externals stripflags="${STRIP}"
-
 post-patch:
 .if defined(LOCALBASE) || defined(PREFIX)
 	@${REINPLACE_CMD} -e 's|/usr/local/include|${LOCALBASE}/include|g' \
 		-e 's|prefix = /usr/local|prefix = ${PREFIX}|' \
-		${WRKSRC}/pd-lib-builder/Makefile
+		${WRKSRC}/Makefile
 .endif
 
 .include <bsd.port.mk>
