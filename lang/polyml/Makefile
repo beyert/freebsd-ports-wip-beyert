@@ -1,11 +1,9 @@
 # Created by: Timothy Bourke <timbob@bigpond.com>
-# $FreeBSD$
 
 PORTNAME=	polyml
-PORTVERSION=	5.5.2
+PORTVERSION=	5.9
+DISTVERSIONPREFIX=	v
 CATEGORIES=	lang
-MASTER_SITES=	SF
-DISTNAME=	${PORTNAME}.${PORTVERSION}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -13,27 +11,33 @@ COMMENT=	Fast open-source implementation of Standard ML
 
 LICENSE=	LGPL21
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-x --with-system-libffi
-USE_GCC=	yes
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
+
+LIB_DEPENDS=	libffi.so:devel/libffi
+
+USES=		libtool localbase pathfix pkgconfig
+USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 amd64
 
-USES=	libtool:keepla pkgconfig pathfix
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-system-libffi --enable-shared
 
-pre-build:
-	@${REINPLACE_CMD} "s|ELFXX_R_INFO(_y, _z)    ELF64_R_INFO(_y, _z)|ELFXX_R_INFO(_y, _z)    ELF64_R_INFO((Elf64_Xword)(_y), _z)|g" ${WRKSRC}/libpolyml/elfexport.h
+INSTALL_TARGET=	install-strip
 
-PLIST_FILES=	bin/poly \
-		bin/polyc \
-		bin/polyimport \
-		lib/libpolymain.a \
-		lib/libpolymain.la \
-		lib/libpolyml.a \
-		lib/libpolyml.la \
-		libdata/pkgconfig/polyml.pc \
-		man/man1/poly.1.gz \
-		man/man1/polyc.1.gz \
-		man/man1/polyimport.1.gz
+OPTIONS_DEFINE=	MOTIF GMP INTINF_AS_INT
+OPTIONS_DEFAULT=GMP INTINF_AS_INT
+
+INTINF_AS_INT_DESC=	Use IntInf.int as int type
+
+GMP_LIB_DEPENDS=	libgmp.so:math/gmp
+GMP_CONFIGURE_WITH=	gmp
+INTINF_AS_INT_CONFIGURE_ENABLE=	intinf-as-int
+MOTIF_USES=		motif xorg
+MOTIF_USE=		xorg=x11,xext,xt
+MOTIF_CONFIGURE_WITH=	x
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-lstdc++ ||' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's| modules||' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
