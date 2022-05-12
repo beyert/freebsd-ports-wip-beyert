@@ -1,4 +1,4 @@
---- libswirl/gui/gui_settings_about.cpp.orig	2020-08-21 20:26:50 UTC
+--- libswirl/gui/gui_settings_about.cpp.orig	2020-10-18 11:22:48 UTC
 +++ libswirl/gui/gui_settings_about.cpp
 @@ -40,13 +40,13 @@ void gui_settings_about()
  	    {

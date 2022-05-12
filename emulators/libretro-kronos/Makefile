@@ -1,4 +1,4 @@
-# $FreeBSD$
+# Created by Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-kronos
 PORTVERSION=	0.20210617
@@ -10,10 +10,14 @@ COMMENT=	Sega Saturn and ST-V emulator forked from uoYabause for libretro
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/yabause/COPYING
 
-LIB_DEPENDS=	libGL.so.1:graphics/mesa-libs
+LIB_DEPENDS=	libGL.so:graphics/mesa-libs
 
-USES=		compiler:c++11-lib cmake gmake gl
+# standalone version uses solely cmake, whereas the retroarch core uses both
+# cmake and gmake
+USES=		compiler:c++11-lib cmake gmake gl sdl qt:5 pkgconfig
 USE_LDCONFIG=	yes
+
+USE_SDL=	sdl2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	FCare
@@ -21,6 +25,8 @@ GH_PROJECT=	Kronos
 GH_TAGNAME=	a39f95a
 
 USE_GL=	gl glew glu
+
+USE_QT=	qmake_build buildtools_build core opengl
 
 CFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	-I${LOCALBASE}/include

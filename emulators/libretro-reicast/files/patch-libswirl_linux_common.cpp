@@ -1,4 +1,4 @@
---- libswirl/linux/common.cpp.orig	2020-08-21 20:26:50 UTC
+--- libswirl/linux/common.cpp.orig	2020-10-18 11:22:48 UTC
 +++ libswirl/linux/common.cpp
 @@ -22,6 +22,12 @@
      #include <sys/stat.h>

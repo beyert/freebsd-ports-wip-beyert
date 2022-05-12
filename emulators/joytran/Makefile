@@ -2,7 +2,7 @@
 
 PORTNAME=	joytran
 PORTVERSION=	0.9.5.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	http://sourceforge.net/projects/${PORTNAME}/files/
 

@@ -1,4 +1,4 @@
---- reicast/cmake/config.cmake.orig	2020-08-21 20:26:50 UTC
+--- reicast/cmake/config.cmake.orig	2020-10-18 11:22:48 UTC
 +++ reicast/cmake/config.cmake
 @@ -106,11 +106,13 @@ endif()
  #		AMD64/x86_64:x64, i*86:x86, ppc/powerpc[64][b|l]e:ppc[64] etc 

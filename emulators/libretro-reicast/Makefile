@@ -1,4 +1,4 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-reicast
 PORTVERSION=	0.20201231

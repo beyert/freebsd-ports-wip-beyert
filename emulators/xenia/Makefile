@@ -1,4 +1,4 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	xenia
 PORTVERSION=	0.20210609
@@ -13,14 +13,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	vulkan-loader>0:graphics/vulkan-loader \
-	${LOCALBASE}/include/vulkan/vulkan.hpp:graphics/vulkan-headers
+	${LOCALBASE}/include/vulkan/vulkan.hpp:graphics/vulkan-headers \
+	nasm:devel/nasm
 LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader \
 	liblz4.so:archivers/liblz4 \
 	libavcodec.so:multimedia/ffmpeg \
-	libavutil.so:multimedia/ffmpeg
+	libavutil.so:multimedia/ffmpeg \
+	libboost_atomic.so:devel/boost-libs
 
-USES=		compiler:c++17-lang lua:build gmake python:build shebangfix \
-	gl xorg sdl gnome gettext-runtime
+USES=		compiler:c++17-lang lua:build:51 gmake python:build shebangfix \
+	gl xorg sdl gnome pkgconfig
 
 SHEBANG_FILES=	${WRKSRC}/xenia-build
 
@@ -30,6 +32,10 @@ USE_XORG=	x11 xcb
 USE_GL=		gl glew glu
 USE_SDL=	sdl2
 USE_GNOME=	gtk30 pango atk cairo gdkpixbuf2 glib20
+
+OPTIONS_DEFINE=	NLS
+
+NLS_USES=	gettext-runtime
 
 USE_GITHUB=	yes
 GH_TUPLE=	xenia-project:xenia:14bac72 \

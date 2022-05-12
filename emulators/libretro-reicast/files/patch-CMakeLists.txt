@@ -1,4 +1,4 @@
---- CMakeLists.txt.orig	2020-08-21 20:26:50 UTC
+--- CMakeLists.txt.orig	2020-10-18 11:22:48 UTC
 +++ CMakeLists.txt
 @@ -431,6 +431,8 @@ if(${HOST_OS} EQUAL ${OS_DARWIN})
  
