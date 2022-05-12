@@ -1,0 +1,17 @@
+bin/scbayes
+bin/scmail-deliver
+bin/scmail-refile
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/bayesian-filter.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/config.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/mail.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/mailbox.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/maildir.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/mh.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/progress.scm
+share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail/util.scm
+@dir share/gauche%%GAUCHE_MM_VER%%/site/lib/scmail
+%%EXAMPLESDIR%%/config.sample
+%%EXAMPLESDIR%%/deliver-rules.sample
+%%EXAMPLESDIR%%/refile-rules.sample
+@dir %%EXAMPLESDIR%%
