@@ -13,7 +13,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 	libudev.so:devel/libudev-devd
 
-USES=	compiler:c++11-lang dos2unix desktop-file-utils gl qt:5 qmake
+USES=	compiler:c++11-lib dos2unix desktop-file-utils gl qt:5 qmake pkgconfig
+
+USE_GL=	gl
+USE_QT=	qmake_build buildtools_build core widgets gui dbus
+
+USE_GCC=	yes
+BUILD_DEPENDS+=	g++:lang/gcc
 
 LDFLAGS+=	-linotify
 
@@ -25,16 +31,12 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	yede
 GH_TAGNAME=	2e13f52
 
-USE_GCC=	yes
-
-QMAKE_ARGS=	MANDIR=${PREFIX}/share/man \
-		PREFIX=${PREFIX} \
-		XDGDIR=${PREFIX}/etc/xdg \
-		DOCDIR=${DOCSDIR} ${PORTNAME}.pro
+QMAKE_ARGS+=	MANDIR="${PREFIX}/share/man" \
+	DOCDIR="${DOCSDIR}" \
+	XDGDIR="${PREFIX}/etc/xdg"
+QMAKE_SOURCE_PATH=	${PORTNAME}.pro
 
 DOS2UNIX_REGEX=	.*\.(h|cpp)
-USE_GL=	gl
-USE_QT=	concurrent core dbus gui widgets buildtools_build qmake_build
 
 post-extract:
 	${REINPLACE_CMD} 's|/usr|${PREFIX}|g' ${WRKSRC}/install.pri \

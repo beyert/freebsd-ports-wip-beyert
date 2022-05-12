@@ -23,7 +23,7 @@ FLAVORS=	gtk3 gtk2
 FLAVOR?=	${FLAVORS:[1]}
 
 USES=		desktop-file-utils gmake gnome localbase pathfix pkgconfig \
-		xorg libtool shared-mime-info shebangfix
+		xorg libtool shared-mime-info shebangfix gettext
 
 gtk3_PKGNAMESUFFIX=	-gtk3
 gtk2_PKGNAMESUFFIX=	-gtk2
@@ -33,12 +33,8 @@ gtk2_CONFLICTS_INSTALL=	${PORTNAME}-gtk3
 
 CFLAGS+=	-fcommon
 
-USE_LDCONFIG=	yes
-
 SHEBANG_FILES=	${WRKSRC}/src/spacefm-auth \
 	${WRKSRC}/src/spacefm-auth.bash \
-
-USE_LDCONFIG=	yes
 
 SHEBANG_FILES=	${WRKSRC}/src/spacefm-auth \
 	${WRKSRC}/src/spacefm-auth.bash \
