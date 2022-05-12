@@ -20,7 +20,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # ftp/curl might only be needed for JUCE demos, so maybe omit
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 	libfreetype.so:print/freetype2 \
-	libcurl.so:ftp/curl
+	libcurl.so:ftp/curl \
+	libjack.so:audio/jack \
+	libpng.so:graphics/png
 #	libwine.so:emulators/wine
 #	libsysinfo.so:devel/libsysinfo
 #RUN_DEPENDS=	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine
@@ -32,7 +34,6 @@ OPTIONS_DEFINE=	VST2
 
 VST2_DESC=	VST2 plugin support (restricted redistribution)
 
-USE_LDCONFIG=	yes
 USE_XORG=	x11 xcomposite xcursor xext xinerama xorgproto xrandr
 # maybe needs xcb xkbfile?
 USE_GL=	gl
@@ -45,13 +46,11 @@ USE_GL=	gl
 
 CXXFLAGS+=	-I${LOCALBASE}/include
 
-CMAKE_ARGS=	-DCMAKE_INSTALL_PREFIX:PATH="${LOCALBASE}"
-
 .if ${PORT_OPTIONS:MVST2}
 .if defined(VSTSDK_BASE_DIR)
 CMAKE_ARGS+=	-DBESPOKE_VST2_SDK_LOCATION=${VSTSDK_BASE_DIR}
 .else
-IGNORE+=	to use option VST2, need to obtain VST SDK and set variable VSTSDK_BASE_DIR=[directory_containing_pluginterfaces]
+IGNORE+=	to use option VST2, need to obtain VST SDK and set variable VSTSDK_BASE_DIR=[directory_containing_pluginterfaces]; in poudriere, this path must be visible to the jail (typically in /distfiles or /wrkdirs paths)
 .endif
 .endif
 # does not work
@@ -82,7 +81,7 @@ GH_TUPLE=	BespokeSynth:BespokeSynth:d4f641a \
 	ODDSound:MTS-ESP:fcfaa59:MTSESP/libs/oddsound-mts/MTS-ESP
 #	ocornut:imgui:2889a14:imgui/imgui
 
-#do-install:
-#	@${INSTALL} ${WRKSRC}/midi2osc ${STAGEDIR}${LOCALBASE}/bin/midi2osc
+pre-install:
+	@${RM} -rf ${STAGEDIR}${PORTSDIR}
 
 .include <bsd.port.mk>
