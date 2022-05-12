@@ -1,0 +1,13 @@
+--- src/config.h.in.orig	2005-11-28 02:10:19 UTC
++++ src/config.h.in
+@@ -854,8 +854,10 @@ on various systems. */
+ 
+ #if defined (__cplusplus) || ! defined (__GNUC__)
+ # define INLINE_HEADER inline static
++/*
+ #elif defined (DONT_EXTERN_INLINE_HEADER_FUNCTIONS)
+ # define INLINE_HEADER inline
++*/
+ #else
+ # define INLINE_HEADER inline extern
+ #endif

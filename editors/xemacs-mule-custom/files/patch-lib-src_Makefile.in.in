@@ -1,0 +1,11 @@
+--- lib-src/Makefile.in.in.orig	2004-01-27 02:58:10 UTC
++++ lib-src/Makefile.in.in
+@@ -265,7 +265,7 @@ uninstall:
+ 	cd ${bindir} && $(RM) ${PUBLIC_INSTALLABLES}
+ 	cd ${archlibdir} && $(RM) ${PRIVATE_INSTALLABLES}
+ 
+-.PHONY: mostlyclean clean distclean realclean extraclean
++.PHONY: mostlyclean clean distclean realclean extraclean ${archlibdir}
+ mostlyclean:
+ 	$(RM) *.o *.i core
+ clean: mostlyclean

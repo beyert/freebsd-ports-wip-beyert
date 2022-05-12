@@ -1,0 +1,20 @@
+--- Makefile.in.in.orig	2005-01-31 02:54:47 UTC
++++ Makefile.in.in
+@@ -132,7 +132,7 @@ statedir=@statedir@
+ libdir=@libdir@
+ 
+ ## Where to install XEmacs's man pages, and what extension they should have.
+-mandir=@mandir@
++mandir=@mandir@/man1
+ manext=.1
+ 
+ ## Where to install and expect the info files describing XEmacs.  In the
+@@ -429,7 +429,7 @@ install-arch-dep: mkdir
+ 	     do (cd $${subdir} && $(RM) -r RCS CVS SCCS \#* *~) ; done ; \
+ 	else true; fi
+ #ifdef PDUMP
+-	${INSTALL_DATA} src/${PROGNAME}.dmp ${bindir}/${PROGNAME}-${version}-`src/${PROGNAME} -sd`.dmp
++	${INSTALL_DATA} src/${PROGNAME}.dmp ${bindir}/${PROGNAME}-${version}.dmp
+ #endif
+ #ifdef WIN32_NATIVE
+ 	${INSTALL_PROGRAM} src/${PROGNAME} ${bindir}/${PROGNAME}

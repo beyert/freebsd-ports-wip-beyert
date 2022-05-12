@@ -1,6 +1,6 @@
---- src/alloc.c.orig	2005-01-30 18:55:02.000000000 -0800
-+++ src/alloc.c	2014-09-04 21:46:21.000000000 -0700
-@@ -3367,21 +3367,6 @@
+--- src/alloc.c.orig	2005-01-31 02:55:02 UTC
++++ src/alloc.c
+@@ -3367,21 +3367,6 @@ garbage_collect_1 (void)
  	      Fset_frame_pointer (frame, cursor);
  	    }
  	}
@@ -22,7 +22,7 @@
      }
  
    /***** Now we actually start the garbage collection. */
-@@ -3531,21 +3516,6 @@
+@@ -3531,21 +3516,6 @@ garbage_collect_1 (void)
  	  char *msg = (STRINGP (Vgc_message)
  		       ? GETTEXT ((char *) XSTRING_DATA (Vgc_message))
  		       : 0);

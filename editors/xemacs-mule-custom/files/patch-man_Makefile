@@ -1,5 +1,5 @@
---- man/Makefile.orig	2005-01-10 18:02:00.000000000 -0800
-+++ man/Makefile	2020-09-08 19:25:49.486303000 -0700
+--- man/Makefile.orig	2005-01-11 02:02:00 UTC
++++ man/Makefile
 @@ -20,7 +20,7 @@
  # Boston, MA 02111-1307, USA.
  

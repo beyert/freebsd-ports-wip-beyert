@@ -1,6 +1,6 @@
---- configure.in~	Fri Mar 21 12:37:49 2003
-+++ configure.in	Wed Jun  4 14:00:32 2003
-@@ -3773,21 +3773,24 @@
+--- configure.in.orig	2006-12-08 03:31:16 UTC
++++ configure.in
+@@ -3904,21 +3904,24 @@ if test "$with_mule" = "yes" ; then
      test "$ac_cv_func_crypt" != "yes" && { AC_CHECK_LIB(crypt, crypt) }
    fi
    dnl Back to our regularly scheduled wnn hunting
@@ -34,7 +34,7 @@
    fi
  
    dnl Autodetect canna
-@@ -4392,7 +4395,7 @@
+@@ -4556,7 +4559,7 @@ fi
  dnl Check for Berkeley DB.
  if test "$with_database_berkdb" != "no"; then
    AC_MSG_CHECKING(for Berkeley db.h)

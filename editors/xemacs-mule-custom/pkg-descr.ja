@@ -6,7 +6,7 @@ containing emacs executables, lisp files, info pages, and so on for
 XEmacs with Mule. 
 
 This package is built with Japanese support by using SKK, SJ3, Canna,
-FreeWnn or Wnn6 as an external input engine. Each input method would be
+FreeWnn or Wnn6 as an external input engine.  Each input method would be
 supported in following ports respectively:
 
     japanese/xemacs21-canna ........... SKK, SJ3, Canna
@@ -16,5 +16,5 @@ supported in following ports respectively:
     japanese/xemacs21-wnn6 ............ SKK, SJ3, Wnn6
 
 If you use with SJ3 or SKK, you should be installed sj3serv or skkserv
-in advance. SKK is supported as already builtin. Also it will
-support several input methods under leim. 
+in advance.  SKK is supported as already builtin.  Also it will
+support several input methods under leim.

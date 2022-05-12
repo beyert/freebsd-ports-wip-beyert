@@ -1,12 +1,12 @@
---- man/xemacs-faq.texi.orig	2006-06-30 22:19:48.000000000 -0700
-+++ man/xemacs-faq.texi	2020-09-08 19:43:56.410999000 -0700
+--- man/xemacs-faq.texi.orig	2006-07-01 05:19:48 UTC
++++ man/xemacs-faq.texi
 @@ -1,4 +1,4 @@
 -\input texinfo.tex      @c -*- mode: texinfo; coding: iso-2022-8 -*-
 +\input texinfo.tex      @c -*- mode: texinfo; coding: utf-8 -*-
  @c %**start of header
  @setfilename ../info/xemacs-faq.info
  @settitle Frequently asked questions about XEmacs
-@@ -2830,7 +2830,7 @@
+@@ -2830,7 +2830,7 @@ methods for almost all the character sets that Mule su
  all of the ISO 8859 family, the Indic languages, Thai, and so on), and
  SKK, for Japanese.  (SKK also supports an interface to an external
  "dictionary server" process.)  Quail supports both typical "dead-key"
@@ -15,7 +15,7 @@
  SMALL LETTER A WITH DIAERESIS), and the complex dictionary-based phonetic
  methods used for Asian ideographic languages like Chinese.
  
-@@ -2876,7 +2876,7 @@
+@@ -2876,7 +2876,7 @@ patches available (no URL, sorry) to support the SKK s
  Wnn and SJ3 use the @code{egg} user interface.  The interface for Canna
  is specialized to Canna.
  
@@ -24,7 +24,7 @@
  University. It is a powerful and complex system.  Wnn4 is free and Wnn6
  is not.  Wnn uses grammatical hints and probability of word association,
  so in principle Wnn can be cleverer than other methods.
-@@ -4750,10 +4750,10 @@
+@@ -4750,10 +4750,10 @@ the null binding @code{OpenWindows.KeyboardCommand.Hel
  @node Q3.0.6, Q3.0.7, Q3.0.5, Editing
  @unnumberedsubsec Q3.0.6: How can you type in special characters in XEmacs?
  One way is to use the package @code{x-compose}.  Then you can use
@@ -37,7 +37,7 @@
  
  @email{glynn@@sensei.co.uk, Glynn Clements} writes:
  
-@@ -4776,9 +4776,9 @@
+@@ -4776,9 +4776,9 @@ define the right `Windows' key as Multi_key'.]
  
  Once you have Multi_key defined, you can use e.g.
  @example

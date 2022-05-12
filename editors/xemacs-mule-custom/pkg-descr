@@ -9,5 +9,4 @@ Currently only Japanese (Canna, FreeWnn and Wnn6) is available.
 This package is designed *not* to clobber any existing emacs installation.
 In particular, the executables and man pages of etags/ctags are not
 installed, and the info pages that come with the original emacs don't get
-installed too. The Japanese version is build to install everything, by the
-way. 
+installed too.  The Japanese version is built to install everything.
