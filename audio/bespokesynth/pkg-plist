@@ -24,6 +24,7 @@ share/BespokeSynth/resource/tooltips_deu.txt
 share/BespokeSynth/resource/tooltips_eng.txt
 share/BespokeSynth/resource/tooltips_esp.txt
 share/BespokeSynth/resource/tooltips_ru.txt
+share/BespokeSynth/resource/tooltips_tr.txt
 share/BespokeSynth/resource/userdata_original/controllers/APC Mini.json
 share/BespokeSynth/resource/userdata_original/controllers/Ableton Push 2 Live Port.json
 share/BespokeSynth/resource/userdata_original/controllers/Akai MIDImix.json
@@ -43,6 +44,7 @@ share/BespokeSynth/resource/userdata_original/controllers/Launchpad.json
 share/BespokeSynth/resource/userdata_original/controllers/Lightpad BLOCK.json
 share/BespokeSynth/resource/userdata_original/controllers/LinnStrument MIDI.json
 share/BespokeSynth/resource/userdata_original/controllers/MPD218 Port A.json
+share/BespokeSynth/resource/userdata_original/controllers/Maschine Jam.json
 share/BespokeSynth/resource/userdata_original/controllers/Maschine Mikro MK2 In.json
 share/BespokeSynth/resource/userdata_original/controllers/Midi Fighter Twister.json
 share/BespokeSynth/resource/userdata_original/controllers/QUNEO.json
@@ -155,6 +157,7 @@ share/BespokeSynth/resource/userdata_original/savestate/example__arpeggiation.bs
 share/BespokeSynth/resource/userdata_original/savestate/example__dj_turntables.bsk
 share/BespokeSynth/resource/userdata_original/savestate/example__drumsynth_chance_sequence.bsk
 share/BespokeSynth/resource/userdata_original/savestate/example__feedback.bsk
+share/BespokeSynth/resource/userdata_original/savestate/example__feedback_distortion_pluck_bass_echo.bsk
 share/BespokeSynth/resource/userdata_original/savestate/example__looper_recorder.bsk
 share/BespokeSynth/resource/userdata_original/savestate/example__scripting.bsk
 share/BespokeSynth/resource/userdata_original/savestate/example__sequencing_sequencers.bsk

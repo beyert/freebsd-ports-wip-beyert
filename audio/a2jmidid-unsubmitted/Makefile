@@ -3,6 +3,7 @@
 PORTNAME=	a2jmidid
 PORTVERSION=	20201126
 CATEGORIES=	audio
+PKGNAMESUFFIX=	-unsubmitted
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Daemon for ALSA sequencer to JACK bridging
@@ -12,20 +13,19 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-#BUILD_DEPENDS=	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine \
-#	with-glibc-shim:emulators/libc6-shim
 LIB_DEPENDS=	libjack.so:audio/jack \
 	libasound.so:audio/alsa-lib
 RUN_DEPENDS=	aconnect:audio/alsa-utils \
-	${LOCALBASE}/bin/jack_connect:audio/jack
-#	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine
+	${LOCALBASE}/bin/jackd:audio/jack
 
-USES=	compiler:c11 meson
+USES=	compiler:c11 meson pkgconfig
 
 .include <bsd.port.options.mk>
 
 LDFLAGS+=	-lexecinfo
 USE_GCC=	yes
+
+CONFLICTS_INSTALL=	${PORTNAME}
 
 CFLAGS+=	-D_GNU_SOURCE
 

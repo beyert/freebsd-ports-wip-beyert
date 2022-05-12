@@ -1,0 +1,10 @@
+Midi2Osc is a simple MIDI to OpenSoundControl (aka OSC) bridge.
+
+It responds to MIDI messages on a MIDI input, and forwards them to
+OSC messages.  See http://opensoundcontrol.org/ for more information
+about OSC.
+
+At the moment, it simply forwards all midi messages as a simple 'm'
+(midi) type OSC message to OSC path /notes
+
+WWW: https://github.com/mmalex/midi2osc

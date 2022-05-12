@@ -17,7 +17,7 @@ LIB_DEPENDS=	libsndfile.so:audio/libsndfile \
 RUN_DEPENDS=	${LOCALBASE}/include/linux/joystick.h:devel/evdev-proto \
 	${LOCALBASE}/include/linux/types.h:multimedia/v4l_compat
 
-USES=	compiler:c++11-lib gmake dos2unix
+USES=	compiler:c++11-lib gmake dos2unix bison:build
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONS_DEFAULT=	JACK SAME
@@ -44,7 +44,8 @@ OSSJACK_LIB_DEPENDS+=	libjack.so:audio/jack
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MDOCS}
-USE_TEX=	latex:formats dvipsk:build
+USE_TEX=	tex:formats dvipsk:build
+BUILD_DEPENDS+=	pdflatex:print/tex-formats
 .endif
 
 DOS2UNIX_FILES=	${BUILD_WRKSRC}/host/RtAudio/RtAudio.cpp
@@ -88,7 +89,7 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_core_rtmidi-oss_alsa.cpp
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|make $(MAKECMDGOALS)|gmake $(MAKECMDGOALS)|' \
+	@${REINPLACE_CMD} -e 's|make $(MAKECMDGOALS)|gmake ${MAKECMDGOALS}|' \
 		-e 's|CC=gcc|CC=${CC}|' \
 		-e 's|CXX=g++|CXX=${CXX}|' \
 		-e 's|LD=g++|LD=${CXX}|' \

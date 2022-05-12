@@ -19,7 +19,7 @@ USE_GITHUB=	yes
 GH_TUPLE=	PortMidi:portmidi:6a97d1e
 
 CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS+=	-L${LOCALBASE}/lib -lsndio
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 

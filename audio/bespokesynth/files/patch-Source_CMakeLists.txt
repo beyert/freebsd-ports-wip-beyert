@@ -1,6 +1,6 @@
---- Source/CMakeLists.txt.orig	2021-12-16 04:57:56 UTC
+--- Source/CMakeLists.txt.orig	2022-05-11 02:18:02 UTC
 +++ Source/CMakeLists.txt
-@@ -361,6 +361,8 @@ target_include_directories(BespokeSynth PRIVATE
+@@ -711,6 +711,8 @@ target_include_directories(BespokeSynth PRIVATE
      )
  
  target_compile_definitions(BespokeSynth PRIVATE
@@ -9,7 +9,7 @@
      JUCE_MODAL_LOOPS_PERMITTED=1
      JUCE_ALLOW_STATIC_NULL_VARIABLES=0
      JUCE_STRICT_REFCOUNTEDPOINTER=1
-@@ -383,6 +385,7 @@ target_compile_definitions(BespokeSynth PRIVATE
+@@ -733,6 +735,7 @@ target_compile_definitions(BespokeSynth PRIVATE
      JUCE_DIRECTSOUND=1
  
      JUCE_PLUGINHOST_VST3=1

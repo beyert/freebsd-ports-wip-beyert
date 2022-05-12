@@ -34,7 +34,6 @@ JACK_LIB_DEPENDS=	libjack.so:audio/jack
 PORTMIDI_DESC=	Midi device support via portmidi and sndio
 PORTMIDI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_s__midi.c
 PORTMIDI_LIB_DEPENDS=	libportmidi.so.2:audio/portmidi
-PORTMIDI_LIB_DEPENDS+=	libsndio.so:audio/sndio
 
 LIBPD_DESC=	Build separate libpd library
 

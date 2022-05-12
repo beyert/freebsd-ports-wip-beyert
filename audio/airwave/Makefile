@@ -12,7 +12,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-#BUILD_DEPENDS=	${LOCALBASE}/include/vst3sdk-i386/vstbus.h:audio/vst3sdk \
 BUILD_DEPENDS= \
 	${LOCALBASE}/lib/libwine.so:emulators/wine
 #	${LOCALBASE}/lib/wine/xaudio2_0.dll.so:emulators/wine
@@ -31,10 +30,9 @@ CMAKE_ARGS+=	-DVSTSDK_INCLUDE_DIR=${VSTSDK_INCLUDE_DIR}
 # VSTSDK_INCLUDE_DIR, but these are not distfiles; while those specific
 # headers cannot be redistributed, binary only distribution of aggregate
 # binaries is possible (such a combination is not FOSS, however)
-MANUAL_PACKAGE_BUILD=	yes
 RESTRICTED=	yes
 .else
-IGNORE+=	need to obtain VST SDK and set variable VSTSDK_INCLUDE_DIR=[directory_containing_aeffect_header]
+IGNORE+=	need to obtain VST SDK and set variable VSTSDK_INCLUDE_DIR=[directory_containing_aeffect_header]; in poudriere, this path must be visible to the jail (typically in /distfiles or /wrkdirs paths)
 .endif
 
 .include <bsd.port.options.mk>
@@ -59,6 +57,10 @@ PLIST_SUB+=	WINE32="" WINE64="@comment "
 VERSION=	32
 .endif
 
+USE_QT=	qmake_build buildtools_build core widgets gui network
+
+USE_XORG=	x11
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	psycha0s
 GH_PROJECT=	${PORTNAME}
@@ -66,6 +68,8 @@ GH_TAGNAME=	e44976c
 
 .if ${ARCH} == "amd64"
 BUILD_DEPENDS+=	${LOCALBASE}/include/vst3sdk/vstbus.h:audio/vst3sdk
+.elif ${ARCH} == "i386"
+BUILD_DEPENDS+=	${LOCALBASE}/include/vst3sdk/vstbus.h:audio/vst3sdk-i386
 .endif
 
 post-patch:

@@ -17,9 +17,9 @@ ONLY_FOR_ARCHS=	amd64 i386
 BUILD_DEPENDS=	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine
 LIB_DEPENDS=	libjack.so:audio/jack
 RUN_DEPENDS=	${LOCALBASE}/bin/wine:emulators/wine \
-	${LOCALBASE}/bin/jack_connect:audio/jack
+	${LOCALBASE}/bin/jackd:audio/jack
 
-USES=	compiler:c++11-lib gmake
+USES=	compiler:c++11-lib gmake pkgconfig
 
 CONFLICTS_INSTALL=	wineasio-devel-*
 

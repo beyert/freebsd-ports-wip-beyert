@@ -20,9 +20,9 @@ BUILD_DEPENDS=	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine-devel
 #LIB_DEPENDS=	${LOCABASE}/lib/wine/${WINEARCH}-unix/xaudio2_0.dll.so:emulators/wine-devel
 LIB_DEPENDS=	libjack.so:audio/jack
 RUN_DEPENDS=	${LOCALBASE}/bin/wine:emulators/wine-devel \
-	${LOCALBASE}/bin/jack_connect:audio/jack
+	${LOCALBASE}/bin/jackd:audio/jack
 
-USES=	compiler:c++11-lib gmake
+USES=	compiler:c++11-lib gmake pkgconfig
 
 CONFLICTS_INSTALL=	wineasio
 
