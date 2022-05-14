@@ -13,7 +13,7 @@ PORTVERSION=	20210816
 PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/beyert/mlton-freebsd_bootstrap/raw/c7371c1/:bootstrap
-DISTFILES+= ${BOOTNAME}.i386-${OPSYS:tl}-13.txz:bootstrap \
+DISTFILES+=	${BOOTNAME}.i386-${OPSYS:tl}-13.txz:bootstrap \
 	${BOOTNAME}.amd64-${OPSYS:tl}-13.txz:bootstrap \
 	${BOOTNAME}.i386-${OPSYS:tl}-12.txz:bootstrap \
 	${BOOTNAME}.amd64-${OPSYS:tl}-12.txz:bootstrap \
@@ -148,7 +148,7 @@ GH_TAGNAME=	b2fca3d
 BOOT_CMD=	--xz
 BOOT_SUFX=	.txz
 
-RAM_SLOP_32=	$$(${SYSCTL} "hw.physmem" | ${AWK} '{ values= values" "$$2 } END { print values; }' | ${AWK} '{ physmem=$$1/1024/1024/1024; os=${BOOTOSMAJ}; maxphysmem=physmem; if (physmem > 3.0) { maxphysmem=3.0; }; ospcent=0.70; if (os >= 13) { ospcent=0.80; }; targetmem=maxphysmem*ospcent; targetpcent=targetmem/physmem; print int((targetpcent+0.005)*100)/100; }')
+RAM_SLOP_32=	$$(${SYSCTL} "hw.physmem" | ${AWK} '{ values = values" "$$2 } END { print values; }' | ${AWK} '{ "freebsd-version -r" | getline ver; split(ver, xs, "\."); kernelOSMAJ = xs[1]; osj = ${BOOTOSMAJ}; physmem = $$1 / 1024 / 1024 / 1024; os = kernelOSMAJ; maxphysmem = physmem; if (physmem > 3.2) { maxphysmem = 3.2; }; ospcent = 0.70; if (osj < 13 && os != osj) { ospcent = 0.65; } else if (os >= 13) { if (physmem < 3.1) { ospcent = 0.83; } else { ospcent = 0.80; } }; targetmem = maxphysmem * ospcent; targetpcent = targetmem / physmem; print int((targetpcent + 0.005) * 100) / 100; }')
 
 post-extract:
 	@${MKDIR} ${BOOT_WRKSRC}
