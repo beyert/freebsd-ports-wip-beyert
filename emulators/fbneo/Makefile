@@ -1,11 +1,11 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	fbneo
-PORTVERSION=	0.20210714
+PORTVERSION=	20210714
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
-COMMENT=	Final Burn Alpha standalone
+COMMENT=	Final Burn Neo standalone
 
 LICENSE=	FBNeo
 LICENSE_NAME=	FBNeo
@@ -37,11 +37,9 @@ GH_ACCOUNT=	libretro
 GH_PROJECT=	FBNeo
 GH_TAGNAME=	8234d0b
 
-#MAKEFILE=	${WRKSRC}/makefile
 MAKEFILE=	${WRKSRC}/makefile.sdl2
 
 MAKE_ARGS+=	INCLUDE_7Z_SUPPORT=1 RELEASEBUILD=1 INCLUDE_LIB_PNGH=1 LSB_FIRST=1 PERL=1
-#ALL_TARGET=	sdl2
 
 do-install:
 	${INSTALL} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin/${PORTNAME}
