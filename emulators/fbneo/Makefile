@@ -1,7 +1,7 @@
 # Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	fbneo
-PORTVERSION=	20220516
+PORTVERSION=	20220517
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -30,9 +30,9 @@ SHEBANG_FILES=	${WRKSRC}/src/dep/scripts/cave_sprite_func.pl \
 PLIST_FILES=	bin/fbneo
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	libretro
+GH_ACCOUNT=	finalburnneo
 GH_PROJECT=	FBNeo
-GH_TAGNAME=	48ce2d0
+GH_TAGNAME=	56ab96e
 
 MAKEFILE=	${WRKSRC}/makefile.sdl2
 
@@ -42,10 +42,6 @@ MAKE_ARGS+=	INCLUDE_7Z_SUPPORT=1 RELEASEBUILD=1 INCLUDE_LIB_PNGH=1 \
 post-patch:
 	@${REINPLACE_CMD} 's|= gcc|= ${CC}|' \
 		${WRKSRC}/makefile.sdl2
-	@${REINPLACE_CMD} 's|:= gcc|:= ${CC}|' \
-		${WRKSRC}/src/burner/libretro/Makefile \
-		${WRKSRC}/src/burner/libretro/libretro-common/samples/utils/Makefile \
-		${WRKSRC}/src/burner/libretro/libretro-common/audio/dsp_filters/Makefile
 
 do-install:
 	${INSTALL} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin/${PORTNAME}
