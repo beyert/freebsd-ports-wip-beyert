@@ -25,6 +25,14 @@ LDFLAGS+=	-linotify
 
 OPTIONS_DEFINE=	DOCS NLS
 
+.include <bsd.port.options.mk>
+
+.if ${OSREL:R} < 13
+BUILD_DEPENDS+=	${LOCALBASE}/include/libepoll-shim/sys/eventfd.h:devel/libepoll-shim
+CXXFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
+LDFLAGS+=	-lepoll-shim
+.endif
+
 NLS_USES=	gettext-runtime
 
 USE_GITHUB=	yes
