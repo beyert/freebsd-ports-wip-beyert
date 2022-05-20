@@ -1,16 +1,18 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-flycast
 PORTVERSION=	0.20210608
+PORTREVISION=	1
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Standalone port of flycast to libretro
 
 LICENSE=	GPLv2
-#LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+# fix on i386 later
+BROKEN_i386=	fails to link: undefined symbol: 'cycle_counter'
 ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS+=	libcurl.so:ftp/curl \
@@ -41,6 +43,8 @@ DOS2UNIX_FILES=	core/hw/bba/rtl8139c.h
 .if ${ARCH} == amd64
 CFLAGS+=	-DLOW_END
 CXXFLAGS+=	-DLOW_END
+.elif ${ARCH} == i386
+CFLAGS+=	-fPIC
 .endif
 
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -50,6 +54,8 @@ MAKE_ARGS=	HAVE_VULKAN=0 HAVE_GENERIC_JIT=0
 MAKE_ARGS+=	WITH_DYNAREC=x86_64
 .elif ${ARCH} == i386
 MAKE_ARGS+=	WITH_DYNAREC=x86
+USE_BINUTILS=	yes
+LDFLAGS+=	-Wl,-z,notext
 .endif
 
 PLIST_FILES=	lib/libretro/flycast_libretro.so

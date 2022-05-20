@@ -2,6 +2,7 @@
 
 PORTNAME=	libretro-mame
 PORTVERSION=	20220124
+PORTREVISION=	1
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu

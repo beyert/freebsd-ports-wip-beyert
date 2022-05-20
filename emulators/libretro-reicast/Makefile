@@ -2,23 +2,24 @@
 
 PORTNAME=	libretro-reicast
 PORTVERSION=	0.20201231
+PORTREVISION=	1
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Standalone port of reicast to libretro
 
-LICENSE=	BSD3CLAUSE LGPL21 GPLv2
+LICENSE=	BSD3CLAUSE GPLv2 LGPL21
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libcurl.so:ftp/curl \
+LIB_DEPENDS=	libao.so:audio/libao \
 	libasound.so:audio/alsa-lib \
-	libao.so:audio/libao \
+	libcurl.so:ftp/curl \
 	libevdev.so:devel/libevdev \
 	libpulse.so:audio/pulseaudio \
 	libudev.so:devel/libudev-devd
 
-USES=		compiler cmake gl xorg
+USES=	cmake compiler gl xorg
 USE_GCC=	yes
 
 USE_LDCONFIG=	yes
@@ -34,7 +35,7 @@ GH_ACCOUNT=	reicast
 GH_PROJECT=	reicast-emulator
 GH_TAGNAME=	0bd6ea3
 
-USE_GL=	gl egl gbm
+USE_GL=	egl gbm gl
 
 PLIST_FILES=	lib/libretro/reicast_libretro.so
 

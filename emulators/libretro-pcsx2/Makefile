@@ -1,7 +1,8 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-pcsx2
 PORTVERSION=	0.20201030
+PORTREVISION=	1
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -10,7 +11,9 @@ COMMENT=	Standalone port of pcsx2 to libretro
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING.GPLv3
 
-ONLY_FOR_ARCHS=>i386 amd64
+# fix on i386 later
+BROKEN_i386=	fails to link: class member cannot be redeclared
+ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS=	libpng16.so:graphics/png \
 	libcdio.so:sysutils/libcdio \
@@ -18,11 +21,12 @@ LIB_DEPENDS=	libpng16.so:graphics/png \
 	libSoundTouch.so:audio/soundtouch \
 	libharfbuzz.so:print/harfbuzz
 
-USES=		compiler:c++11-lib cmake
+USES=	compiler:c++11-lib cmake
+
+.include <bsd.port.pre.mk>
 
 CPPFLAGS+=	-I${LOCALBASE}/include/wx-3.0
 USE_CXXSTD=	c++11
-#LDFLAGS+=	-L${LOCALBASE}/lib -I/usr/lib
 USE_LDCONFIG=	yes
 CMAKE_CPP_FLAGS=	${CPPFLAGS}
 CMAKE_PREFIX_PATH=	${LOCALBASE}/include/wx-3.0
@@ -36,13 +40,9 @@ CMAKE_ARGS+=	-Dgtk_INCLUDE_DIR="${LOCALBASE}/include/gtk-3.0"
 WITH_CCACHE_BUILD=	yes
 
 HAVE_GTK3=	true
-#USES=		gnome xorg gl sdl dos2unix cmake:insource iconv gettext linux:c7 pkgconfig
-#USE_LINUX=	libaio
-USE_WX=		3.0+
-#USE_XORG=	ice x11 xv xext xxf86vm xtst xrandr xi
+USE_WX=	3.0+
 USE_GL=	gl glew glu
 USE_GNOME=	glib20
-#USE_SDL=	sdl2
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -54,12 +54,16 @@ GH_TAGNAME=	1251fa4
 PLIST_FILES=	lib/libretro/pcsx2_libretro.so
 
 post-patch:
-	${CP} files/3rdparty_wxwidgets3.0_src_unix_fswatcher__kqueue.cpp \
+	@${CP} files/3rdparty_wxwidgets3.0_src_unix_fswatcher__kqueue.cpp \
 		${WRKSRC}/3rdparty/wxwidgets3.0/src/unix/fswatcher_kqueue.cpp
+.if ${ARCH} == i386
+	@${REINPLACE_CMD} 's|-D_FILE_OFFSET_BITS=64|-D_FILE_OFFSET_BITS=32|' \
+		${WRKSRC}/3rdparty/wxwidgets3.0/UsewxWidgets.cmake
+.endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
+	@${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
 	${INSTALL_LIB} ${WRKDIR}/.build/pcsx2/pcsx2_libretro.so \
 		${STAGEDIR}/${PREFIX}/lib/libretro;
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
