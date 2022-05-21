@@ -11,8 +11,6 @@ COMMENT=	Standalone port of flycast to libretro
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# fix on i386 later
-BROKEN_i386=	fails to link: undefined symbol: 'cycle_counter'
 ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS+=	libcurl.so:ftp/curl \
@@ -23,7 +21,7 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 	libudev.so:devel/libudev-devd \
 	libvulkan.so:graphics/vulkan-loader
 
-USES=		compiler:c++11-lib gmake gl xorg dos2unix
+USES=	compiler:c++11-lib dos2unix gmake gl pkgconfig xorg
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
@@ -31,20 +29,18 @@ GH_ACCOUNT=	libretro
 GH_PROJECT=	flycast
 GH_TAGNAME=	8e4fa54e
 
-USE_GL+=	gl glew glu
+USE_GL+=	egl gl glew glu
 
 CFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	-I${LOCALBASE}/include
 
 .include <bsd.port.pre.mk>
 
-DOS2UNIX_FILES=	core/hw/bba/rtl8139c.h
+DOS2UNIX_FILES=	CORE/HW/BBA/Rtl8139c.h
 
 .if ${ARCH} == amd64
 CFLAGS+=	-DLOW_END
 CXXFLAGS+=	-DLOW_END
-.elif ${ARCH} == i386
-CFLAGS+=	-fPIC
 .endif
 
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -60,8 +56,12 @@ LDFLAGS+=	-Wl,-z,notext
 
 PLIST_FILES=	lib/libretro/flycast_libretro.so
 
+post-patch:
+	@${REINPLACE_CMD} 's|/usr/local|${PREFIX}|' \
+		${WRKSRC}/Makefile
+
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
+	@${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
 	${INSTALL_LIB} ${WRKSRC}/flycast_libretro.so \
 		${STAGEDIR}/${PREFIX}/lib/libretro/flycast_libretro.so;
 

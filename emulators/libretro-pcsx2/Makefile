@@ -15,11 +15,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING.GPLv3
 BROKEN_i386=	fails to link: class member cannot be redeclared
 ONLY_FOR_ARCHS=	amd64 i386
 
-LIB_DEPENDS=	libpng16.so:graphics/png \
-	libcdio.so:sysutils/libcdio \
+LIB_DEPENDS=	libcdio.so:sysutils/libcdio \
+	libharfbuzz.so:print/harfbuzz \
 	libportaudio.so:audio/portaudio \
-	libSoundTouch.so:audio/soundtouch \
-	libharfbuzz.so:print/harfbuzz
+	libpng16.so:graphics/png \
+	libSoundTouch.so:audio/soundtouch
 
 USES=	compiler:c++11-lib cmake
 
