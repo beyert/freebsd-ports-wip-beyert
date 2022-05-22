@@ -12,9 +12,6 @@ LICENSE=	BSD3CLAUSE GPLv2 LGPL21
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# fix on i386 later
-BROKEN_i386=	fails to link: undefined reference to 'ngen_*'
-
 LIB_DEPENDS=	libao.so:audio/libao \
 	libasound.so:audio/alsa-lib \
 	libcurl.so:ftp/curl \
@@ -35,13 +32,12 @@ CMAKE_ARGS=	-DOPENGL_EGL_INCLUDE_DIR:PATH=${LOCALBASE}/include/EGL \
 
 .if ${ARCH} == i386
 USE_BINUTILS=	yes
-#CXXFLAGS+=	-Wno-c++11-extensions -DSIMPLELINK
+CXXFLAGS+=	-DSIMPLELINK
 .endif
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	reicast
-GH_PROJECT=	reicast-emulator
-GH_TAGNAME=	0bd6ea3
+GH_TUPLE=	reicast:reicast-emulator:0bd6ea3 \
+	yuikns:intrin:ae63327:intrin/libswirl/deps/intrin
 
 USE_XORG=	ice sm x11 xext
 USE_GL=	egl gbm gl

@@ -1,8 +1,11 @@
 --- libswirl/hw/arm7/arm7_jit_virt_x86.cpp.orig	2020-10-18 11:22:48 UTC
 +++ libswirl/hw/arm7/arm7_jit_virt_x86.cpp
-@@ -13,6 +13,99 @@
+@@ -11,8 +11,101 @@
  
- #if HOST_OS == OS_LINUX || HOST_OS == OS_DARWIN
+ #if HOST_CPU == CPU_X86 && FEAT_AREC == DYNAREC_JIT
+ 
+-#if HOST_OS == OS_LINUX || HOST_OS == OS_DARWIN
++#if HOST_OS == OS_LINUX || HOST_OS == OS_DARWIN || HOST_OS == OS_FREEBSD
  #include <sys/mman.h>
 +
 +#define DP_R_ROFC (OP_READ_FLAGS_S|OP_READ_REG_1) //Reads reg1, op2, flags if S
@@ -100,10 +103,12 @@
  #endif
  #if HOST_OS == OS_WINDOWS
  #include <Windows.h>
-@@ -455,4 +548,4 @@ struct Arm7VirtBackendX86 : Arm7VirtBackend {
- Arm7VirtBackend* Arm7VirtBackend::Create(ARM7Backend* arm, Arm7Context* ctx) {
-     return new Arm7VirtBackendX86(arm, ctx);
- }
--#endif
-\ No newline at end of file
-+#endif
+@@ -55,6 +148,8 @@ u8 ARM7_TCB[ICacheSize + 4096] __attribute__((section(
+ 
+ #elif HOST_OS==OS_DARWIN
+ u8 ARM7_TCB[ICacheSize + 4096] __attribute__((section("__TEXT, .text")));
++#elif HOST_OS==OS_FREEBSD
++u8 ARM7_TCB[ICacheSize + 4096] __attribute__((section(".text")));
+ #else
+ #error ARM7_TCB ALLOC
+ #endif
