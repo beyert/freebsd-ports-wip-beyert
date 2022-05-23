@@ -11,8 +11,6 @@ COMMENT=	Standalone port of pcsx2 to libretro
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING.GPLv3
 
-# fix on i386 later
-BROKEN_i386=	fails to link: class member cannot be redeclared
 ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS=	libcdio.so:sysutils/libcdio \
@@ -52,6 +50,10 @@ GH_PROJECT=	pcsx2
 GH_TAGNAME=	1251fa4
 
 PLIST_FILES=	lib/libretro/pcsx2_libretro.so
+
+.if ${ARCH} == i386
+LDFLAGS+=	-Wl,-z,notext
+.endif
 
 post-patch:
 	@${CP} files/3rdparty_wxwidgets3.0_src_unix_fswatcher__kqueue.cpp \
