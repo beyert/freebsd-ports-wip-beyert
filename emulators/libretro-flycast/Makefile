@@ -21,7 +21,7 @@ LIB_DEPENDS+=	libao.so:audio/libao \
 		libudev.so:devel/libudev-devd \
 		libvulkan.so:graphics/vulkan-loader
 
-USES=	compiler:c++11-lib dos2unix gmake gl pkgconfig xorg
+USES=	compiler:c++11-lib dos2unix gl gmake pkgconfig xorg
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
@@ -36,7 +36,7 @@ CXXFLAGS+=	-I${LOCALBASE}/include
 
 .include <bsd.port.pre.mk>
 
-DOS2UNIX_FILES=	CORE/HW/BBA/Rtl8139c.h
+DOS2UNIX_FILES=	core/hw/bba/rtl8139c.h
 
 .if ${ARCH} == amd64
 CFLAGS+=	-DLOW_END
@@ -44,7 +44,8 @@ CXXFLAGS+=	-DLOW_END
 .endif
 
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ARGS=	HAVE_VULKAN=0 HAVE_GENERIC_JIT=0
+MAKE_ARGS=	HAVE_GENERIC_JIT=0 \
+		HAVE_VULKAN=0
 
 .if ${ARCH} == amd64
 MAKE_ARGS+=	WITH_DYNAREC=x86_64

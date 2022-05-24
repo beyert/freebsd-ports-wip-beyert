@@ -8,7 +8,7 @@ CATEGORIES=	emulators games
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	MAME-current for libretro
 
-LICENSE=	GPLv2 BSD2CLAUSE
+LICENSE=	BSD2CLAUSE GPLv2
 LICENSE_COMB=	multi
 
 USES=	compiler:c++11-lib gl gmake pkgconfig python:3.7,build
