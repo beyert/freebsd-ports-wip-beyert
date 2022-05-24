@@ -23,6 +23,7 @@ PLIST_FILES=	lib/libretro/bsnes_libretro.so
 
 do-install:
 	@${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
-	${INSTALL_LIB} ${WRKSRC}/bsnes_libretro.so ${STAGEDIR}/${PREFIX}/lib/libretro;
+	${INSTALL_LIB} ${WRKSRC}/bsnes_libretro.so \
+		${STAGEDIR}/${PREFIX}/lib/libretro;
 
 .include <bsd.port.mk>

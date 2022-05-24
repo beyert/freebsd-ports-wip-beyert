@@ -13,13 +13,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-LIB_DEPENDS+=	libcurl.so:ftp/curl \
-	libasound.so:audio/alsa-lib \
-	libao.so:audio/libao \
-	libevdev.so:devel/libevdev \
-	libpulse.so:audio/pulseaudio \
-	libudev.so:devel/libudev-devd \
-	libvulkan.so:graphics/vulkan-loader
+LIB_DEPENDS+=	libao.so:audio/libao \
+		libasound.so:audio/alsa-lib \
+		libcurl.so:ftp/curl \
+		libevdev.so:devel/libevdev \
+		libpulse.so:audio/pulseaudio \
+		libudev.so:devel/libudev-devd \
+		libvulkan.so:graphics/vulkan-loader
 
 USES=	compiler:c++11-lib dos2unix gmake gl pkgconfig xorg
 USE_LDCONFIG=	yes

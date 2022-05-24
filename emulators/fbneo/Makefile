@@ -21,11 +21,11 @@ USE_PERL5=	build
 USE_SDL+=	sdl2 image2
 
 SHEBANG_FILES=	${WRKSRC}/src/dep/scripts/cave_sprite_func.pl \
-	${WRKSRC}/src/dep/scripts/cave_tile_func.pl \
-	${WRKSRC}/src/dep/scripts/neo_sprite_func.pl \
-	${WRKSRC}/src/dep/scripts/psikyo_tile_func.pl \
-	${WRKSRC}/src/dep/scripts/toa_gp9001_func.pl \
-	${WRKSRC}/src/dep/scripts/gamelist.pl
+		${WRKSRC}/src/dep/scripts/cave_tile_func.pl \
+		${WRKSRC}/src/dep/scripts/neo_sprite_func.pl \
+		${WRKSRC}/src/dep/scripts/psikyo_tile_func.pl \
+		${WRKSRC}/src/dep/scripts/toa_gp9001_func.pl \
+		${WRKSRC}/src/dep/scripts/gamelist.pl
 
 PLIST_FILES=	bin/fbneo
 
@@ -37,7 +37,7 @@ GH_TAGNAME=	56ab96e
 MAKEFILE=	${WRKSRC}/makefile.sdl2
 
 MAKE_ARGS+=	INCLUDE_7Z_SUPPORT=1 RELEASEBUILD=1 INCLUDE_LIB_PNGH=1 \
-	LSB_FIRST=1 PERL=1
+		LSB_FIRST=1 PERL=1
 
 post-patch:
 	@${REINPLACE_CMD} 's|= gcc|= ${CC}|' \

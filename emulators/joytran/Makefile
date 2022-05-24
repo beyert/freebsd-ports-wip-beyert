@@ -12,7 +12,7 @@ COMMENT=	Joystick to keyboard/mouse events translator written in C
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USES=		cmake:insource pkgconfig sdl tar:bzip2 xorg
+USES=	cmake:insource pkgconfig sdl tar:bzip2 xorg
 USE_SDL=	sdl2
 USE_XORG=	x11 xtst
 CMAKE_ARGS=	-DLOCALBASE:PATH="${LOCALBASE}"

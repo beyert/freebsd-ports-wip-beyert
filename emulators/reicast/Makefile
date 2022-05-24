@@ -13,11 +13,11 @@ LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libao.so:audio/libao \
-	libasound.so:audio/alsa-lib \
-	libcurl.so:ftp/curl \
-	libevdev.so:devel/libevdev \
-	libpulse.so:audio/pulseaudio \
-	libudev.so:devel/libudev-devd
+		libasound.so:audio/alsa-lib \
+		libcurl.so:ftp/curl \
+		libevdev.so:devel/libevdev \
+		libpulse.so:audio/pulseaudio \
+		libudev.so:devel/libudev-devd
 
 USES=	cmake compiler gl xorg
 
@@ -26,9 +26,9 @@ USES=	cmake compiler gl xorg
 USE_GCC=	yes
 USE_LDCONFIG=	yes
 CMAKE_ARGS=	-DOPENGL_EGL_INCLUDE_DIR:PATH=${LOCALBASE}/include/EGL \
-	-DOPENGL_GLX_INCLUDE_DIR:PATH=${LOCALBASE}/include/GL \
-	-DOPENGL_INCLUDE_DIR:PATH=${LOCALBASE}/include/GL \
-	-DOPENGL_opengl_LIBRARY:PATH=${LOCALBASE}/lib/libGL.so
+		-DOPENGL_GLX_INCLUDE_DIR:PATH=${LOCALBASE}/include/GL \
+		-DOPENGL_INCLUDE_DIR:PATH=${LOCALBASE}/include/GL \
+		-DOPENGL_opengl_LIBRARY:PATH=${LOCALBASE}/lib/libGL.so
 
 .if ${ARCH} == i386
 USE_BINUTILS=	yes
@@ -37,7 +37,7 @@ CXXFLAGS+=	-DSIMPLELINK
 
 USE_GITHUB=	yes
 GH_TUPLE=	reicast:reicast-emulator:0bd6ea3 \
-	yuikns:intrin:ae63327:intrin/libswirl/deps/intrin
+		yuikns:intrin:ae63327:intrin/libswirl/deps/intrin
 
 USE_XORG=	ice sm x11 xext
 USE_GL=	egl gbm gl

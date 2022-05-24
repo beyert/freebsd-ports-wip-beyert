@@ -14,12 +14,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING.GPLv3
 ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS=	libcdio.so:sysutils/libcdio \
-	libharfbuzz.so:print/harfbuzz \
-	libportaudio.so:audio/portaudio \
-	libpng16.so:graphics/png \
-	libSoundTouch.so:audio/soundtouch
+		libharfbuzz.so:print/harfbuzz \
+		libpng16.so:graphics/png \
+		libportaudio.so:audio/portaudio \
+		libSoundTouch.so:audio/soundtouch
 
-USES=	compiler:c++11-lib cmake
+USES=	cmake compiler:c++11-lib
 
 .include <bsd.port.pre.mk>
 
@@ -31,8 +31,8 @@ CMAKE_PREFIX_PATH=	${LOCALBASE}/include/wx-3.0
 CMAKE_C_FLAGS=	${CFLAGS}
 CMAKE_CXX_FLAGS=	${CFLAGS}
 CMAKE_ARGS+=	-DLIBRETRO=yes
-CMAKE_ARGS+=	-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0"
-CMAKE_ARGS+=	-Dgtk_INCLUDE_DIR="${LOCALBASE}/include/gtk-3.0"
+CMAKE_ARGS+=	-Dgtk_INCLUDE_DIR="${LOCALBASE}/include/gtk-3.0" \
+		-DwxWidgets_INCLUDE_DIRS="${LOCALBASE}/include/wx-3.0"
 
 # lib depends on devel/ccache
 WITH_CCACHE_BUILD=	yes
@@ -62,6 +62,15 @@ post-patch:
 	@${REINPLACE_CMD} 's|-D_FILE_OFFSET_BITS=64|-D_FILE_OFFSET_BITS=32|' \
 		${WRKSRC}/3rdparty/wxwidgets3.0/UsewxWidgets.cmake
 .endif
+# filename.cpp first to have 2u
+	@${REINPLACE_CMD} -e 's|\[0u\]|[0]|' -e 's|\[1u\]|[1]|' \
+		-e 's|\[2u\]|[2]|' \
+		${WRKSRC}/3rdparty/wxwidgets3.0/include/wx/filename.h \
+		${WRKSRC}/3rdparty/wxwidgets3.0/src/common/cmdline.cpp \
+		${WRKSRC}/3rdparty/wxwidgets3.0/src/common/fileconf.cpp \
+		${WRKSRC}/3rdparty/wxwidgets3.0/src/common/filefn.cpp \
+		${WRKSRC}/3rdparty/wxwidgets3.0/src/common/filename.cpp \
+		${WRKSRC}/3rdparty/wxwidgets3.0/src/common/variant.cpp
 
 do-install:
 	@${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;

@@ -11,7 +11,7 @@ COMMENT=	MAME-current for libretro
 LICENSE=	GPLv2 BSD2CLAUSE
 LICENSE_COMB=	multi
 
-USES=		compiler:c++11-lib gl gmake python:3.7,build pkgconfig
+USES=	compiler:c++11-lib gl gmake pkgconfig python:3.7,build
 USE_LDCONFIG=	yes
 
 USE_GL=	gl
@@ -23,10 +23,14 @@ GH_TAGNAME=	ec47e94
 
 MAKEFILE=	${WRKSRC}/Makefile.libretro
 
-MAKE_ENV=	LD="${CXX}" PYTHON="${PYTHON_CMD}" OPT_FLAGS="${CXXFLAGS}" \
-	CXX="${CXX}" PYTHON_EXECUTABLE="${PYTHON_CMD}" ARCH=${ARCH}
+MAKE_ENV=	ARCH=${ARCH} \
+		CXX="${CXX}" \
+		LD="${CXX}" \
+		OPT_FLAGS="${CXXFLAGS}" \
+		PYTHON="${PYTHON_CMD}" \
+		PYTHON_EXECUTABLE="${PYTHON_CMD}"
 
-GENIE=		${WRKSRC}/3rdparty/genie
+GENIE=	${WRKSRC}/3rdparty/genie
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -53,7 +57,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|= \"gcc|= \"${CC}|; s|= \"${CXX}|= \"c++|' \
 		-e "s|'CXX =|'#CXX =|; s|'CC  =|'#CC  =|; s| .(ARCH)| |g" \
 		${GENIE}/src/host/scripts.c
-	# we can't fix two types of python shebangs, so do these manually
+# we can't fix two types of python shebangs, so do these manually
 	@${REINPLACE_CMD} -i "" -e "s|/usr/bin/env python|${PYTHON_CMD}|" \
 		${WRKSRC}/scripts/build/png*.py
 	@${REINPLACE_CMD} -e 's|"python"|"${PYTHON_CMD}"|' \
@@ -65,7 +69,8 @@ post-patch:
 	@${MV} ${WRKSRC}/src/lib/util/png.h ${WRKSRC}/src/lib/util/localpng.h
 
 do-install:
-	${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
-	${INSTALL_LIB} ${WRKSRC}/mame_libretro.so ${STAGEDIR}/${PREFIX}/lib/libretro;
+	@${MKDIR} ${STAGEDIR}/${PREFIX}/lib/libretro;
+	${INSTALL_LIB} ${WRKSRC}/mame_libretro.so \
+		${STAGEDIR}/${PREFIX}/lib/libretro;
 
 .include <bsd.port.mk>
