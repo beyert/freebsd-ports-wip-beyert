@@ -14,11 +14,11 @@ PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/beyert/mlton-freebsd_bootstrap/raw/c7371c1/:bootstrap
 DISTFILES+=	${BOOTNAME}.i386-${OPSYS:tl}-13.txz:bootstrap \
-	${BOOTNAME}.amd64-${OPSYS:tl}-13.txz:bootstrap \
-	${BOOTNAME}.i386-${OPSYS:tl}-12.txz:bootstrap \
-	${BOOTNAME}.amd64-${OPSYS:tl}-12.txz:bootstrap \
-	${BOOTNAME}.i386-${OPSYS:tl}-11.txz:bootstrap \
-	${BOOTNAME}.amd64-${OPSYS:tl}-11.txz:bootstrap
+		${BOOTNAME}.amd64-${OPSYS:tl}-13.txz:bootstrap \
+		${BOOTNAME}.i386-${OPSYS:tl}-12.txz:bootstrap \
+		${BOOTNAME}.amd64-${OPSYS:tl}-12.txz:bootstrap \
+		${BOOTNAME}.i386-${OPSYS:tl}-11.txz:bootstrap \
+		${BOOTNAME}.amd64-${OPSYS:tl}-11.txz:bootstrap
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Optimizing Standard ML compiler
@@ -69,17 +69,17 @@ BOOT_WRKTMP=	${WRKDIR}/mlton-bootstrap
 
 .if ! ${PORT_OPTIONS:MMLTON}
 MAKE_ARGS=	DESTDIR='' MLTON_VERSION=${PORTVERSION} \
-	PATH=${WRKSRC}/build/bin:${WRKDIR}/bin:${PATH} \
-	PREFIX=${PREFIX} \
-	WITH_GMP_DIR=${PREFIX}
+		PATH=${WRKSRC}/build/bin:${WRKDIR}/bin:${PATH} \
+		PREFIX=${PREFIX} \
+		WITH_GMP_DIR=${PREFIX}
 .else
 MAKE_ARGS=	DESTDIR='' MLTON_VERSION=${PORTVERSION} \
-	PATH=${WRKSRC}/build/bin:${BOOT_WRKSRC}/bin:${PATH} \
-	PREFIX=${PREFIX} \
-	SML_LIB=${BOOT_WRKSRC}/lib/sml WITH_GMP_DIR=${PREFIX} \
-	PREFIX=${PREFIX} LIB=${BOOT_WRKSRC}/lib \
-	TDOC=${STAGEDIR}${DOCSDIR} \
-	TEXM=${STAGEDIR}${EXAMPLESDIR}
+		PATH=${WRKSRC}/build/bin:${BOOT_WRKSRC}/bin:${PATH} \
+		PREFIX=${PREFIX} \
+		SML_LIB=${BOOT_WRKSRC}/lib/sml WITH_GMP_DIR=${PREFIX} \
+		PREFIX=${PREFIX} LIB=${BOOT_WRKSRC}/lib \
+		TDOC=${STAGEDIR}${DOCSDIR} \
+		TEXM=${STAGEDIR}${EXAMPLESDIR}
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}

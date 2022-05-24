@@ -13,10 +13,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	amd64 i386
 
 BUILD_DEPENDS=	mlton:lang/mlton
-LIB_DEPENDS=	libgmp.so:math/gmp \
-	libicudata.so:devel/icu
+LIB_DEPENDS=	libicudata.so:devel/icu \
+		libgmp.so:math/gmp
 
-USES=		gmake libtool tar:tgz ssl autoreconf
+USES=	autoreconf gmake libtool ssl tar:tgz
 
 CONFIGURE_ENV=	CCARGS="-I${LOCALBASE}/include"
 GNU_CONFIGURE=	yes
@@ -43,20 +43,20 @@ CONFIGURE_ARGS+=	with_emacs=no
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USES+=		pgsql
+USES+=	pgsql
 WANT_PGSQL=	server
 .else
 CONFIGURE_ENV+=	PGHEADER="no"
 .endif
 
 .if ${PORT_OPTIONS:MSQLITE}
-USES+=		sqlite
+USES+=	sqlite
 .else
 CONFIGURE_ENV+=	SQHEADER="no"
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
-USES+=		mysql
+USES+=	mysql
 .else
 CONFIGURE_ENV+=	MSHEADER="no"
 .endif

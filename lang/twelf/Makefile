@@ -16,10 +16,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	mlton:lang/mlton
 BUILD_DEPENDS=	mlton:lang/mlton \
-	texi2html:textproc/texi2html
+		texi2html:textproc/texi2html
 LIB_DEPENDS=	libgmp.so:math/gmp
 
-USES=		gmake
+USES=	gmake
 
 OPTIONS_DEFINE=	DOCS
 
@@ -27,7 +27,7 @@ ALL_TARGET=	mlton
 PLIST_FILES=	bin/${PORTNAME}-server
 PORTDATA=	emacs examples examples-clp examples-delphin tex vim README
 PORTDOCS=	dvi html pdf ps
-WRKSRC=		${WRKDIR}/twelf
+WRKSRC=	${WRKDIR}/twelf
 DOCS_INFO=	twelf
 
 DOCS_USE=	TEX=dvipsk:build,tex:build
@@ -58,6 +58,7 @@ do-install:
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} "${PORTDOCS}" ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/info/twelf.info* ${STAGEDIR}${PREFIX}/${INFO_PATH}
+	${INSTALL_DATA} ${WRKSRC}/doc/info/twelf.info* \
+		${STAGEDIR}${PREFIX}/${INFO_PATH}
 
 .include <bsd.port.mk>
