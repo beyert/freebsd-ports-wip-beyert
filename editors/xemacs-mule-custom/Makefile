@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/xemacs/mule-packages/pkginfo/MANIFEST.mule-base:editors/xemacs-mule-packages \
-	autoconf-2.13:devel/autoconf213
+	autoconf2.13:devel/autoconf2.13
 LIB_DEPENDS=	libpng16.so:graphics/png \
 	libldap.so:net/openldap24-client \
 	libaudio.so:audio/nas \
@@ -194,7 +194,7 @@ pre-configure::
 .endfor
 	@${REINPLACE_CMD} -e 's/^mandir=@mandir@/mandir=@mandir@\/man1/' \
 	${WRKSRC}/Makefile.in.in
-	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf2.13)
 
 pre-build:
 	@${FIND} ${WRKSRC} \( -name \*.orig -o -name \*~ \) -exec ${RM} -f \{} \;
