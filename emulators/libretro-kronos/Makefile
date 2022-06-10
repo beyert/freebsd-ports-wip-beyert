@@ -1,7 +1,8 @@
 # Created by Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-kronos
-PORTVERSION=	0.20210617
+PORTVERSION=	0.20210601
+# post 2.1.5_release, pre 2.2.0_official_release
 CATEGORIES=	emulators games
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -12,9 +13,8 @@ LICENSE_FILE=	${WRKSRC}/yabause/COPYING
 
 LIB_DEPENDS=	libGL.so:graphics/mesa-libs
 
-# standalone version uses solely cmake, whereas the retroarch core uses both
-# cmake and gmake
-USES=		compiler:c++11-lib cmake gmake gl sdl qt:5 pkgconfig
+# standalone uses solely cmake, whereas retroarch core uses cmake and gmake
+USES=	compiler:c++11-lang cmake gmake gl sdl qt:5 pkgconfig
 USE_LDCONFIG=	yes
 
 USE_SDL=	sdl2
@@ -44,6 +44,14 @@ pre-build:
 	cd ${WRKSRC}/yabause/src && ${MAKE} m68kmake
 
 .include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == clang && ${OPSYS} == FreeBSD
+# clang13 runs out of memory
+LLVM_VER=	12
+BUILD_DEPENDS+=	clang++${LLVM_VER}:devel/llvm${LLVM_VER}
+CC=	${LOCALBASE}/bin/clang${LLVM_VER}
+CXX=	${LOCALBASE}/bin/clang++${LLVM_VER}
+.endif
 
 do-build:
 	cd ${WRKSRC}/yabause/src/libretro && ${DO_MAKE_BUILD}
