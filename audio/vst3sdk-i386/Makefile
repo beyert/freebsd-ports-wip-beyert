@@ -10,6 +10,8 @@ COMMENT=	VST3 SDK (VST3 audio plugins Software Development Kit)
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+ONLY_FOR_ARCHS=	i386
+
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
