@@ -12,6 +12,8 @@ COMMENT=	Unix shell embedded into Scheme, with access to all Posix calls
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+ONLY_FOR_ARCHS=	i386
+
 USES=		gmake
 
 CONFLICTS=	scheme48
@@ -22,20 +24,10 @@ OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 
-#MAKE_JOBS_UNSAFE=	yes
-
-.if ${ARCH} != "i386"
-BROKEN+=	fails to install on ${ARCH}
-.endif
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-lib-dirs-list='("${PREFIX}/lib/scsh/0.6")'
 
 ALL_TARGET=	enough
-#MAN1=		scsh.1
-#STRIP=		#empty
-
-#PORTDOCS=	*
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/scsh
