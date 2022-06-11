@@ -3,6 +3,7 @@
 PORTNAME=	airwave
 PORTVERSION=	20200715
 CATEGORIES=	audio
+PKGNAMESUFFIX=	-wine-devel
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Wine based bridge to use Windows 32/64-bit VST 2.4 plugins
@@ -12,13 +13,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libwine.so:emulators/wine
-LIB_DEPENDS=	libwine.so:emulators/wine
-RUN_DEPENDS=	${LOCALBASE}/lib/wine/xaudio2_0.dll.so:emulators/wine
+BUILD_DEPENDS=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
+RUN_DEPENDS=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
 
 USES=	compiler:c++11-lib cmake qt:5
 
-CONFLICTS_INSTALL=	airwave-wine-devel
+CONFLICTS_INSTALL=	airwave
 
 .if defined(VSTSDK_INCLUDE_DIR)
 CMAKE_ARGS+=	-DVSTSDK_INCLUDE_DIR=${VSTSDK_INCLUDE_DIR}
@@ -44,10 +44,12 @@ IGNORE+=	need to extract ${LOCALBASE}/include/vst3sdk from an amd64 system and s
 .endif
 
 .if ${ARCH} == "amd64"
+WINEARCH="x86_64"
 CMAKE_ARGS+=	-DDISABLE_32BIT=yes -DPLATFORM_64BIT=yes
 PLIST_SUB+=	WINE32="@comment " WINE64=""
 VERSION=	64
 .else
+WINEARCH="${ARCH}"
 CMAKE_ARGS+=	-DDISABLE_64BIT=yes -DPLATFORM_32BIT=yes
 PLIST_SUB+=	WINE32="" WINE64="@comment "
 VERSION=	32

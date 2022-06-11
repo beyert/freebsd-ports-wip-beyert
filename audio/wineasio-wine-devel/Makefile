@@ -3,7 +3,7 @@
 PORTNAME=	wineasio
 PORTVERSION=	20210302
 CATEGORIES=	audio
-PKGNAMESUFFIX=	-devel
+PKGNAMESUFFIX=	-wine-devel
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	ASIO to JACK driver for WINE development version
@@ -16,8 +16,6 @@ LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING.GUI
 ONLY_FOR_ARCHS=	amd64 i386
 
 BUILD_DEPENDS=	${LOCALBASE}/include/wine/windows/winbase.h:emulators/wine-devel
-##LIB_DEPENDS=	wine/${WINEARCH}-unix/libwine.so.1.0:emulators/wine-devel
-#LIB_DEPENDS=	${LOCABASE}/lib/wine/${WINEARCH}-unix/xaudio2_0.dll.so:emulators/wine-devel
 LIB_DEPENDS=	libjack.so:audio/jack
 RUN_DEPENDS=	${LOCALBASE}/bin/wine:emulators/wine-devel \
 	${LOCALBASE}/bin/jackd:audio/jack

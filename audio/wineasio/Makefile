@@ -21,7 +21,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/wine:emulators/wine \
 
 USES=	compiler:c++11-lib gmake pkgconfig
 
-CONFLICTS_INSTALL=	wineasio-devel-*
+CONFLICTS_INSTALL=	wineasio-wine-devel
 
 .include <bsd.port.options.mk>
 
