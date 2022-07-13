@@ -1,0 +1,2 @@
+include/fmsynth.h
+lib/libfmsynth.a
