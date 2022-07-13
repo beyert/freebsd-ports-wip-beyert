@@ -1,0 +1,25 @@
+fmsynth is a FM synthesizer implementation using libfmsynth, as an LV2 plugin.
+
+Unlike most FM synth implementations in software, this FM synthesizer does not
+aim to emulate or replicate a particular synth (like DX7) or FM chip.
+
+The synth core supports:
+*  Arbitrary amounts of polyphony
+*  8 operators
+*  No fixed "algorithms"
+*  Arbitrary modulation, every operator can modulate any other operator, even
+   itself
+*  Arbitrary carrier selection, every operator can be a carrier
+*  Sine LFO, separate LFO per voice, modulates amplitude and frequency of
+   operators
+*  Envelope per operator
+*  Carrier stereo panning
+*  Velocity sensitivity per operator
+*  Mod wheel sensitivity per operator
+*  Pitch bend
+*  Keyboard scaling
+*  Sustain, sustained keys can overlap each other for a very rich sound
+*  Full floating point implementation optimized for SIMD
+*  Hard real-time constraints
+
+WWW: https://github.com/Themaister/libfmsynth

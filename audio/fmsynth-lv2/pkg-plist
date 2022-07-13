@@ -1,0 +1,11 @@
+lib/lv2/fmsynth.lv2/fmsynth.so
+lib/lv2/fmsynth.lv2/fmsynth.ttl
+lib/lv2/fmsynth.lv2/fmsynth_gui.so
+lib/lv2/fmsynth.lv2/manifest.ttl
+lib/lv2/fmsynth.lv2/presets/angry_overture.fmp
+lib/lv2/fmsynth.lv2/presets/clocky.fmp
+lib/lv2/fmsynth.lv2/presets/expressive_harp.fmp
+lib/lv2/fmsynth.lv2/presets/lead_pad.fmp
+lib/lv2/fmsynth.lv2/presets/old_school_organ.fmp
+lib/lv2/fmsynth.lv2/presets/retro_sci_fi.fmp
+lib/lv2/fmsynth.lv2/presets/square_emotions.fmp
