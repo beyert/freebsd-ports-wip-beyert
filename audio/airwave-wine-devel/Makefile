@@ -12,6 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
+IGNORE_i386=	vst3sdk fails to build
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
 RUN_DEPENDS=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
