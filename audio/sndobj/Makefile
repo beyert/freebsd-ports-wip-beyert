@@ -10,10 +10,19 @@ COMMENT=	SndObj library
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/License.txt
 
-BUILD_DEPENDS=	pd:audio/pd
-RUN_DEPENDS=	pd:audio/pd
+BUILD_DEPENDS=	pd:audio/pd ${PYNUMPY}
+RUN_DEPENDS=	pd:audio/pd ${PYNUMPY}
 
 USES=	scons compiler:c++11-lang python
+
+OPTIONS_DEFINE=		ALSA JACK
+OPTIONS_SUB=		yes
+OPTIONS_DEFAULT=	ALSA JACK
+
+ALSA_CONFIGURE_ENABLE=	alsa
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+JACK_CONFIGURE_ENABLE=	jack
+JACK_LIB_DEPENDS=	libjack.so:audio/jack
 
 MAKE_ARGS+=	instdir="${STAGEDIR}" prefix="${PREFIX}" nostaticlib="False" \
 	customCXXFLAGS="${CXXFLAGS}"
