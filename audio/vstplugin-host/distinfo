@@ -1,0 +1,13 @@
+TIMESTAMP = 1656571795
+SHA256 (Spacechild1-vstplugin-20220211-cb20070_GH0.tar.gz) = 28f3504786192ea715929c578985c8ab1f40d01ad07badf4e177de3cf7d0bc6e
+SIZE (Spacechild1-vstplugin-20220211-cb20070_GH0.tar.gz) = 437487
+SHA256 (steinbergmedia-vst3_base-f69df71_GH0.tar.gz) = b66940c764805d9fe14a531ab373a0d22b7589182bea189cac0e9eb12f83c0dc
+SIZE (steinbergmedia-vst3_base-f69df71_GH0.tar.gz) = 62930
+SHA256 (steinbergmedia-vst3_cmake-fe588a3_GH0.tar.gz) = e670565b7a3616754d27c0a4c6f2819e3f5e847a8ca298950a8b717e929a587c
+SIZE (steinbergmedia-vst3_cmake-fe588a3_GH0.tar.gz) = 20571
+SHA256 (steinbergmedia-vst3_pluginterfaces-2ad397a_GH0.tar.gz) = 88e15de43c0b64f57819274cbce92a172f1cb5cf26ca51467bae2baadeb299a8
+SIZE (steinbergmedia-vst3_pluginterfaces-2ad397a_GH0.tar.gz) = 99472
+SHA256 (steinbergmedia-vst3_public_sdk-bc459fe_GH0.tar.gz) = ae227f0c12aecd2bea0be3d50caef877d27dd519e3bfa89e57ec5809cb715150
+SIZE (steinbergmedia-vst3_public_sdk-bc459fe_GH0.tar.gz) = 12343812
+SHA256 (steinbergmedia-vstgui-6431f63_GH0.tar.gz) = 62d3da47fb868684b6ffc2a8b201fc9bb97db2472b4b23d0956388780c248d93
+SIZE (steinbergmedia-vstgui-6431f63_GH0.tar.gz) = 3669880

@@ -1,0 +1,31 @@
+--- vst/VST_SDK/VST3_SDK/vstgui4/vstgui/CMakeLists.txt.orig	2021-12-07 16:20:00 UTC
++++ vst/VST_SDK/VST3_SDK/vstgui4/vstgui/CMakeLists.txt
+@@ -1,6 +1,10 @@
+ ##########################################################################################
+ cmake_minimum_required(VERSION 3.5)
+ 
++if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    set(FREEBSD TRUE)
++endif()
++
+ if(NOT PROJECT_NAME)
+     project(vstgui)
+     set(VSTGUI_MAIN_PROJECT_BUILD 1)
+@@ -52,7 +56,7 @@ function(vstgui_source_group_by_folder target)
+ endfunction(vstgui_source_group_by_folder)
+ 
+ ##########################################################################################
+-if(LINUX)
++if(LINUX OR FREEBSD)
+     find_package(X11 REQUIRED)
+     find_package(Freetype REQUIRED)
+     find_package(PkgConfig REQUIRED)
+@@ -111,7 +115,7 @@ endif()
+ add_subdirectory(lib)
+ add_subdirectory(uidescription)
+ 
+-if(LINUX)
++if(LINUX OR FREEBSD)
+     set(VSTGUI_DISABLE_UNITTESTS  1)
+ endif()
+ 

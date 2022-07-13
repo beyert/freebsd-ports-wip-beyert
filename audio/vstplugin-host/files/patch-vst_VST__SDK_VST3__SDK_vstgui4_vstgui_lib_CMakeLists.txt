@@ -1,0 +1,31 @@
+--- vst/VST_SDK/VST3_SDK/vstgui4/vstgui/lib/CMakeLists.txt.orig	2021-12-07 16:20:00 UTC
++++ vst/VST_SDK/VST3_SDK/vstgui4/vstgui/lib/CMakeLists.txt
+@@ -3,6 +3,10 @@
+ ##########################################################################################
+ set(target vstgui)
+ 
++if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    set(FREEBSD TRUE)
++endif()
++
+ set(${target}_common_sources
+     animation/animations.cpp
+     animation/animations.h
+@@ -303,7 +307,7 @@ endif()
+ 
+ ##########################################################################################
+ # Linux
+-if(LINUX)
++if(LINUX or FREEBSD)
+     set(${target}_sources ${${target}_common_sources} ${${target}_linux_sources})
+ endif()
+ 
+@@ -314,7 +318,7 @@ target_compile_definitions(${target} ${VSTGUI_COMPILE_
+ vstgui_set_cxx_version(${target} 14)
+ vstgui_source_group_by_folder(${target})
+ 
+-if(LINUX)
++if(LINUX or FREEBSD)
+     target_include_directories(${target} PRIVATE ${X11_INCLUDE_DIR})
+     target_include_directories(${target} PRIVATE ${FREETYPE_INCLUDE_DIRS})
+     target_include_directories(${target} PRIVATE ${GLIB_INCLUDE_DIRS})

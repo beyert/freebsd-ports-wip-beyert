@@ -1,0 +1,24 @@
+vstplugin
+
+This project allows you to use VST plugins in Pd and SuperCollider on Windows,
+MacOS and Linux.  It includes a Pd external called "vstplugin~" and a
+SuperCollider UGen called "VSTPlugin" (+ various SC classes).
+
+Features:
+  *  supports all VST2 and VST3 plugins (audio effect, MIDI effect,
+     instruments, etc.)
+  *  automate plugin parameters (sample accurate for VST3 plugins)
+  *  arbitrary number of inputs/outputs + VST3 multi-bus support
+  *  use either the native VST GUI (WIN32, Cocoa, X11) or a generic editor
+  *  preset management: read/write standard VST preset files or set/get the
+     plugin state as raw data to build your own preset management
+  *  MIDI input/output
+  *  transport and tempo support (for arpeggiators, sequencers, parameters with
+     musical time units, etc.)
+  *  offline rendering
+  *  search for plugins in standard VST directories or in user defined paths
+  *  bit-bridging and sandboxing
+  *  use Windows plugins on Linux/FreeBSD (with Wine)
+  *  (optional) multithreaded plugin processing
+
+WWW: https://git.iem.at/pd/vstplugin

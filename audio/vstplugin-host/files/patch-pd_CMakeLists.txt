@@ -1,0 +1,29 @@
+--- pd/CMakeLists.txt.orig	2022-02-11 10:14:58 UTC
++++ pd/CMakeLists.txt
+@@ -22,7 +22,7 @@ if (NOT PD_DIR)
+         set(PD_BINDIR "${PROGRAMFILES}/Pd/bin" CACHE PATH "Pd binaries")
+     endif()
+ else()
+-    set(PD_INCLUDEDIR "${PD_DIR}/src" CACHE PATH "Pd header files" FORCE)
++    set(PD_INCLUDEDIR "" CACHE PATH "Pd header files")
+     if (WIN32)
+         set(PD_BINDIR "${PD_DIR}/bin" CACHE PATH "Pd binaries" FORCE)
+     endif()
+@@ -48,6 +48,8 @@ endif()
+ message(STATUS "PD_INSTALLDIR: ${PD_INSTALLDIR}")
+ 
+ if (BUILD_WINE)
++    set(CMAKE_C_COMPILER "winegcc")
++    set(CMAKE_CXX_COMPILER "wineg++")
+     # install wine hosts
+     install(PROGRAMS "${HOST_PATH}.exe.so" RENAME "${HOST}"
+         DESTINATION "${PD_INSTALLDIR}/${FILENAME}")
+@@ -75,6 +77,8 @@ if (NOT PD_EXTENSION)
+         set(CMAKE_SHARED_MODULE_SUFFIX ".pd_darwin")
+     elseif(LINUX)
+         set(CMAKE_SHARED_MODULE_SUFFIX ".pd_linux")
++    elseif(FREEBSD)
++        set(CMAKE_SHARED_MODULE_SUFFIX ".pd_freebsd")
+     endif()
+ else()
+     set(CMAKE_SHARED_MODULE_SUFFIX ".${PD_EXTENSION}")
