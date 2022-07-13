@@ -1,0 +1,5 @@
+The windowing library provides Pd objects for a list of standard windowing
+functions, which are applied per block with each DSP tick: Hanning, Hamming,
+Blackman, Cosine, Connes, Bartlett, Welch, Lanczos, Gaussian, and Kaiser.
+
+WWW: https://puredata.info/downloads/windowing
