@@ -37,7 +37,7 @@ wnn6_DESCR=	${.CURDIR}/pkg-descr.ja
 canna_PKGNAMESUFFIX=	-canna
 canna_DESCR=	${.CURDIR}/pkg-descr.ja
 
-USES=	autoreconf jpeg xorg ncurses jpeg gettext-runtime pgsql makeinfo
+USES=	jpeg xorg ncurses jpeg gettext-runtime pgsql makeinfo
 
 CONFLICTS=	xemacs xemacs-devel xemacs-devel-mule
 
