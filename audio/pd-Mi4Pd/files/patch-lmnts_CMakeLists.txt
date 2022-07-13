@@ -1,0 +1,11 @@
+--- lmnts/CMakeLists.txt.orig	2021-09-10 22:38:47 UTC
++++ lmnts/CMakeLists.txt
+@@ -26,6 +26,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFI
+ if (${APPLE})
+     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".pd_darwin")
++elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".pd_freebsd")
+ elseif (${UNIX})
+     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".pd_linux")
+ elseif (${WIN32})
