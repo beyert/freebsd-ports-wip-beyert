@@ -1,0 +1,30 @@
+--- ninjacount-help.pd.orig	2022-06-27 11:42:59 UTC
++++ ninjacount-help.pd
+@@ -0,0 +1,27 @@
++#N canvas 1152 40 766 1008 12;
++#X obj 182 315 ninjacount;
++#X floatatom 200 385 5 0 0 0 - - - 0;
++#X floatatom 201 198 5 0 0 0 - - - 0;
++#X obj 150 193 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
++#000000 #000000;
++#X floatatom 273 209 5 0 0 0 - - - 0;
++#X msg 253 148 1;
++#X msg 388 147 0;
++#X text 379 121 count up;
++#X text 226 122 count down;
++#N canvas 1152 40 766 1008 META 0;
++#X text 48 40 GENRE help;
++#X text 48 68 KEYWORDS control list_op;
++#X text 48 96 LICENSE BSD 3-CLAUSE;
++#X text 46 212 AUTHOR Dr. Edward Kelly <morph_2016@yahoo.co.uk>;
++#X text 46 239 HELP_PATCH_AUTHORS Timothy Beyer;
++#X text 48 125 INLET_0 float;
++#X text 48 157 INLET_1 float;
++#X text 46 185 OUTLET_2 float;
++#X restore 351 426 pd META;
++#X connect 0 0 1 0;
++#X connect 2 0 0 0;
++#X connect 3 0 0 0;
++#X connect 4 0 0 1;
++#X connect 5 0 4 0;
++#X connect 6 0 4 0;
