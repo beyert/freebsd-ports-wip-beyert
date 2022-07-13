@@ -1,6 +1,78 @@
 --- Makefile.orig	2017-07-12 21:05:29 UTC
 +++ Makefile
-@@ -89,7 +89,7 @@ INSTALL_DATA = $(INSTALL) -p -m 644
+@@ -10,9 +10,48 @@ SOURCES = \
+ 	slipdec.c slipenc.c \
+ 	packxbee.c unpackxbee.c \
+ 	binfile.c \
++	cd4000.c \
++	cd4001.c \
++	cd4002.c \
++	cd4008.c \
++	cd4011.c \
++	cd4012.c \
++	cd4013.c \
++	cd4014.c \
++	cd4015.c \
++	cd4017.c \
++	cd40193.c \
++	cd4023.c \
++	cd4024.c \
++	cd4025.c \
++	cd4070.c \
++	cd4071.c \
++	cd4072.c \
++	cd4073.c \
++	cd4075.c \
++	cd4076.c \
++	cd4081.c \
++	cd4082.c \
++	cd4094.c \
++	cd4516.c \
++	httpreceive.c \
++	httpreq.c \
++	tcpclient.c \
++	tcpreceive.c \
++	tcpsend.c \
++	tcpserver.c \
++	udpreceive.c \
++	udpreceive~.c \
++	udpsend.c \
++	udpsend~.c \
++	udpsndrcv.c \
+ 	midifile.c \
+ 	life2x.c \
+ 	op~.c \
++	packOSC.c \
++	pipelist.c \
++	routeOSC.c \
++	unpackOSC.c \
+ 	rc~.c \
+ 	rcosc~.c \
+ 	rojo~.c \
+@@ -25,11 +64,11 @@ SOURCES = \
+ 	which.c
+ 
+ ## where to find the source files (and help-patches)
+-VPATH=binfile:flist2tab:life2x:midifile:op~:rc~:rcosc~:rojo~:runningmean:serializer:slipdec:slipenc:sqosc~:str:tab2flist:tabfind:which:xbee
++VPATH=binfile:cmos:flist2tab:life2x:midifile:net:op~:osc:rc~:rcosc~:rojo~:runningmean:serializer:slipdec:slipenc:sqosc~:str:tab2flist:tabfind:which:xbee
+ 
+ # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
+ # be included automatically
+-PDOBJECTS = 
++PDOBJECTS =	packOSCstream.pd tcpsocket.FUDI.pd tcpsocket.OSC.pd tcpsocketserver.pd unpackOSCstream.pd
+ 
+ # example patches and related files, in the 'examples' subfolder
+ EXAMPLES = 
+@@ -41,7 +80,7 @@ MANUAL = 
+ # list them here.  This can be anything from header files, test patches,
+ # documentation, etc.  README.txt and LICENSE.txt are required and therefore
+ # automatically included
+-EXTRA_DIST = pdxbee.h
++EXTRA_DIST = cmos-meta.pd net-meta.pd osc-meta.pd packingOSC.h pdxbee.h str-to-comport.pd
+ 
+ # unit tests and related files here, in the 'unittests' subfolder
+ UNITTESTS = 
+@@ -89,7 +128,7 @@ INSTALL_DATA = $(INSTALL) -p -m 644
  INSTALL_DIR     = $(INSTALL) -p -m 755 -d
  
  ALLSOURCES := $(SOURCES) $(SOURCES_android) $(SOURCES_cygwin) $(SOURCES_macosx) \
@@ -9,7 +81,7 @@
  
  DISTDIR=$(LIBRARY_NAME)-$(LIBRARY_VERSION)
  ORIGDIR=pd-$(LIBRARY_NAME:~=)_$(LIBRARY_VERSION)
-@@ -198,6 +198,21 @@ ifeq ($(UNAME),Linux)
+@@ -198,6 +237,21 @@ ifeq ($(UNAME),Linux)
    STRIP = strip --strip-unneeded -R .note -R .comment
    DISTBINDIR=$(DISTDIR)-$(OS)-$(shell uname -m)
  endif
@@ -31,7 +103,7 @@
  ifeq ($(UNAME),GNU)
    # GNU/Hurd, should work like GNU/Linux for basically all externals
    CPU := $(shell uname -m)
-@@ -297,6 +312,7 @@ $(SHARED_LIB): $(SHARED_SOURCE:.c=.o)
+@@ -297,6 +351,7 @@ $(SHARED_LIB): $(SHARED_SOURCE:.c=.o)
  	$(CC) $(SHARED_LDFLAGS) -o $(SHARED_LIB) $(SHARED_SOURCE:.c=.o) $(ALL_LIBS)
  
  install: libdir_install
@@ -39,3 +111,14 @@
  
  # The meta and help files are explicitly installed to make sure they are
  # actually there.  Those files are not optional, then need to be there.
+@@ -304,6 +359,10 @@ install-objects: $(SOURCES:.c=.$(EXTENSION)) $(SHARED_
+ 	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+ 	$(INSTALL_DATA) $(LIBRARY_NAME)-meta.pd \
+ 		$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
++	$(INSTALL_DATA) cmos/cmos-meta.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
++	$(INSTALL_DATA) net/net-meta.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
++	$(INSTALL_DATA) osc/osc-meta.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
++	$(INSTALL_DATA) str/str-to-comport.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+ 	$(INSTALL_DATA) $^ $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+ 	test -z "$(strip $(wildcard $(SOURCES:.c=.tcl)))" || \
+ 		$(INSTALL_DATA) $(wildcard $(SOURCES:.c=.tcl)) \
