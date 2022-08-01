@@ -1,0 +1,20 @@
+Fix shared-library symlink to be relative (and local), rather than
+absolute.
+
+	-mi
+
+--- Makefile.in.orig	2022-07-21 03:00:38 UTC
++++ Makefile.in
+@@ -365,10 +365,10 @@ endif
+ ifeq ($(sharedlib), yes)
+ 	$(INSTALL) $(libpure) $(DESTDIR)$(libdir)/$(libpure)
+ ifneq ($(libpure), $(libpure_soname))
+-	ln -sf $(libdir)/$(libpure) $(DESTDIR)$(libdir)/$(libpure_soname)
++	ln -sf $(libpure) $(DESTDIR)$(libdir)/$(libpure_soname)
+ endif
+ ifneq ($(libpure), $(libpure_lnkname))
+-	ln -sf $(libdir)/$(libpure) $(DESTDIR)$(libdir)/$(libpure_lnkname)
++	ln -sf $(libpure) $(DESTDIR)$(libdir)/$(libpure_lnkname)
+ endif
+ endif
+ 	$(INSTALL) pure$(EXE) $(DESTDIR)$(bindir)/$(pure_exe)
