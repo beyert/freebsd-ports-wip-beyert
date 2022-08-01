@@ -1,0 +1,23 @@
+This is a Pure_ "loader plugin" for Pd_, Miller Puckette's graphical dataflow
+programming system for realtime multimedia applications. If you are a Pd user,
+it lets you write external Pd objects in Pure, which is generally much more
+convenient and a lot more fun than having to code Pd externals in a
+comparatively low-level language such as C or C++. If you are a Pure user, it
+provides you with an alternative way to develop and run your Pure scripts in
+one of the best graphical dataflow environments available today.
+
+Pure certainly has its own learning curve, but once mastered, it makes
+programming many kinds of Pd objects a walk in the park. Its Pd interface is
+convenient to use and has livecoding support, i.e., the ability to reload Pure
+externals at any time while your Pd patch keeps running. Pure also offers a
+comprehensive library and many interfaces to third-party software useful for
+implementing Pd objects, such as Octave_ and Grame's Faust_.
+
+But pd-pure isn't limited to just computer music and realtime multimedia
+programming, which are Pd's hallmark applications. It also allows you to employ
+Pd as a graphical dataflow environment for developing and testing your Pure
+programs, leveraging Pd's built-in facilities for creating graphical user
+interfaces for your application, while getting Pd's sophisticated realtime
+multimedia capabilities for free.
+
+WWW: https://github.com/agraef/pure-lang/tree/master/pd-pure
