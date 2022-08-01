@@ -18,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/lib/xemacs/mule-packages/pkginfo/MANIFEST.mule-base:editors/xemacs-mule-packages \
 	autoconf2.13:devel/autoconf2.13
 LIB_DEPENDS=	libpng16.so:graphics/png \
-	libldap.so:net/openldap24-client \
+	libldap.so:net/openldap26-client \
 	libaudio.so:audio/nas \
 	libtiff.so:graphics/tiff \
 	libcompface.so:mail/faces \
