@@ -1,7 +1,7 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	vgmtools
-PORTVERSION=	20210527
+DISTVERSION=	g20220718
 CATEGORIES=	audio
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -10,11 +10,11 @@ COMMENT=	Tools for vgm/vgz files
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler cmake
+USES=	cmake compiler
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	vgmrips
-GH_TAGNAME=	a698613
+GH_TAGNAME=	af83a85
 
 STRIP=
 
@@ -23,8 +23,5 @@ STRIP=
 TOOLS=	$$(cd ${CONFIGURE_WRKSRC}/CMakeFiles && ${LS} -1 -d *.dir | \
 	${AWK} -F'.dir' '{ if ($$1 != "opt_oki" && $$1 != "optdac" && \
 		$$1 != "optvgm32") { print $$1 } }')
-
-do-install:
-	cd ${CONFIGURE_WRKSRC} && ${CP} -p ${TOOLS} ${STAGEDIR}${LOCALBASE}/bin
 
 .include <bsd.port.post.mk>
