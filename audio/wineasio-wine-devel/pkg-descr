@@ -1,5 +1,0 @@
-WineASIO provides an ASIO to JACK driver for WINE.  ASIO is the most
-common Windows low-latency driver, so is commonly used in audio
-workstation programs.
-
-WWW: https://github.com/wineasio/wineasio

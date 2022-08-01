@@ -1,7 +1,0 @@
-Airwave is a wine based VST bridge, that allows for the use of
-Windows 32- and 64-bit VST 2.4 audio plugins with Linux VST hosts.
-Due to the use of shared memory, only one extra copying is made for
-each data transfer. Airwave also uses the XEMBED protocol to
-correctly embed the plugin editor into the host window.
-
-WWW: https://github.com/psycha0s/airwave
