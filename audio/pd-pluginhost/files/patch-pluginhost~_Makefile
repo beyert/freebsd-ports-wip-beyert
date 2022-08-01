@@ -1,0 +1,38 @@
+--- pluginhost~/Makefile.orig	2015-03-19 11:46:31 UTC
++++ pluginhost~/Makefile
+@@ -49,7 +49,7 @@ OBJ := $(addprefix $(OUT_DIR)/,$(OBJ_))
+ DEPS := $(OBJ:.o=.d)
+ SHARED_SUFFIX := dll
+ STATIC_SUFFIX := lib
+-INSTALL_DIR := $(PREFIX)/lib
++INSTALL_DIR := $(STAGEDIR)$(PREFIX)/lib/pd-externals/pluginhost~
+ 
+ ifeq "$(PLATFORM)" "Darwin"
+     SHARED_SUFFIX := pd_darwin
+@@ -63,6 +63,13 @@ ifeq "$(PLATFORM)" "Linux"
+     LDFLAGS += -rdynamic
+ endif
+ 
++ifeq "$(PLATFORM)" "FreeBSD"
++    SHARED_SUFFIX := pd_freebsd
++    STATIC_SUFFIX := a
++    LDFLAGS += -rdynamic
++endif
++
++
+ ifeq "$(LIBRARY)" "shared"
+     OUT=$(NAME).$(SHARED_SUFFIX)
+     LDFLAGS += -shared
+@@ -103,7 +110,11 @@ test: check
+ 
+ install: $(OUT)
+ 	@install -d $(INSTALL_DIR)
+-	@install $(OUT) $(INSTALL_DIR)
++	@install -s $(OUT) $(INSTALL_DIR)
++	@install $(NAME)-help.pd $(INSTALL_DIR)
++	@install $(NAME)-meta.pd $(INSTALL_DIR)
++	@install README.txt $(INSTALL_DIR)
++	@install LICENSE.txt $(INSTALL_DIR)
+ 
+ uninstall:
+ 	@$(RM) $(INSTALL_DIR)/$(OUT)

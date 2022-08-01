@@ -1,0 +1,13 @@
+pluginhost~ - a plugin host for Pure Data
+==========================================
+
+This directory (pluginhost) contains sourcecode and possibly binaries for a
+plugin host for Pure Data. It currently supports the following plugin types:
+
+  *  LADSPA:     http://www.ladspa.org/
+  *  DSSI:       http://dssi.sourceforge.net/
+
+The functionality of the external is demonstrated in in the help patch
+(pluginhost/pluginhost~-help.pd).
+
+WWW: https://github.com/BirminghamConservatoire/ix7/tree/master/pluginhost~
