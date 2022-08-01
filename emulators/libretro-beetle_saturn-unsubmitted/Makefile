@@ -1,8 +1,9 @@
-# $FreeBSD$
+# Created by: Timothy Beyer <beyert@cs.ucr.edu>
 
 PORTNAME=	libretro-beetle_saturn
 PORTVERSION=	0.20210617
 CATEGORIES=	emulators games
+PKGNAMESUFFIX=	-unsubmitted
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Fork of Mednafen Saturn for libretro
@@ -10,7 +11,7 @@ COMMENT=	Fork of Mednafen Saturn for libretro
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c++11-lib gmake gl
+USES=	compiler:c++11-lib gmake gl
 USE_LDCONFIG=	yes
 USE_GL=	gl glu
 
