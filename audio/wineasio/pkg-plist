@@ -1,2 +1,2 @@
-lib/wine/fakedlls/wineasio.dll
-lib/wine/wineasio.dll.so
+lib/%%UNIX_SUFFIX%%/wineasio.dll.so
+lib/%%WINDOWS_SUFFIX%%/wineasio.dll

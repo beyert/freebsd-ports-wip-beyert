@@ -13,13 +13,21 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	amd64 i386
 IGNORE_i386=	vst3sdk fails to build
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libwine.so:emulators/wine
-LIB_DEPENDS=	libwine.so:emulators/wine
-RUN_DEPENDS=	${LOCALBASE}/lib/wine/xaudio2_0.dll.so:emulators/wine
+FLAVORS=	wine wine_devel
 
 USES=	compiler:c++11-lib cmake qt:5
 
-CONFLICTS_INSTALL=	airwave-wine-devel
+#OPTIONS_DEFAULT+=	WINE
+
+#OPTIONS_SINGLE=	WINEVERSION
+#OPTIONS_SINGLE_WINEVERSION=	WINE WINE_DEVEL
+
+#WINEVERSION_DESC=	Version of wine to use for Airwave
+#WINE_DESC=	Wine stable (emulators/wine)
+#WINE_DEVEL_DESC=	Wine devel (emulators/wine-devel)
+
+wine_PKGNAMESUFFIX=	-wine
+wine_devel_PKGNAMESUFFIX=	-wine_devel
 
 .if defined(VSTSDK_INCLUDE_DIR)
 CMAKE_ARGS+=	-DVSTSDK_INCLUDE_DIR=${VSTSDK_INCLUDE_DIR}
@@ -34,7 +42,17 @@ IGNORE+=	need to obtain VST SDK and set variable VSTSDK_INCLUDE_DIR=[directory_c
 
 .include <bsd.port.options.mk>
 
+.if ${FLAVOR:Mwine}
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libwine.so:emulators/wine
+LIB_DEPENDS+=	libwine.so:emulators/wine
+RUN_DEPENDS+=	${LOCALBASE}/lib/wine/xaudio2_0.dll.so:emulators/wine
+.elif ${FLAVOR:Mwine_devel}
+BUILD_DEPENDS+=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
+RUN_DEPENDS+=	${LOCALBASE}/lib/wine/${WINEARCH}-unix/ntdll.so:emulators/wine-devel
+.endif
+
 .if ${ARCH} == "amd64"
+
 CMAKE_ARGS+=	-DVSTSDK_PATH=${LOCALBASE}/include/vst3sdk
 .else
 .if defined(VST3SDK_INCLUDE_DIR)
@@ -45,10 +63,16 @@ IGNORE+=	need to extract ${LOCALBASE}/include/vst3sdk from an amd64 system and s
 .endif
 
 .if ${ARCH} == "amd64"
+.if ${FLAVOR:Mwine_devel}
+WINEARCH="x86_64"
+.endif
 CMAKE_ARGS+=	-DDISABLE_32BIT=yes -DPLATFORM_64BIT=yes
 PLIST_SUB+=	WINE32="@comment " WINE64=""
 VERSION=	64
 .else
+.if ${FLAVOR:Mwine_devel}
+WINEARCH="${ARCH}"
+.endif
 CMAKE_ARGS+=	-DDISABLE_64BIT=yes -DPLATFORM_32BIT=yes
 PLIST_SUB+=	WINE32="" WINE64="@comment "
 VERSION=	32
