@@ -1,0 +1,64 @@
+--- Makefile.orig	2016-04-03 12:20:24 UTC
++++ Makefile
+@@ -6,9 +6,11 @@
+ dist = pd-lv2plugin-$(version)
+ version = 0.3
+ 
++CC      = cc
++
+ # The filename extension for Pd object libraries depends on your operating
+ # system. Edit this as needed.
+-PDEXT       = .pd_linux
++PDEXT       = .pd_freebsd
+ 
+ # Other platform-specific information can be obtained from Pure's pkg-config.
+ DLL         = $(shell pkg-config pure --variable DLL)
+@@ -44,6 +46,8 @@ libdir = $(prefix)/lib
+ # Pd library path.
+ pdlibdir = $(libdir)/$(PD)
+ 
++pdexternalsdir = $(libdir)/pd-externals/lv2plugin~
++
+ # Install dir for the externals and accompanying stuff.
+ pdextradir = $(pdlibdir)/extra/lv2plugin~
+ 
+@@ -55,7 +59,7 @@ PDEXT = .pd_darwin
+ endif
+ 
+ %$(DLL): %.c
+-	gcc $(shared) $(ALL_CFLAGS) $< -o $@ $(ALL_LDFLAGS)
++	$(CC) $(shared) $(ALL_CFLAGS) $< -o $@ $(ALL_LDFLAGS)
+ 
+ all: $(solibs) lv2plugin~$(PDEXT) lv2plugin~-meta.pd
+ 
+@@ -77,7 +81,7 @@ endif
+ # This links the compiled Pure code and loader to a shared library object with
+ # the proper extension required by Pd.
+ lv2plugin~$(PDEXT): lv2plugin~.o loader.o
+-	gcc $(PIC) $(shared) $^ $(extralibs) -o lv2plugin~$(DLL)
++	$(CC) $(PIC) $(shared) $^ $(extralibs) -o lv2plugin~$(DLL)
+ 	test "$(DLL)" = "$(PDEXT)" || mv lv2plugin~$(DLL) lv2plugin~$(PDEXT)
+ 
+ # This uses the Pure interpreter to compile our pd-pure objects to native code.
+@@ -89,17 +93,17 @@ lv2plugin~.o: lv2plugin~.pure
+ # Compile a minimal loader module which is needed to interface to Pd and
+ # register the object classes with pd-pure.
+ loader.o: loader.c
+-	gcc $(PIC) $(pure_incl) -Ipd -c $< -o $@
++	$(CC) $(PIC) $(pure_incl) -Ipd -c $< -o $@
+ 
+ clean:
+ 	rm -Rf *.o *$(DLL)* *$(PDEXT)
+ 
+ install:
+-	test -d "$(DESTDIR)$(pdextradir)" || mkdir -p "$(DESTDIR)$(pdextradir)"
+-	cp COPYING README.md *.pure examples/*.pd lv2plugin~$(PDEXT) lv2plugin~-meta.pd "$(DESTDIR)$(pdextradir)"
++	test -d "$(DESTDIR)$(pdexternalsdir)" || mkdir -p "$(DESTDIR)$(pdexternalsdir)"
++	cp COPYING README.md *.pure examples/*.pd lv2plugin~$(PDEXT) lv2plugin~-meta.pd "$(DESTDIR)$(pdexternalsdir)"
+ 
+ uninstall:
+-	rm -rf "$(DESTDIR)$(pdextradir)"
++	rm -rf "$(DESTDIR)$(pdexternalsdir)"
+ 
+ DISTFILES = COPYING Makefile README.md *.c *.pure *-meta.pd.in pd/*.h examples/*.pd
+ 

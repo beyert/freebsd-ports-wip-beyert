@@ -1,0 +1,7 @@
+This is a Pd external which provides a simple LV2 host so that you can run LV2
+plugins inside Pd.  The overall operation is similar to the LADSPA plugin~
+external, but it works with LV2, the new Linux plugin standard.  It supports
+both audio and MIDI plugins.  lv2plugin~ is based on lilv, the reference LV2
+host library, so it should work with almost any LV2 plugin.
+
+WWW: https://bitbucket.org/agraef/pd-lv2plugin/

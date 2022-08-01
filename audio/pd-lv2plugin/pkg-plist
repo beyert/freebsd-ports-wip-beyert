@@ -1,0 +1,8 @@
+lib/pd-externals/lv2plugin~/COPYING
+lib/pd-externals/lv2plugin~/README.md
+lib/pd-externals/lv2plugin~/lv2plugin~-help.pd
+lib/pd-externals/lv2plugin~/lv2plugin~-meta.pd
+lib/pd-externals/lv2plugin~/lv2plugin~.pd_freebsd
+lib/pd-externals/lv2plugin~/lv2plugin~.pure
+lib/pd-externals/lv2plugin~/midi-input.pd
+lib/pd-externals/lv2plugin~/midi-output.pd
