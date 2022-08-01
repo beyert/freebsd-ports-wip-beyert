@@ -1,0 +1,34 @@
+--- genlib/Makefile.orig	2022-06-20 19:29:55 UTC
++++ genlib/Makefile
+@@ -1,6 +1,6 @@
+ include ../makefile.conf
+ 
+-INCLUDES += -I../src/include -I../src/rtcmix
++INCLUDES += -I../include -I../src/include -I../src/rtcmix
+ LIB = libgen.a
+ 
+ CFILES = \
+@@ -154,6 +154,7 @@ endif
+ 	
+ all : $(LIB)
+ 	@if test ! -d $(LIBDIR); then mkdir $(LIBDIR); fi;
++	echo INSTALL target: $(INSTALL) $(LIB) $(LIBDIR)
+ 	$(INSTALL) $(LIB) $(LIBDIR)
+ 
+ install:	all
+@@ -163,10 +164,15 @@ uninstall:
+ 
+ $(LIB):	$(OBJECTS) $(OOBJECTS)
+ 	ar rv $@ $(OBJECTS) $(OOBJECTS)
++	echo LIB target: $(RANLIB) $@
+ 	$(RANLIB) $@
+ 
+ depend:
+ ifeq ($(ARCH),LINUX)
++	-$(SHELL) -ec '$(CC) -M $(CFLAGS) $(CFILES)' > depend
++	-$(SHELL) -ec '$(CXX) -M $(CXXFLAGS) $(OCFILES)' >> depend
++endif
++ifeq ($(ARCH),FREEBSD)
+ 	-$(SHELL) -ec '$(CC) -M $(CFLAGS) $(CFILES)' > depend
+ 	-$(SHELL) -ec '$(CXX) -M $(CXXFLAGS) $(OCFILES)' >> depend
+ endif

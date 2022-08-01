@@ -1,0 +1,13 @@
+--- src/control/midi/test/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/control/midi/test/Makefile
+@@ -7,6 +7,10 @@ ifeq ($(ARCH), MACOSX)
+ 	MIDISYSLIB = -framework CoreFoundation -framework CoreAudio \
+ 		-framework CoreMIDI
+ endif
++ifeq ($(ARCH), FREEBSD)
++	PMLIB = ../portmidi/pm_sndio/libportmidi.a
++	MIDISYSLIB = -lsndio
++endif
+ ifeq ($(ARCH), LINUX)
+ 	PMLIB = ../portmidi/pm_linux/libportmidi.a
+ 	MIDISYSLIB = -lasound

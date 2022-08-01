@@ -1,0 +1,41 @@
+--- src/control/midi/portmidi/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/control/midi/portmidi/Makefile
+@@ -17,6 +17,18 @@ ifeq ($(ARCH), MACOSX)
+ 	PTOBJECTS += porttime/ptmacosx_cf.o 
+ #	PTOBJECTS += porttime/ptmacosx_mach.o 
+ endif
++ifeq ($(ARCH), FREEBSD)
++# implement support for FreeBSD ALSA later
++#	VFLAGS = -DPMALSA
++	VFLAGS = -DPMSNDIO
++	PMLIB = pm_sndio/libportmidi.a
++#	MIDISYSLIB = -lasound -lpthread
++	MIDISYSLIB = -lsndio -lpthread
++#	PMOBJECTS += pm_linux/pmlinux.o pm_linux/pmlinuxalsa.o
++	PMOBJECTS += pm_sndio/pmsndio.o
++#	PTOBJECTS += porttime/ptlinux.o 
++	PTOBJECTS += porttime/ptfreebsd.o 
++endif
+ ifeq ($(ARCH), LINUX)
+ 	VFLAGS = -DPMALSA
+ 	PMLIB = pm_linux/libportmidi.a
+@@ -45,6 +57,9 @@ $(PTLIB): Makefile $(PTOBJECTS)
+ 	ar qv $@ $(PTOBJECTS)
+ 	$(RANLIB) $@
+ 
++pm_linux/pmsndio.o: Makefile pm_sndio/pmsndio.c pm_linux/pmsndio.h
++	$(CC) $(CFLAGS) -c pm_sndio/pmsndio.c -o pm_sndio/pmsndio.o
++
+ pm_linux/pmlinuxalsa.o: Makefile pm_linux/pmlinuxalsa.c pm_linux/pmlinuxalsa.h
+ 	$(CC) $(CFLAGS) -c pm_linux/pmlinuxalsa.c -o pm_linux/pmlinuxalsa.o
+ 
+@@ -70,6 +85,9 @@ pm_test/midithru: Makefile $(PTLIB) pm_test/midithru.o
+ 
+ porttime/ptlinux.o: Makefile porttime/ptlinux.c
+ 	$(CC) $(CFLAGS) -c porttime/ptlinux.c -o porttime/ptlinux.o
++
++porttime/ptfreebsd.o: Makefile porttime/ptfreebsd.c
++	$(CC) $(CFLAGS) -c porttime/ptfreebsd.c -o porttime/ptfreebsd.o
+ 
+ clean:
+ 	$(RM) *.o *~ core* */*.o */*~ */core* $(PMLIB) $(PTLIB)

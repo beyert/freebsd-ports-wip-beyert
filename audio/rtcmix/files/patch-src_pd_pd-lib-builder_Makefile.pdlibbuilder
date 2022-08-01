@@ -1,0 +1,50 @@
+--- src/pd/pd-lib-builder/Makefile.pdlibbuilder.orig	2022-06-20 19:29:55 UTC
++++ src/pd/pd-lib-builder/Makefile.pdlibbuilder
+@@ -470,6 +470,10 @@ ifeq ($(findstring $(uname), Linux GNU GNU/kFreeBSD), 
+   system = Linux
+ endif
+ 
++ifeq ($(uname), FreeBSD)
++  system = FreeBSD
++endif
++
+ ifeq ($(uname), Darwin)
+   system = Darwin
+ endif
+@@ -503,6 +507,27 @@ ifeq ($(system), Linux)
+   cxx.ldlibs := -lc -lm -lstdc++
+   shared.extension = so
+   shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
++endif
++
++
++#=== flags and paths for FreeBSD ===============================================
++
++
++ifeq ($(system), FreeBSD)
++  prefix = /usr/local
++  libdir := $(prefix)/lib
++  pkglibdir = $(libdir)/pd-externals
++  pdincludepath := $(wildcard /usr/local/include/pd)
++  extension = pd_freebsd
++  cpp.flags := -DUNIX -DFreeBSD
++  c.flags := -fPIC
++  c.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  c.ldlibs := -lc -lm
++  cxx.flags := -fPIC -fcheck-new
++  cxx.ldflags := -rdynamic -shared -fPIC -Wl,-rpath,"\$$ORIGIN",--enable-new-dtags
++  cxx.ldlibs := -lc -lm -lstdc++
++  shared.extension = so
++  shared.ldflags := -rdynamic -fPIC -shared -Wl,-soname,$(shared.lib)
+   stripflags = --strip-unneeded -R .note -R .comment
+ endif
+ 
+@@ -1002,7 +1027,7 @@ endef
+ # -p = preserve time stamps
+ # -m = set permission mode (as in chmod)
+ # -d = create all components of specified directories
+-INSTALL = install
++override INSTALL = install
+ INSTALL_PROGRAM := $(INSTALL) -p -m 644
+ INSTALL_DATA := $(INSTALL) -p -m 644
+ INSTALL_DIR := $(INSTALL) -m 755 -d

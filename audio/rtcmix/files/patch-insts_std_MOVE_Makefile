@@ -1,0 +1,12 @@
+--- insts/std/MOVE/Makefile.orig	2022-06-20 19:29:55 UTC
++++ insts/std/MOVE/Makefile
+@@ -12,6 +12,9 @@ PROF =
+ ifeq ($(ARCH),LINUX)
+    CXXFLAGS += -funroll-loops $(PROF)
+ endif
++ifeq ($(ARCH),FREEBSD)
++   CXXFLAGS += -funroll-loops $(PROF)
++endif
+ PROGS = PLACE libPLACE.so MOVE libMOVE.so
+ 
+ .PHONY: all standalone install dso_install standalone_install \

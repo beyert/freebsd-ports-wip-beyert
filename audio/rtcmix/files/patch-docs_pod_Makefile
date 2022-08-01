@@ -1,0 +1,78 @@
+--- docs/pod/Makefile.orig	2022-06-20 19:29:55 UTC
++++ docs/pod/Makefile
+@@ -28,6 +28,11 @@ IMAGES = addgens.png fplot.png gen4a.png gen4b.png gen
+ gen5a.png gen5b.png gen6.png gen7.png gen9a.png gen9b.png gen9c.png \
+ gen9d.png gen9e.png gen17.png gen20.png multgens.png
+ 
++# turn off strip argument of -s on non-binaries on FreeBSD
++ifeq ($(ARCH),FREEBSD)    # do only if MANDESTDIR is nonempty
++DONTSTRIP=	yes
++export DONTSTRIP
++endif
+ 
+ ################################################################################
+ # No need to change any of this when adding new documentation.
+@@ -85,16 +90,16 @@ ps: $(MAN) $(PS)
+ pdf: $(MAN) $(PS) $(PDF)
+ 
+ $(INST_MAN): %.1: %.pod
+-	pod2man --center=$(INST_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
++	pod2man --errors=stderr --center=$(INST_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
+ 
+ $(SCRIPT_MAN): %.1: %.pod
+-	pod2man --center=$(SCRIPT_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
++	pod2man --errors=stderr --center=$(SCRIPT_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
+ 
+ $(CMD_MAN): %.1: %.pod
+-	pod2man --center=$(CMD_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
++	pod2man --errors=stderr --center=$(CMD_TITLE) --release=$(VERS) --date=$(DATE) $< > $@
+ 
+ $(API_MAN): %.3: %.pod
+-	pod2man --center=$(API_TITLE) -s 3 --release=$(VERS) --date=$(DATE) $< > $@
++	pod2man --errors=stderr --center=$(API_TITLE) -s 3 --release=$(VERS) --date=$(DATE) $< > $@
+ 
+ $(HTML): %.html: %.pod
+ 	pod2html --css=style.css --htmlroot=. --podpath=. --noindex $< > $@
+@@ -126,26 +131,28 @@ $(SYN): syn.in
+ clean:
+ 	$(RM) *.1 *.3 *.html *.ps *.pdf *.tmp pod2htm* $(SYN)
+ 
++# replace strip with printf ${STRING} | xargs since we only need to find if the
++# string is non-empty or otherwise
+ installman: $(MAN)
+-ifneq ($(strip $(MANDESTDIR)),)    # do only if MANDESTDIR is nonempty
++ifneq ($(shell printf $(MANDESTDIR) | xargs),)    # do only if MANDESTDIR is nonempty
+ 	$(mkinstalldirs) $(MANDESTDIR)/man1
+ 	$(mkinstalldirs) $(MANDESTDIR)/man3
+ 	$(INSTALL) $(INST_MAN) $(SCRIPT_MAN) $(CMD_MAN) $(MANDESTDIR)/man1
+-ifneq ($(strip $(API_MAN)),)       # do only if API_MAN is nonempty
++ifneq ($(shell printf $(API_MAN) | xargs),)       # do only if API_MAN is nonempty
+ 	$(INSTALL) $(API_MAN) $(MANDESTDIR)/man3
+ endif
+ endif
+ 
+ uninstallman:
+-ifneq ($(strip $(MANDESTDIR)),)    # do only if MANDESTDIR is nonempty
++ifneq ($(shell printf $(MANDESTDIR) | xargs),)    # do only if MANDESTDIR is nonempty
+ 	( cd $(MANDESTDIR)/man1; $(RM) $(INST_MAN) $(SCRIPT_MAN) $(CMD_MAN) )
+-ifneq ($(strip $(API_MAN)),)       # do only if API_MAN is nonempty
++ifneq ($(shell printf $(API_MAN) | xargs),)       # do only if API_MAN is nonempty
+ 	( cd $(MANDESTDIR)/man3; $(RM) $(API_MAN) )
+ endif
+ endif
+ 
+ installhtml: $(HTML) $(HTML_INDEX)
+-ifneq ($(strip $(HTMLDESTDIR)),)    # do only if HTMLDESTDIR is nonempty
++ifneq ($(shell printf $(HTMLDESTDIR) | xargs),)    # do only if HTMLDESTDIR is nonempty
+ 	$(mkinstalldirs) $(HTMLDESTDIR)
+ 	$(INSTALL) $(HTML) $(HTMLDESTDIR)
+ 	$(INSTALL) $(HTML_INDEX) $(HTMLDESTDIR)
+@@ -155,7 +162,7 @@ ifneq ($(strip $(HTMLDESTDIR)),)    # do only if HTMLD
+ endif
+ 
+ uninstallhtml:
+-ifneq ($(strip $(HTMLDESTDIR)),)    # do only if HTMLDESTDIR is nonempty
++ifneq ($(shell printf $(HTMLDESTDIR) | xargs),)    # do only if HTMLDESTDIR is nonempty
+ 	( if test -d $(HTMLDESTDIR); then cd $(HTMLDESTDIR); \
+ 		$(RM) $(HTML) $(HTML_INDEX) style.css; fi )
+ 	( cd $(HTMLDESTDIR)/images; $(RM) $(IMAGES) )

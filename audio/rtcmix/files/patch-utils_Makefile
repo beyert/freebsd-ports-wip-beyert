@@ -1,0 +1,41 @@
+--- utils/Makefile.orig	2022-06-20 19:29:55 UTC
++++ utils/Makefile
+@@ -21,6 +21,20 @@ ifeq ($(ARCH), LINUX)
+ 		CXXFLAGS += -DALSA
+ 	endif
+ endif
++ifeq ($(ARCH), FREEBSD)
++# not yet ready
++#	ifeq ($(AUDIODRIVER), ALSA)
++#		PMLIB = ../src/control/midi/portmidi/pm_linux/libportmidi.a
++#		MIDISYSLIB = -lasound -lpthread
++#		CXXFLAGS += -DALSA
++#	endif
++#	ifeq ($(AUDIODRIVER), OSS)
++		PMLIB = ../src/control/midi/portmidi/pm_sndio/libportmidi.a
++		MIDISYSLIB = -lsndio -lpthread
++		CXXFLAGS += -DSNDIO
++#	endif
++endif
++
+ ifeq ($(ARCH), MACOSX)
+ 	PMLIB = ../src/control/midi/portmidi/pm_mac/libportmidi.a
+ 	MIDISYSLIB = -framework CoreFoundation -framework CoreAudio -framework CoreMIDI
+@@ -39,7 +53,7 @@ $(PLAY).o: $(PLAY).cpp $(PLAY_HDRS)
+ 
+ $(SETUP): $(SETUP).o $(OPTION_O) $(LIBCONF)
+ 	$(CXX) $(CXXFLAGS) -o $(SETUP) $(SETUP).o $(OPTION_O) $(LIBCONF) \
+-		$(PMLIB) $(PTLIB) $(MIDISYSLIB)
++		$(PMLIB) $(PTLIB) $(LDFLAGS_) $(MIDISYSLIB)
+ 
+ hist: $(HISTOBJ) $(SYSOBJS)
+ 	$(CC) $(CFLAGS) -o hist $(HISTOBJ) $(SYSOBJS) $(SNDLIB) -lm
+@@ -77,7 +91,7 @@ ifneq ($(strip $(PROGS)),)       # do only if PROGS is
+ 	  ( $(INSTALL) $(CMIXDIR)/utils/$$PROG $(DESTDIR); ) \
+ 	done
+ endif
+-	@cd $(DESTDIR); if test -f $(PLAY); then ln -fs $(PLAY) play; fi
++	@cd $(DESTDIR); if test -f $(PLAY); then ln -fs $(PLAY) cmplay; fi
+ 	@cd head; $(MAKE) $(MFLAGS) install
+ 	@cd resample; $(MAKE) $(MFLAGS) install
+ 

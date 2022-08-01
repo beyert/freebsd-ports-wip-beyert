@@ -1,0 +1,34 @@
+--- src/audio/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/audio/Makefile
+@@ -17,16 +17,29 @@ OBJECTS =  AudioDevice.o AudioIODevice.o AudioDeviceIm
+ ifeq ($(ARCH),LINUX)
+    ifeq ($(AUDIODRIVER), EMBEDDEDAUDIO)
+    		OBJECTS += EmbeddedAudioDevice.o
+-   else ifeq ($(AUDIODRIVER), ALSA))
++   else ifeq ($(AUDIODRIVER), ALSA)
+ 		OBJECTS +=  OSSAudioDevice.o SinglePortOSSAudioDevice.o \
+ 			MultiPortOSSAudioDevice.o ALSAAudioDevice.o TestAudioDevice.o
+-   else ifeq ($(AUDIODRIVER), OSS))
++   else ifeq ($(AUDIODRIVER), OSS)
+ 		OBJECTS +=  OSSAudioDevice.o SinglePortOSSAudioDevice.o \
+ 			MultiPortOSSAudioDevice.o
+    endif
+ # Add this to enable the TestAudioDevice class
+ #		CXXFLAGS += -DTEST_AUDIO_DEVICE
+ #		OBJECTS += TestAudioDevice.o
++endif
++
++ifeq ($(ARCH),FREEBSD)
++   ifeq ($(AUDIODRIVER), EMBEDDEDAUDIO)
++   		OBJECTS += EmbeddedAudioDevice.o
++   else ifeq ($(AUDIODRIVER), ALSA)
++		OBJECTS +=  OSSAudioDevice.o SinglePortOSSAudioDevice.o \
++			MultiPortOSSAudioDevice.o ALSAAudioDevice.o TestAudioDevice.o
++   else ifeq ($(AUDIODRIVER), OSS)
++		OBJECTS +=  OSSAudioDevice.o SinglePortOSSAudioDevice.o \
++			MultiPortOSSAudioDevice.o
++   endif
++   CFLAGS += -DFREEBSD
+ endif
+ 
+ ifeq ($(ARCH),MACOSX)

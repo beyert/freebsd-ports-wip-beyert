@@ -1,0 +1,30 @@
+--- src/rtcmix/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/rtcmix/Makefile
+@@ -301,7 +301,7 @@ $(LIBRTAUDIO):
+ 	(cd $(AUDIODIR); $(MAKE) $(MFLAGS) all;)
+ 
+ $(MIX_OBJS):	
+-	(cd ../../insts/base/MIX; make all)
++	(cd ../../insts/base/MIX; $(MAKE) $(MFLAGS) all;)
+ 
+ # This target attempts to do builds in all the directories outside of the current one.
+ ifneq ($(BUILDTYPE), STANDALONE)
+@@ -402,12 +402,15 @@ MIX: $(MAIN_OBJS) $(M_O) $(LIBS) $(PROFILE_O) 
+ 
+ install:	all
+ 	@if test ! -d $(DESTDIR); then mkdir -p $(DESTDIR); fi;
+-	$(INSTALL) MIX $(DESTDIR)/CMIX
++	chmod 755 MIX
++	$(INSTALL) MIX $(DESTDIR)/cmix
+ ifeq ($(PERL_SUPPORT), TRUE)
+-	$(INSTALL) PMIX $(DESTDIR)/PCMIX
++	chmod 755 PMIX
++	$(INSTALL) PMIX $(DESTDIR)/pcmix
+ endif
+ ifeq ($(PYTHON_SUPPORT), TRUE)
+-	$(INSTALL) PYMIX $(DESTDIR)/PYCMIX
++	chmod 755 PYMIX
++	$(INSTALL) PYMIX $(DESTDIR)/pycmix
+ endif
+ 
+ 

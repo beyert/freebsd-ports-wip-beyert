@@ -1,0 +1,295 @@
+--- makefile.conf.in.orig	2022-06-20 19:29:55 UTC
++++ makefile.conf.in
+@@ -53,6 +53,29 @@ LIBPREFIX = lib
+ 
+ # Compile and link time flags
+ 
++# -- FreeBSD --------------------------------------------------
++ifeq ($(ARCH),FREEBSD)
++  ARCHFLAGS = -DFREEBSD $(ARCH_BITFLAGS)
++  ARCH_RTLDFLAGS = -Wl,-rpath $(LIBDIR)
++  ifeq ($(BUILDTYPE), STANDALONE)
++    ARCHFLAGS += -DSTANDALONE
++    RTLIBTYPE = DYNAMIC
++    INSTTYPE = DYNAMIC
++  endif
++  ifndef AUDIODRIVER
++    AUDIODRIVER=OSS
++  endif
++  CC = cc -Xlinker -lc++
++  CXX = c++ -Wno-deprecated -Wl,-z,notext
++  LD = ld
++  MAKE = gmake
++  INSTALL = cp -f
++  RANLIB = touch
++  SHELL = /bin/sh
++  SHLIB = rtcmix
++  SHLIB_SUFFIX = so
++endif
++
+ # -- Linux ----------------------------------------------------
+ ifeq ($(ARCH),LINUX)
+   ARCHFLAGS = -DLINUX $(ARCH_BITFLAGS)
+@@ -60,10 +83,10 @@ ifeq ($(ARCH),LINUX)
+   ifeq ($(BUILDTYPE), STANDALONE)
+     ARCHFLAGS += -DSTANDALONE
+     RTLIBTYPE = DYNAMIC
+-	INSTTYPE = DYNAMIC
++    INSTTYPE = DYNAMIC
+   endif
+   ifndef AUDIODRIVER
+-	AUDIODRIVER=OSS
++  AUDIODRIVER=OSS
+   endif
+   CC = gcc
+   CXX = g++ -Wno-deprecated
+@@ -102,8 +125,8 @@ ifeq ($(ARCH),MACOSX)
+       ARCHFLAGS += -DUSE_OSX_DISPATCH
+     endif
+     ARCH_RTLDFLAGS += -framework AudioUnit
+-	INSTTYPE = DYNAMIC
+-	SHLIB = rtcmix
++    INSTTYPE = DYNAMIC
++    SHLIB = rtcmix
+     SHLIB_SUFFIX = dylib
+     AUDIODRIVER=APPLE
+     CMIX_FLAGS += -DAPPLEAUDIO
+@@ -119,21 +142,21 @@ ifeq ($(ARCH),MACOSX)
+     ARCH_RTLDFLAGS += -framework AudioUnit
+     AUDIODRIVER=EMBEDDEDAUDIO
+     CMIX_FLAGS += -DEMBEDDEDAUDIO
+-	INSTTYPE = STATIC
++    INSTTYPE = STATIC
+     SHLIB = rtcmix_embedded
+     # This is overridable in site.conf
+-	ifndef RTLIBTYPE
+-		RTLIBTYPE = DYNAMIC
+-	endif
+-	ifeq ($(RTLIBTYPE), DYNAMIC) 
++    ifndef RTLIBTYPE
++      RTLIBTYPE = DYNAMIC
++    endif
++    ifeq ($(RTLIBTYPE), DYNAMIC) 
+         SHLIB_SUFFIX = dylib
+-		RTLIB_LDFLAGS = $(DYNAMIC_LDFLAGS)
+-	else
+-		ARCH_RTLDFLAGS =
++        RTLIB_LDFLAGS = $(DYNAMIC_LDFLAGS)
++    else
++        ARCH_RTLDFLAGS =
+         SHLIB_SUFFIX = a
+-		RTLIB_LDFLAGS =
+-	endif
+-	RTLIB_INSTALL_DIR = $(LIBDIR)
++        RTLIB_LDFLAGS =
++    endif
++    RTLIB_INSTALL_DIR = $(LIBDIR)
+   endif
+ 
+   # -- MaxMSP -------------------------------------------------
+@@ -150,45 +173,45 @@ ifeq ($(ARCH),MACOSX)
+     ARCHFLAGS += -isysroot `xcrun --show-sdk-path`
+     CC = `xcrun -f cc`
+     CXX = `xcrun -f c++` -Wno-deprecated
+-	INSTTYPE = STATIC
++    INSTTYPE = STATIC
+ 
+     SHLIB = rtcmixdylib
+-	SHLIB_SUFFIX = so
+-	# we override this to remove the "lib" prefix
+-	LIBPREFIX =
+-	RTLIB_LDFLAGS = $(UB_CFLAGS) -Wl,-U,_cpost,-bundle,-flat_namespace
+-	RTLIBTYPE = DYNAMIC
+-	RTLIB_INSTALL_DIR = $(MAX_LIB_INSTALL_DIR)
++    SHLIB_SUFFIX = so
++    # we override this to remove the "lib" prefix
++    LIBPREFIX =
++    RTLIB_LDFLAGS = $(UB_CFLAGS) -Wl,-U,_cpost,-bundle,-flat_namespace
++    RTLIBTYPE = DYNAMIC
++    RTLIB_INSTALL_DIR = $(MAX_LIB_INSTALL_DIR)
+     AUDIODRIVER=EMBEDDEDAUDIO
+     CMIX_FLAGS += -DEMBEDDEDAUDIO
+   endif
+ 
+-  # -- iOS ----------------------------------------------------
+-  ifeq ($(BUILDTYPE), IOS)
+-	# This is always true for IOS
+-	RTLIBTYPE = STATIC
+-	SHLIB_SUFFIX = a
+-	INSTTYPE = STATIC
+-	# This is overridable in site.conf
+-	ifndef AUDIODRIVER
+-    	AUDIODRIVER=APPLE
+-    endif
+-	ifeq ($(AUDIODRIVER), EMBEDDEDAUDIO)
+-		CMIX_FLAGS += -DEMBEDDEDAUDIO
+-	else
+-		CMIX_FLAGS += -DAPPLEAUDIO
+-	endif
+-    ifeq ($(IPHONE_TYPE), SIMULATOR)
+-      ARCH_BITFLAGS = -m64
+-      ARCHFLAGS += $(ARCH_BITFLAGS) -DEMBEDDED -DIOS -DSIMULATOR -arch i386 -arch x86_64
+-      ARCH_RTLDFLAGS = -dylib_file /usr/lib/$(RTLIB):$(LIBRTCMIX) -arch i386 -arch x86_64 -framework AudioToolbox
+-      ifeq ($(USE_OSX_DISPATCH), TRUE)
+-        ARCHFLAGS += -DUSE_OSX_DISPATCH
++    # -- iOS ----------------------------------------------------
++    ifeq ($(BUILDTYPE), IOS)
++      # This is always true for IOS
++      RTLIBTYPE = STATIC
++      SHLIB_SUFFIX = a
++      INSTTYPE = STATIC
++      # This is overridable in site.conf
++      ifndef AUDIODRIVER
++          AUDIODRIVER=APPLE
+       endif
+-      IPHONE_CFLAGS = -isysroot `xcrun -sdk iphonesimulator --show-sdk-path`
+-      CC = `xcrun -sdk iphonesimulator -f cc`
+-      CXX = `xcrun -sdk iphonesimulator -f c++` -Wno-deprecated
+-	  SHLIB = rtcmix_iphone-SIM
++      ifeq ($(AUDIODRIVER), EMBEDDEDAUDIO)
++          CMIX_FLAGS += -DEMBEDDEDAUDIO
++      else
++          CMIX_FLAGS += -DAPPLEAUDIO
++      endif
++      ifeq ($(IPHONE_TYPE), SIMULATOR)
++          ARCH_BITFLAGS = -m64
++          ARCHFLAGS += $(ARCH_BITFLAGS) -DEMBEDDED -DIOS -DSIMULATOR -arch i386 -arch x86_64
++          ARCH_RTLDFLAGS = -dylib_file /usr/lib/$(RTLIB):$(LIBRTCMIX) -arch i386 -arch x86_64 -framework AudioToolbox
++          ifeq ($(USE_OSX_DISPATCH), TRUE)
++              ARCHFLAGS += -DUSE_OSX_DISPATCH
++          endif
++          IPHONE_CFLAGS = -isysroot `xcrun -sdk iphonesimulator --show-sdk-path`
++          CC = `xcrun -sdk iphonesimulator -f cc`
++          CXX = `xcrun -sdk iphonesimulator -f c++` -Wno-deprecated
++          SHLIB = rtcmix_iphone-SIM
+     endif
+     ifeq ($(IPHONE_TYPE), DEVICE)
+       ARCHFLAGS += $(ARCH_BITFLAGS) -DEMBEDDED -DIOS -DIOSDEV
+@@ -199,7 +222,7 @@ ifeq ($(ARCH),MACOSX)
+       IPHONE_CFLAGS = -isysroot `xcrun -sdk iphoneos --show-sdk-path`
+       CC = `xcrun -sdk iphoneos -f cc` -arch armv7s -arch armv7 -arch arm64
+       CXX = `xcrun -sdk iphoneos -f c++` -arch armv7s -arch armv7 -arch arm64
+-	  SHLIB = rtcmix_iphone-DEV
++      SHLIB = rtcmix_iphone-DEV
+     endif
+   endif
+ endif
+@@ -224,10 +247,10 @@ endif
+ 
+ # -- FreeBSD --------------------------------------------------
+ ifeq ($(ARCH),FREEBSD)
+-  ARCHFLAGS = -DFREEBSD -DLINUX $(ARCH_BITFLAGS) -DSTANDALONE
++  ARCHFLAGS = -DFREEBSD $(ARCH_BITFLAGS) -DSTANDALONE
+   ARCH_RTLDFLAGS =
+-  CC = gcc
+-  CXX = g++
++  CC = cc
++  CXX = c++
+   LD = ld
+   MAKE = gmake
+   INSTALL = cp -f
+@@ -238,37 +261,37 @@ ifeq ($(ARCH),FREEBSD)
+   SHLIB_SUFFIX = so
+   RTLIBTYPE = DYNAMIC
+   RTLIB_INSTALL_DIR = $(LIBDIR)
++  CMIX_FLAGS += -DFREEBSD
+ endif
+ 
+ # -- Pd -----------------------------------------------------
+ ifeq ($(BUILDTYPE), PD)
+-	ARCHFLAGS += -DEMBEDDED -DPD -I$(PD_INCLUDES)
+-	ifeq ($(ARCH),MACOSX)
+-		SHARED_LDFLAGS += -Wl,-U,_post
+-		ARCHFLAGS += -arch i386 -arch x86_64
+-	endif
+-	ifndef RTLIBTYPE
+-		RTLIBTYPE = DYNAMIC
+-	endif
+-	ifeq ($(RTLIBTYPE), DYNAMIC)
+-		SHLIB = rtcmixdylib
+-		SHLIB_SUFFIX = so
+-		RTLIB_LDFLAGS = $(SHARED_LDFLAGS)
+-	else
+-		SHLIB = rtcmixlib
+-		SHLIB_SUFFIX = a
+-		RTLIB_LDFLAGS =
+-	endif
+-	AUDIODRIVER=EMBEDDEDAUDIO
+-	CMIX_FLAGS += -DEMBEDDEDAUDIO
++    ARCHFLAGS += -DEMBEDDED -DPD -I$(PD_INCLUDES)
++    ifeq ($(ARCH),MACOSX)
++         SHARED_LDFLAGS += -Wl,-U,_post
++         ARCHFLAGS += -arch i386 -arch x86_64
++    endif
++    ifndef RTLIBTYPE
++         RTLIBTYPE = DYNAMIC
++    endif
++    ifeq ($(RTLIBTYPE), DYNAMIC)
++         SHLIB = rtcmixdylib
++         SHLIB_SUFFIX = so
++         RTLIB_LDFLAGS = $(SHARED_LDFLAGS)
++    else
++         SHLIB = rtcmixlib
++         SHLIB_SUFFIX = a
++         RTLIB_LDFLAGS =
++    endif
++    AUDIODRIVER=EMBEDDEDAUDIO
++    CMIX_FLAGS += -DEMBEDDEDAUDIO
+     INSTTYPE = STATIC
+ endif
+ 
+ ifeq ($(BUILDTYPE), STANDALONE)
+-	RTLIB_LDFLAGS = $(DYNAMIC_LDFLAGS)
+-	RTLIBTYPE = DYNAMIC
+-	RTLIB_INSTALL_DIR = $(LIBDIR)
+-	
++    RTLIB_LDFLAGS = $(DYNAMIC_LDFLAGS)
++    RTLIBTYPE = DYNAMIC
++    RTLIB_INSTALL_DIR = $(LIBDIR)
+     ifeq ($(NPLAY_SUPPORT), TRUE)
+       CMIX_FLAGS += -DNETAUDIO
+     endif
+@@ -301,8 +324,8 @@ CMIX_FLAGS += -DMINCLUDEDIR=\"$(MINCLUDEDIR)\"
+ # Multi-platform OSC server support
+ 
+ ifeq ($(OSC_SUPPORT), TRUE)
+-	CMIX_FLAGS += -DOSC $(LIBLO_CFLAGS)
+-	RTLDFLAGS += $(LIBLO_LIBS)
++    CMIX_FLAGS += -DOSC $(LIBLO_CFLAGS)
++    RTLDFLAGS += $(LIBLO_LIBS)
+ endif
+ 
+ # Platform-specific library flags Key:
+@@ -330,9 +353,9 @@ ifeq ($(ARCH),MACOSX)
+   SYS_LDFLAGS = -framework CoreAudio $(ARCH_SYS_LDFLAGS)
+   DSO_LDFLAGS = $(SYS_LDFLAGS)
+   ifeq ($(BUILDTYPE), PD)
+-  	SHARED_LDFLAGS = $(ARCHFLAGS) -bundle
++      SHARED_LDFLAGS = $(ARCHFLAGS) -bundle
+   else
+-    	SHARED_LDFLAGS = $(ARCHFLAGS) $(OPT) -bundle -flat_namespace -undefined suppress
++      SHARED_LDFLAGS = $(ARCHFLAGS) $(OPT) -bundle -flat_namespace -undefined suppress
+   endif
+   DYNAMIC_LDFLAGS = $(ARCHFLAGS) -flat_namespace -undefined suppress -dynamiclib -install_name $(LIBDIR)/$(RTLIB)
+   DYN = 
+@@ -340,16 +363,16 @@ endif
+ ifeq ($(ARCH),SGI)
+   SYS_LDFLAGS = -lpthread -laudio -lm
+   DSO_LDFLAGS = $(SYS_LDFLAGS)
+-  SHARED_LDFLAGS = -shared -update_registry $(LIBDESTDIR)/so_locations
++  SHARED_LDFLAGS = $(LDFLAGS) -shared -update_registry $(LIBDESTDIR)/so_locations
+   DYNAMIC_LDFLAGS = $(SHARED_LDFLAGS)
+   DYN = 
+ endif
+ ifeq ($(ARCH),FREEBSD)
+-  SYS_LDFLAGS += -pthread -lm -ll
++  SYS_LDFLAGS += $(LDFLAGS_) -pthread -lm -ll
+   DSO_LDFLAGS = -export-dynamic $(SYS_LDFLAGS)
+-  SHARED_LDFLAGS = -shared -Wl,-soname,$(RTLIB)
++  SHARED_LDFLAGS = $(LDFLAGS_) -shared -Wl,-soname,$(RTLIB)
+   DYNAMIC_LDFLAGS = $(SHARED_LDFLAGS)
+-  DYN = -rdynamic
++  DYN = 
+ endif
+ 
+ LDFLAGS = $(ARCH_RTLDFLAGS) $(RTLDFLAGS)

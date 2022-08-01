@@ -1,0 +1,11 @@
+--- src/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/Makefile
+@@ -21,7 +21,7 @@ all: $(DIRS)
+ 
+ $(DIRS)::
+ 	echo "making all in src..."
+-	$(MAKE) -C $@
++	$(MAKE) $(MFLAGS) -C $@
+ 
+ dsos: all
+ 

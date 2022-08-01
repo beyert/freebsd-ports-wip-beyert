@@ -1,0 +1,12 @@
+--- src/rtcmix/heap/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/rtcmix/heap/Makefile
+@@ -24,6 +24,9 @@ depend:
+ ifeq ($(ARCH),LINUX)
+ 	-$(SHELL) -ec '$(CC) -M $(CFLAGS) $(SRCS)' > depend
+ endif
++ifeq ($(ARCH),FREEBSD)
++	-$(SHELL) -ec '$(CC) -M $(CFLAGS) $(SRCS)' > depend
++endif
+ ifeq ($(ARCH),SGI)
+ # Note: -MM is a gcc extension. If no gcc, use -M.
+ # # Unfortunately, this doesn't work...   -JGG

@@ -1,0 +1,12 @@
+--- insts/std/MMOVE/Makefile.orig	2022-06-20 19:29:55 UTC
++++ insts/std/MMOVE/Makefile
+@@ -16,6 +16,9 @@ PROF =
+ ifeq ($(ARCH),LINUX)
+    CXXFLAGS += -funroll-loops $(PROF)
+ endif
++ifeq ($(ARCH),FREEBSD)
++   CXXFLAGS += -funroll-loops $(PROF)
++endif
+ CXXFLAGS += -I. -I$(MOVEDIR) $(MINE)
+ CFLAGS += -I. -I$(MOVEDIR) $(MINE)
+ 

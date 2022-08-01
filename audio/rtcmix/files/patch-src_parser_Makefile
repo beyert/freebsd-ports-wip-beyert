@@ -1,0 +1,32 @@
+--- src/parser/Makefile.orig	2022-06-20 19:29:55 UTC
++++ src/parser/Makefile
+@@ -24,6 +24,17 @@ ifeq ($(PYTHON_SUPPORT), TRUE)
+   endif
+ endif
+ 
++FLEX_GT_2_6_0 := $(shell flex --version | awk '{ split($$2, v, "\."); \
++	len = length(v); \
++	if ((len == 1) && (v[1] > 2)) { print "yes" } \
++	else if ((len == 2) && (v[1] > 2)) { print "yes" } \
++	else if ((len == 2) && (v[1] >= 2) && (v[2] > 6)) { print "yes" } \
++	else if ((len >= 3) && (v[1] > 2)) { print "yes" } \
++	else if ((len >= 3) && (v[1] >= 2) && (v[2] > 6)) { print "yes" } \
++	else if ((len >= 3) && \
++	         (v[1] >= 2) && (v[2] >= 6) && (v[3] > 0)) { print "yes" } \
++	else { print "no" } }')
++
+ all: $(DIRS) $(OBJS)
+ 
+ $(DIRS)::
+@@ -31,7 +42,11 @@ $(DIRS)::
+ 	$(MAKE) $(MFLAGS) -C $@
+ 
+ parse_with_minc.o: parse_with_minc.cpp rtcmix_parse.h
++ifeq ($(FLEX_GT_2_6_0),yes)
++	$(CXX) $(CXXFLAGS) -DFLEX_GT_2_6_0 -c parse_with_minc.cpp
++else
+ 	$(CXX) $(CXXFLAGS) -c parse_with_minc.cpp
++endif
+ 
+ parse_with_perl.o: parse_with_perl.c rtcmix_parse.h
+ 	$(CC) $(CFLAGS) $(PERL_CCFLAGS) -DSHAREDLIBDIR=\"$(LIBDESTDIR)\" -c parse_with_perl.c
