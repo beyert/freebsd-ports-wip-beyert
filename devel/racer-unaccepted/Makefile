@@ -4,6 +4,7 @@
 PORTNAME=	racer
 DISTVERSION=	1.2.5
 CATEGORIES=	devel
+PKGNAMESUFFIX=	-unaccepted
 
 MAINTAINER=	beyert@cs.ucr.edu
 COMMENT=	Utility intended to provide Rust code completion for editors and IDEs
